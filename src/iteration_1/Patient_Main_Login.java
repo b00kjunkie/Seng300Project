@@ -125,7 +125,7 @@ public class Patient_Main_Login {
 				String username = txtUsername.getText();
 				String password = txtPassword.getText();
 				
-				Patient_Account account = auth.login(username,password);
+				CustomElement account = auth.login(username,password);
 				
 				if(account == null) {
 					lblInvalidMsg.setVisible(true);

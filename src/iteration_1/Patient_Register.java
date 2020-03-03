@@ -89,10 +89,11 @@ public class Patient_Register extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				String password_first = lblNewPassword.getText();
-				String password_confirm = lblNewPasswordConfirm.getText();
+				String password_first = txtNewPwd.getText();
+				String password_confirm = txtConfirmedPwd.getText();
 				
-				if(!password_first.contentEquals(password_confirm)) {
+				
+				if(!password_first.equalsIgnoreCase(password_confirm)) {
 					
 					lblNotMatch.setVisible(true);
 					
