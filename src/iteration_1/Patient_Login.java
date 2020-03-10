@@ -65,12 +65,19 @@ public class Patient_Login extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				
 				String username = txtUsername.getText();
-				String password = txtPassword.getText();
+				
+				char[] password = txtPassword.getPassword();
 				
 				Patient_Account account = auth.login(username,password);
 				
 				if(account == null) {
 					txtrInvalid.setVisible(true);
+				}
+				else {
+					
+					Patient_Internal intern = new Patient_Internal(account);
+					frame.setContentPane(intern);
+					frame.revalidate();
 				}
 			}
 		});

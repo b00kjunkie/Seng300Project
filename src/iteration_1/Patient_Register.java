@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Font;
 
 public class Patient_Register extends JPanel {
 	
@@ -42,262 +43,154 @@ public class Patient_Register extends JPanel {
 		this.frame = frame;
 		
 		setBackground(Color.WHITE);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{128, 61, 249, 0};
-		gridBagLayout.rowHeights = new int[]{14, 2, 19, 14, 23, 14, 20, 14, 14, 23, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
-		
-	    final JLabel lblInvalidUsername = new JLabel("Sorry, this username is not valid");
-	    lblInvalidUsername.setBackground(Color.CYAN);
-	    lblInvalidUsername.setVisible(false);
-	    
-	    		final JLabel lblGoodUser = new JLabel("Username is availiable");
-	    		lblGoodUser.setVisible(false);
+	    		GridBagLayout gridBagLayout = new GridBagLayout();
+	    		gridBagLayout.columnWidths = new int[]{103, 86, 96, 143, 0};
+	    		gridBagLayout.rowHeights = new int[]{20, 22, 28, 32, 9, 14, 32, 23, 0};
+	    		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+	    		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+	    		setLayout(gridBagLayout);
 	    		
 	    		JLabel lblNewUsername = new JLabel("New Username");
 	    		GridBagConstraints gbc_lblNewUsername = new GridBagConstraints();
-	    		gbc_lblNewUsername.anchor = GridBagConstraints.NORTHEAST;
 	    		gbc_lblNewUsername.insets = new Insets(0, 0, 5, 5);
 	    		gbc_lblNewUsername.gridx = 0;
-	    		gbc_lblNewUsername.gridy = 0;
+	    		gbc_lblNewUsername.gridy = 1;
 	    		add(lblNewUsername, gbc_lblNewUsername);
-	    		GridBagConstraints gbc_lblGoodUser = new GridBagConstraints();
-	    		gbc_lblGoodUser.anchor = GridBagConstraints.SOUTHWEST;
-	    		gbc_lblGoodUser.insets = new Insets(0, 0, 5, 0);
-	    		gbc_lblGoodUser.gridheight = 2;
-	    		gbc_lblGoodUser.gridx = 2;
-	    		gbc_lblGoodUser.gridy = 0;
-	    		add(lblGoodUser, gbc_lblGoodUser);
-	    GridBagConstraints gbc_lblInvalidUsername = new GridBagConstraints();
-	    gbc_lblInvalidUsername.anchor = GridBagConstraints.NORTHWEST;
-	    gbc_lblInvalidUsername.insets = new Insets(0, 0, 5, 0);
-	    gbc_lblInvalidUsername.gridx = 2;
-	    gbc_lblInvalidUsername.gridy = 0;
-	    add(lblInvalidUsername, gbc_lblInvalidUsername);
-		
-		final JLabel lblValidpassword = new JLabel("Password is valid");
-		lblValidpassword.setVisible(false);
-		
-		final JLabel lblInvalidPassword = new JLabel("Sorry, this password is not valid");
-		lblInvalidPassword.setVisible(false);
-		
-		txtNewUser = new JTextField();
-		GridBagConstraints gbc_txtNewUser = new GridBagConstraints();
-		gbc_txtNewUser.anchor = GridBagConstraints.EAST;
-		gbc_txtNewUser.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNewUser.gridheight = 2;
-		gbc_txtNewUser.gridx = 0;
-		gbc_txtNewUser.gridy = 1;
-		add(txtNewUser, gbc_txtNewUser);
-		txtNewUser.setColumns(10);
-		
-		final JLabel lblUserTaken = new JLabel("Username is taken");
-		lblUserTaken.setVisible(false);
-		
-		JButton btnCheckUser = new JButton("Check");
-		
-		btnCheckUser.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				 
-				String username = txtNewUser.getText();
-				
-				if (!auth.checkUsername(username)) {
-					
-					lblInvalidUsername.setVisible(true);
-				}
-				
-				else if(auth.checkSameUser(username)) {
-					
-					lblUserTaken.setVisible(true);
-					
-				}
-				
-				else {
-					
-					lblGoodUser.setVisible(true);
-					
-				}				
-				
-			}
-		});
-		GridBagConstraints gbc_btnCheckUser = new GridBagConstraints();
-		gbc_btnCheckUser.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnCheckUser.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCheckUser.gridheight = 2;
-		gbc_btnCheckUser.gridx = 1;
-		gbc_btnCheckUser.gridy = 1;
-		add(btnCheckUser, gbc_btnCheckUser);
-		
-		
-		GridBagConstraints gbc_lblUserTaken = new GridBagConstraints();
-		gbc_lblUserTaken.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblUserTaken.insets = new Insets(0, 0, 5, 0);
-		gbc_lblUserTaken.gridx = 2;
-		gbc_lblUserTaken.gridy = 2;
-		add(lblUserTaken, gbc_lblUserTaken);
-		
-		final JLabel lblNewPassword = new JLabel("New Password ");
-		GridBagConstraints gbc_lblNewPassword = new GridBagConstraints();
-		gbc_lblNewPassword.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblNewPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewPassword.gridx = 0;
-		gbc_lblNewPassword.gridy = 3;
-		add(lblNewPassword, gbc_lblNewPassword);
-		GridBagConstraints gbc_lblInvalidPassword = new GridBagConstraints();
-		gbc_lblInvalidPassword.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblInvalidPassword.insets = new Insets(0, 0, 5, 0);
-		gbc_lblInvalidPassword.gridx = 2;
-		gbc_lblInvalidPassword.gridy = 3;
-		add(lblInvalidPassword, gbc_lblInvalidPassword);
-		
-		txtNewPwd = new JTextField();
-		GridBagConstraints gbc_txtNewPwd = new GridBagConstraints();
-		gbc_txtNewPwd.anchor = GridBagConstraints.EAST;
-		gbc_txtNewPwd.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNewPwd.gridx = 0;
-		gbc_txtNewPwd.gridy = 4;
-		add(txtNewPwd, gbc_txtNewPwd);
-		txtNewPwd.setColumns(10);
-		
-		JButton btnCheckPwd = new JButton("Check");
-		btnCheckPwd.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				String pwd = lblNewPassword.getText();
-				
-				if(!auth.checkPassword(pwd)) {
-					
-					lblInvalidPassword.setVisible(true);
-				}
-				
-				else {
-					
-					lblValidpassword.setVisible(true);
-				}
-			
-			}
-		});
-		GridBagConstraints gbc_btnCheckPwd = new GridBagConstraints();
-		gbc_btnCheckPwd.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnCheckPwd.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCheckPwd.gridx = 1;
-		gbc_btnCheckPwd.gridy = 4;
-		add(btnCheckPwd, gbc_btnCheckPwd);
-		GridBagConstraints gbc_lblValidpassword = new GridBagConstraints();
-		gbc_lblValidpassword.anchor = GridBagConstraints.WEST;
-		gbc_lblValidpassword.insets = new Insets(0, 0, 5, 0);
-		gbc_lblValidpassword.gridx = 2;
-		gbc_lblValidpassword.gridy = 4;
-		add(lblValidpassword, gbc_lblValidpassword);
-		
-		final JLabel lblNewPasswordConfirm = new JLabel("Confirm Password");
-		GridBagConstraints gbc_lblNewPasswordConfirm = new GridBagConstraints();
-		gbc_lblNewPasswordConfirm.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblNewPasswordConfirm.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewPasswordConfirm.gridx = 0;
-		gbc_lblNewPasswordConfirm.gridy = 5;
-		add(lblNewPasswordConfirm, gbc_lblNewPasswordConfirm);
-		
-	    final JLabel lblNotMatch = new JLabel("Confirmed password not match");
-	    lblNotMatch.setVisible(false);
-	    
-	    txtConfirmedPwd = new JTextField();
-	    GridBagConstraints gbc_txtConfirmedPwd = new GridBagConstraints();
-	    gbc_txtConfirmedPwd.anchor = GridBagConstraints.NORTHEAST;
-	    gbc_txtConfirmedPwd.insets = new Insets(0, 0, 5, 5);
-	    gbc_txtConfirmedPwd.gridx = 0;
-	    gbc_txtConfirmedPwd.gridy = 6;
-	    add(txtConfirmedPwd, gbc_txtConfirmedPwd);
-	    txtConfirmedPwd.setColumns(10);
-	    GridBagConstraints gbc_lblNotMatch = new GridBagConstraints();
-	    gbc_lblNotMatch.anchor = GridBagConstraints.WEST;
-	    gbc_lblNotMatch.insets = new Insets(0, 0, 5, 0);
-	    gbc_lblNotMatch.gridx = 2;
-	    gbc_lblNotMatch.gridy = 6;
-	    add(lblNotMatch, gbc_lblNotMatch);
-		
-		JSeparator separator = new JSeparator();
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.fill = GridBagConstraints.BOTH;
-		gbc_separator.insets = new Insets(0, 0, 5, 0);
-		gbc_separator.gridwidth = 3;
-		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 7;
-		add(separator, gbc_separator);
-		
-		JLabel lblPersonInfomation = new JLabel("Please continue provide personal detail infomation");
-		GridBagConstraints gbc_lblPersonInfomation = new GridBagConstraints();
-		gbc_lblPersonInfomation.anchor = GridBagConstraints.NORTH;
-		gbc_lblPersonInfomation.insets = new Insets(0, 0, 5, 0);
-		gbc_lblPersonInfomation.gridwidth = 3;
-		gbc_lblPersonInfomation.gridx = 0;
-		gbc_lblPersonInfomation.gridy = 8;
-		add(lblPersonInfomation, gbc_lblPersonInfomation);
-		
-		JButton btnBack = new JButton("Back");
-		btnBack.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				Patient_Login login = new Patient_Login(frame,auth);
-				frame.setContentPane(login);
-				frame.revalidate();
-			}
-		});
-		
-		JButton btnContinue = new JButton("Continue");
-		
-				btnContinue.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						
-						String password_first = txtNewPwd.getText();
-						String password_confirm = txtConfirmedPwd.getText();
-						String user_name = txtNewUser.getText();
-						
-						if(password_first == null || password_confirm == null || user_name == null) {
-							
-							
-							
-							
-						}
-						
-						else if(!password_first.contentEquals(password_confirm)) {
-							
-							lblNotMatch.setVisible(true);
-							
-						}
-						
-						else {
-							
-							Patient_Personal_Information personalInfo = new Patient_Personal_Information(frame,auth);
-							frame.setContentPane(personalInfo);
-							frame.revalidate();
-							
-						}
-						
-						
-					}
-				});
-				GridBagConstraints gbc_btnContinue = new GridBagConstraints();
-				gbc_btnContinue.anchor = GridBagConstraints.NORTH;
-				gbc_btnContinue.insets = new Insets(0, 0, 0, 5);
-				gbc_btnContinue.gridx = 0;
-				gbc_btnContinue.gridy = 9;
-				add(btnContinue, gbc_btnContinue);
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-		gbc_btnBack.anchor = GridBagConstraints.NORTH;
-		gbc_btnBack.gridx = 2;
-		gbc_btnBack.gridy = 9;
-		add(btnBack, gbc_btnBack);
+	    		
+	    		txtNewUser = new JTextField();
+	    		GridBagConstraints gbc_txtNewUser = new GridBagConstraints();
+	    		gbc_txtNewUser.anchor = GridBagConstraints.NORTH;
+	    		gbc_txtNewUser.fill = GridBagConstraints.HORIZONTAL;
+	    		gbc_txtNewUser.insets = new Insets(0, 0, 5, 5);
+	    		gbc_txtNewUser.gridx = 1;
+	    		gbc_txtNewUser.gridy = 1;
+	    		add(txtNewUser, gbc_txtNewUser);
+	    		txtNewUser.setColumns(10);
+	    		
+	    		final JLabel lblNewPassword = new JLabel("New Password ");
+	    		GridBagConstraints gbc_lblNewPassword = new GridBagConstraints();
+	    		gbc_lblNewPassword.insets = new Insets(0, 0, 5, 5);
+	    		gbc_lblNewPassword.gridx = 0;
+	    		gbc_lblNewPassword.gridy = 2;
+	    		add(lblNewPassword, gbc_lblNewPassword);
+	    		
+	    		txtNewPwd = new JTextField();
+	    		GridBagConstraints gbc_txtNewPwd = new GridBagConstraints();
+	    		gbc_txtNewPwd.anchor = GridBagConstraints.SOUTH;
+	    		gbc_txtNewPwd.fill = GridBagConstraints.HORIZONTAL;
+	    		gbc_txtNewPwd.insets = new Insets(0, 0, 5, 5);
+	    		gbc_txtNewPwd.gridx = 1;
+	    		gbc_txtNewPwd.gridy = 2;
+	    		add(txtNewPwd, gbc_txtNewPwd);
+	    		txtNewPwd.setColumns(10);
+	    		
+	    		final JLabel lblNewPasswordConfirm = new JLabel("Confirm Password");
+	    		GridBagConstraints gbc_lblNewPasswordConfirm = new GridBagConstraints();
+	    		gbc_lblNewPasswordConfirm.anchor = GridBagConstraints.EAST;
+	    		gbc_lblNewPasswordConfirm.insets = new Insets(0, 0, 5, 5);
+	    		gbc_lblNewPasswordConfirm.gridx = 0;
+	    		gbc_lblNewPasswordConfirm.gridy = 3;
+	    		add(lblNewPasswordConfirm, gbc_lblNewPasswordConfirm);
+	    		
+	    		txtConfirmedPwd = new JTextField();
+	    		GridBagConstraints gbc_txtConfirmedPwd = new GridBagConstraints();
+	    		gbc_txtConfirmedPwd.anchor = GridBagConstraints.SOUTH;
+	    		gbc_txtConfirmedPwd.fill = GridBagConstraints.HORIZONTAL;
+	    		gbc_txtConfirmedPwd.insets = new Insets(0, 0, 5, 5);
+	    		gbc_txtConfirmedPwd.gridx = 1;
+	    		gbc_txtConfirmedPwd.gridy = 3;
+	    		add(txtConfirmedPwd, gbc_txtConfirmedPwd);
+	    		txtConfirmedPwd.setColumns(10);
+	    		
+	    		JSeparator separator = new JSeparator();
+	    		GridBagConstraints gbc_separator = new GridBagConstraints();
+	    		gbc_separator.fill = GridBagConstraints.BOTH;
+	    		gbc_separator.insets = new Insets(0, 0, 5, 0);
+	    		gbc_separator.gridwidth = 4;
+	    		gbc_separator.gridx = 0;
+	    		gbc_separator.gridy = 4;
+	    		add(separator, gbc_separator);
+	    		
+	    		final JLabel lblPersonInfomation = new JLabel("default");
+	    		lblPersonInfomation.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	    		GridBagConstraints gbc_lblPersonInfomation = new GridBagConstraints();
+	    		gbc_lblPersonInfomation.fill = GridBagConstraints.VERTICAL;
+	    		gbc_lblPersonInfomation.insets = new Insets(0, 0, 5, 0);
+	    		gbc_lblPersonInfomation.gridwidth = 4;
+	    		gbc_lblPersonInfomation.gridx = 0;
+	    		gbc_lblPersonInfomation.gridy = 5;
+	    		add(lblPersonInfomation, gbc_lblPersonInfomation);
+	    		
+	    		JButton btnBack = new JButton("Back");
+	    		btnBack.addMouseListener(new MouseAdapter() {
+	    			@Override
+	    			public void mouseClicked(MouseEvent e) {
+	    				
+	    				Patient_Login login = new Patient_Login(frame,auth);
+	    				frame.setContentPane(login);
+	    				frame.revalidate();
+	    			}
+	    		});
+	    		
+	    		JButton btnContinue = new JButton("Continue");
+	    		
+	    				btnContinue.addMouseListener(new MouseAdapter() {
+	    					@Override
+	    					public void mouseClicked(MouseEvent e) {
+	    						
+	    						String password_first = txtNewPwd.getText();
+	    						String password_confirm = txtConfirmedPwd.getText();
+	    						String user_name = txtNewUser.getText();
+	    						
+	    						if(password_first == null || password_confirm == null || user_name == null) {
+	    							
+	    							lblPersonInfomation.setText("Username or password is empty!");
+	    							
+	    							
+	    						}
+	    						
+	    						
+	    						else if(!password_first.contentEquals(password_confirm)) {
+	    							
+	    							lblPersonInfomation.setText("Confirmed password is not the same!");
+	    							
+	    						}
+	    						
+	    						else if (!auth.checkUsername(user_name)) {
+	    							
+	    							lblPersonInfomation.setText("username format is invalid!");}
+	    						
+	    						else if(!auth.checkPassword(password_first.toCharArray())) {
+	    							
+	    							lblPersonInfomation.setText("userpassword format is invalid!");}
+	    						
+	    						else {
+	    							
+	    							
+	    							lblPersonInfomation.setText("Please continue provide personal detail infomation");
+	    							Patient_Personal_Information personalInfo = new Patient_Personal_Information(frame,auth,user_name,password_first);
+	    							frame.setContentPane(personalInfo);
+	    							frame.revalidate();
+	    							
+	    						}
+	    						
+	    						
+	    					}
+	    				});
+	    				GridBagConstraints gbc_btnContinue = new GridBagConstraints();
+	    				gbc_btnContinue.anchor = GridBagConstraints.NORTH;
+	    				gbc_btnContinue.insets = new Insets(0, 0, 0, 5);
+	    				gbc_btnContinue.gridx = 0;
+	    				gbc_btnContinue.gridy = 7;
+	    				add(btnContinue, gbc_btnContinue);
+	    		GridBagConstraints gbc_btnBack = new GridBagConstraints();
+	    		gbc_btnBack.anchor = GridBagConstraints.NORTHWEST;
+	    		gbc_btnBack.gridx = 3;
+	    		gbc_btnBack.gridy = 7;
+	    		add(btnBack, gbc_btnBack);
 		
 		
 	
 		
 	}
-
 }

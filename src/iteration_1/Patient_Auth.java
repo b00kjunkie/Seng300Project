@@ -1,13 +1,19 @@
 package iteration_1;
 
-import java.util.HashMap;
+import java.util.*;
 
 
 public class Patient_Auth {
 	
 	
-		private HashMap<String,Patient_Account> patients = new HashMap<String,Patient_Account>();
+		private HashMap<String,Patient_Account> patients;
 		
+		
+
+		public Patient_Auth(HashMap<String, Patient_Account> patients) {
+			
+			this.patients = patients;
+		}
 		/*
 		 * Only check username is valid or not for quick checking for user here.
 		 */
@@ -28,7 +34,7 @@ public class Patient_Auth {
 		
 		
 		
-	    public boolean checkPassword(String password) {
+	    public boolean checkPassword(char[] password) {
 			
 			return Patient_Account.checkPassword(password);
 			
@@ -38,16 +44,15 @@ public class Patient_Auth {
 	     * if user did not check username or password before move on to personal information form,
 	     * this method will still capture the same message if the username or password is invalid.
 	     */
-		public String register(String username, String password) {
+		public String register(String username, char[] password) {
 			
 			boolean correctuser = Patient_Account.checkUsername(username);
 			boolean correctpass = Patient_Account.checkPassword(password);
 			boolean notsameuser = !patients.containsKey(username);
 			if(correctuser && correctpass && notsameuser) {
 				
-				patients.put(username, new Patient_Account(username, password));
 				
-				return "Successfully created new user !" + "\n" + "Welcome to Alberta Hospital System";
+				return "Successfully created new user !" + "\n" + "Please continue finish your perosnal information!";
 			}
 			if(!correctuser) {
 				return "Sorry, this username is not valid.";
@@ -61,9 +66,26 @@ public class Patient_Auth {
 			return "Unexpected System Error"; 
 		}
 		
-		public Patient_Account login(String username, String password) {
+		
+		/**
+		 * add new patients
+		 * @param account
+		 */
+		public void addPatient(Patient_Account account) {
+			
+			this.patients.put(account.getUsername(),account);
+		}
+		
+		/**
+		 * 
+		 * @param username
+		 * @param password
+		 * @return
+		 */
+		public Patient_Account login(String username, char[] password) {
 			
 			Patient_Account oldPatient;
+			String pwd = new String(password);
 			
 			if(patients.containsKey(username)) {
 				
@@ -73,12 +95,13 @@ public class Patient_Auth {
 				System.out.println("username is found in the system.");
 				
 				
-				if(patients.get(username).getPassword().equals(password)) {
+				if(pwd.contentEquals(new String(patients.get(username).getPassword()))) {
 					
 					System.out.println("Welcome back "+ oldPatient.getPatientName());
 					
 					return oldPatient;
 				}
+	
 				else {
 					
 					System.out.println("Password does not match.");

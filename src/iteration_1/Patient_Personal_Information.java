@@ -22,15 +22,22 @@ public class Patient_Personal_Information extends JPanel {
 	private JTextField txtNameField;
 	private JTextField textField;
 	private Patient_Auth auth;
+	private String user_name;
+	private String user_password;
 
 
 	/**
 	 * Create the panel.
 	 */
-	public Patient_Personal_Information(final JFrame frame,final Patient_Auth auth) {
+	public Patient_Personal_Information(final JFrame frame,final Patient_Auth auth,final String user_name,final String user_password) {
 		
 		this.auth =auth;
 		this.frame = frame;
+		this.user_name = user_name;
+		this.user_password = user_password;
+
+		
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{34, 21, 17, 86, 74, 50, 89, 0};
 		gridBagLayout.rowHeights = new int[]{20, 23, 21, 14, 23, 23, 23, 31, 23, 0};
@@ -176,9 +183,16 @@ public class Patient_Personal_Information extends JPanel {
 			 */
 				
 		// going back to login screen after after finish the profile of patient 
+				
+				char[] pass =user_password.toCharArray();
+				Patient_Account account = new Patient_Account(user_name,pass);
+				account.setPatientName(txtNameField.getText());
+				auth.addPatient(account);
 				Patient_Login login = new Patient_Login(frame, auth);
 				frame.setContentPane(login);
 				frame.revalidate();
+				
+				
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -197,4 +211,6 @@ public class Patient_Personal_Information extends JPanel {
 		
 
 	}
+
+
 }

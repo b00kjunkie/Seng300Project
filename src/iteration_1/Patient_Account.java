@@ -10,11 +10,13 @@ package iteration_1;
  *
  */
 
+import java.util.*;
+
 public class Patient_Account {
 	
 	// username and password variable ;
 	private String patient_username;
-	private String patient_password;
+	private char[] patient_password;
 	
 	//minmum number of letters for username
 	private static int min_user_name = 6;
@@ -37,6 +39,7 @@ public class Patient_Account {
 	//patient age, name as part of record on file. 
 	private int patient_age;
 	private String patient_name;
+	private String date_of_birth;
 	
 	// consider a max number of appointment per patient to start with. we can revise later
 	  final int max_appointment = 10;
@@ -45,7 +48,19 @@ public class Patient_Account {
 	// we can turn this into classes with more information on appointment given.
 	private String[] appointments;
 			
-	public Patient_Account(String usrname, String passwrd ) {
+	
+	/**
+	 * main constructor to carry all information of patient
+	 * @param usrname this will be used as search keywords for the system for patient (we can change to ID later)
+	 * but we still will need user name as part of verification process for login
+	 * @param passwrd this should be some how hidden even more. Also it is part of verification process for login
+	 * @param personal_information this is an arraylist of string contain the information in the order below:
+	 * 	[ "                                                                                           ]
+	 */
+	public Patient_Account(String usrname, char[] passwrd) {
+		this.patient_username =usrname;
+		this.patient_password = passwrd;
+		
 		
 	}
 	
@@ -81,11 +96,11 @@ public class Patient_Account {
 	 * 	- min and max limit of length
 	 * 	- at least one capital letter exist 
 	 */
-	public static boolean checkPassword(String password) {
+	public static boolean checkPassword(char[] password) {
 		
 		boolean valid = true;
 		
-		String pwd = new String(password);
+		String pwd = password.toString();
 		
 		
 		if(pwd.length() <= min_user_pwd || pwd.length() >= max_user_pwd) {
@@ -128,7 +143,7 @@ public class Patient_Account {
 	/*
 	 * getter for user password 
 	 */
-	protected String getPassword() {
+	protected char[] getPassword() {
 		
 		
 		return patient_password;
@@ -141,7 +156,7 @@ public class Patient_Account {
 	 * check if the password is valid.
 	 * @return : boolean true for valid, vice versa.
 	 */
-	protected boolean setPassword(String password) {
+	protected boolean setPassword(char[] password) {
 		
 		if(Patient_Account.checkPassword(password)) {
 			
