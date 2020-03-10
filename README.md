@@ -1,9 +1,7 @@
 # Seng300Project
 
+Iteration 2 work in progress
 
-
-First iteration GUI created only for patient login system .
-
-Calendar will be in work in progress.
-
-Jar file will be provided shortly
+- UI has basically done as good sample to present.
+- we will consider next data base and connect to Front UI 
+- if we have more time, we can consider JAVAFX to refactor, but for now we keep it simple .
