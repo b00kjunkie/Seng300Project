@@ -1,12 +1,14 @@
-package iteration_1;
+/**
+ * This Class is not currently used in Ken's implementation
+ */
 
-import java.util.HashMap;
+package iteration_1;
 
 
 public class Patient_Auth {
 	
-	
-		private HashMap<String,Patient_Account> patients = new HashMap<String,Patient_Account>();
+		// change to private and add getter
+		public CustomArray patientDB = new CustomArray(new String[]{"Ken", "123"});
 		
 		/*
 		 * Only check username is valid or not for quick checking for user here.
@@ -22,8 +24,8 @@ public class Patient_Auth {
 		
 	   public boolean checkSameUser(String username) {
 			
-			
-			return patients.containsKey(username);
+			return true;
+			//return patients.containsKey(username);
 		}
 		
 		
@@ -38,14 +40,14 @@ public class Patient_Auth {
 	     * if user did not check username or password before move on to personal information form,
 	     * this method will still capture the same message if the username or password is invalid.
 	     */
-		public String register(String username, String password) {
+		public String register(String username, String password) throws Exception {
 			
 			boolean correctuser = Patient_Account.checkUsername(username);
 			boolean correctpass = Patient_Account.checkPassword(password);
-			boolean notsameuser = !patients.containsKey(username);
+			boolean notsameuser = !patientDB.containsKey(username);
 			if(correctuser && correctpass && notsameuser) {
 				
-				patients.put(username, new Patient_Account(username, password));
+				patientDB.add(new String[]{username, password});
 				
 				return "Successfully created new user !" + "\n" + "Welcome to Alberta Hospital System";
 			}
@@ -59,37 +61,6 @@ public class Patient_Auth {
 				return "This username has already been taken.";
 			}
 			return "Unexpected System Error"; 
-		}
-		
-		public Patient_Account login(String username, String password) {
-			
-			Patient_Account oldPatient;
-			
-			if(patients.containsKey(username)) {
-				
-				oldPatient = patients.get(username);
-				
-				
-				System.out.println("username is found in the system.");
-				
-				
-				if(patients.get(username).getPassword().equals(password)) {
-					
-					System.out.println("Welcome back "+ oldPatient.getPatientName());
-					
-					return oldPatient;
-				}
-				else {
-					
-					System.out.println("Password does not match.");
-					
-					return null;
-				}
-			}
-			else {
-				
-				return null;
-			}
 		}
 
 	}

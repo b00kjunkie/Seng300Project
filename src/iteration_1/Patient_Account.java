@@ -1,3 +1,7 @@
+/**
+ * This Class is not currently used in Ken's implementation
+ */
+
 package iteration_1;
 
 
@@ -178,4 +182,3 @@ public class Patient_Account {
 	
 	
 }
-
