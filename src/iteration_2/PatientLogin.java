@@ -1,4 +1,12 @@
-package iteration_1;
+package iteration_2;
+
+/**
+ * The PatientLogin.java class represents the login screen for patients. Patients are redirected to this frame from the
+ * MainFrame class when they select the Patient button.
+ * 
+ * @author		SENG 300 Group 12 - Winter 2020
+ * Date:		2020-03-03
+ */
 
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -13,7 +21,7 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 import net.miginfocom.swing.MigLayout;
 
-public class Patient_Login extends JPanel {
+public class PatientLogin extends JPanel {
 
 	private static final long serialVersionUID = 4L; // serial ID for java object saving
 	private JTextField txtUsername;
@@ -22,7 +30,7 @@ public class Patient_Login extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Patient_Login(final JFrame frame) {
+	public PatientLogin(final JFrame frame) {
 
 		setLayout(new MigLayout("", "[89px][5px][][3px][9px][171px][31px][89px]",
 				"[14px][20px][20px][22px][23px][23px]"));
@@ -62,24 +70,23 @@ public class Patient_Login extends JPanel {
 				String password = txtPassword.getText();
 
 				try {
-					
-					// can reinit the database to keep it from getting over-cluttered
-					// this must be commented out if you are attempting to register a new user tho!
-					//PatientDB.reinitDB(); 
-					
+					// reinitialize database to remove all patients registered during SE testing period
+					// this needs to be commented-out to not overwrite newly registered patients
+					// PatientDB.reinitDB();
+
 					PatientDB patientDB = new PatientDB();
 					patientDB = patientDB.loadPatientDB(); // load database from file
-					
+
 					// For debugging or general interest, can print patient database to console:
-					//patientDB.printArray();
+					// patientDB.printArray();
 
 					// if username and password don't match in the patient database, then display error
-					// otherwise, create Calendar frame and pass parameter String array containing username+pass
+					// else, create PatientDashboard frame and pass parameter String array containing username+pass
 					if (!patientDB.checkForMatch(username, password)) {
 						txtrInvalid.setVisible(true);
 					} else {
 						String patientID = patientDB.getID(username, password);
-						Patient_Calendar login = new Patient_Calendar(frame, patientID);
+						PatientDashboard login = new PatientDashboard(frame, patientID);
 						frame.setContentPane(login);
 						frame.revalidate();
 					}
@@ -116,14 +123,13 @@ public class Patient_Login extends JPanel {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Patient_Register register = new Patient_Register(frame);
+				PatientRegister register = new PatientRegister(frame);
 				frame.setContentPane(register);
 				frame.revalidate();
 			}
 		});
 		add(button, "cell 5 5,growx,aligny top");
 		txtrInvalid.setVisible(false);
-
 	}
 
-} // end class Patient_Login
+} // end class PatientLogin

@@ -1,4 +1,13 @@
-package iteration_1;
+package iteration_2;
+
+/**
+ * The PatientPersonalInformation.java class represents the frame displayed when patients are registering for the
+ * system. Patients are redirected here from the PatientRegister class in order to provide more details in the
+ * registration process.
+ * 
+ * @author		SENG 300 Group 12 - Winter 2020
+ * Date:		2020-03-03
+ */
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -13,7 +22,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class Patient_Personal_Information extends JPanel {
+public class PatientPersonalInformation extends JPanel {
 
 	private static final long serialVersionUID = 5L; // serial ID for java object saving
 	private JTextField txtNameField;
@@ -26,7 +35,7 @@ public class Patient_Personal_Information extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Patient_Personal_Information(final JFrame frame, final String[] userParams) {
+	public PatientPersonalInformation(final JFrame frame, final String[] userParams) {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 34, 21, 17, 86, 74, 50, 89, 0 };
@@ -183,7 +192,7 @@ public class Patient_Personal_Information extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				Patient_Login new_login = new Patient_Login(frame);
+				PatientLogin new_login = new PatientLogin(frame);
 				frame.setContentPane(new_login);
 				frame.revalidate();
 
@@ -215,7 +224,7 @@ public class Patient_Personal_Information extends JPanel {
 					patientDB.savePatientDB();
 
 					// open patient login frame
-					Patient_Login login = new Patient_Login(frame);
+					PatientLogin login = new PatientLogin(frame);
 					frame.setContentPane(login);
 					frame.revalidate();
 
@@ -240,6 +249,6 @@ public class Patient_Personal_Information extends JPanel {
 		gbc_btnNewButton_1.gridy = 8;
 		add(btnNewButton_1, gbc_btnNewButton_1);
 
-	} // end Patient_Personal_Information constructor
+	} // end PatientPersonalInformation constructor
 
-} // end class Patient_Personal_Information
+} // end class PatientPersonalInformation

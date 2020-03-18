@@ -1,4 +1,13 @@
-package iteration_1;
+package iteration_2;
+
+/**
+ * Hospital management system for the Alberta government. The MainFrame.java class contains the main method for this 
+ * SENG300Project. The class represents the initial screen that users will see when accessing the system. The user will 
+ * choose to proceed as either Staff (doctors and nurses) or as a patient.
+ * 
+ * @author		SENG 300 Group 12 - Winter 2020
+ * Date:		2020-03-03
+ */
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -8,17 +17,22 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Patient_Main_Login {
+public class MainFrame {
 
 	private JFrame frame;
 
+	/**
+	 * Main method launches the SENG300 system.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 
-					Patient_Main_Login window = new Patient_Main_Login();
+					MainFrame window = new MainFrame();
 					window.frame.setVisible(true);
 
 				} catch (Exception e) {
@@ -32,7 +46,7 @@ public class Patient_Main_Login {
 	/**
 	 * Create the application.
 	 */
-	public Patient_Main_Login() {
+	public MainFrame() {
 
 		initialize();
 	}
@@ -59,20 +73,29 @@ public class Patient_Main_Login {
 		lblNewLabel_1.setBounds(163, 99, 123, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 
-		JButton btnNewButton = new JButton("Doctor/Nurse");
-		btnNewButton.setBounds(136, 148, 162, 23);
-		frame.getContentPane().add(btnNewButton);
-
-		JButton btnNewButton_1 = new JButton("Patients");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
+		JButton btnNewButton = new JButton("Staff");
+		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Patient_Login login = new Patient_Login(frame);
+				StaffLogin login = new StaffLogin(frame);
 				frame.setContentPane(login);
 				frame.revalidate();
 			}
 		});
-		
+
+		btnNewButton.setBounds(136, 148, 162, 23);
+		frame.getContentPane().add(btnNewButton);
+
+		JButton btnNewButton_1 = new JButton("Patient");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PatientLogin login = new PatientLogin(frame);
+				frame.setContentPane(login);
+				frame.revalidate();
+			}
+		});
+
 		btnNewButton_1.setBounds(136, 182, 162, 23);
 		frame.getContentPane().add(btnNewButton_1);
 

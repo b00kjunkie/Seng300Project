@@ -1,4 +1,4 @@
-package iteration_1;
+package iteration_2;
 
 /**
  * The PatientDB.java class is a subclass of the CustomArray class. It is intended to represent a database which stores
@@ -31,14 +31,14 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 	 * Constructor with string array parameter calls super class constructor, however, a check is performed to verify
 	 * that the patient record (CustomElement) passed has length 9, so that each patient record has same form.
 	 * 
-	 * @param arr - type String[] of legnth 9 representing the patient record
+	 * @param arr - type String[] of length 9 representing the patient record
 	 * @throws Exception
 	 */
 	protected PatientDB(String[] arr) throws Exception {
 		super(arr);
 		if (arr.length != 9) {
 			throw new Exception(
-					"PatientDB elements must have form: [ID, Username, Password, Gender, DOB, HeartDisease, Diabetes, Anxiety] ");
+					"PatientDB elements must have form: [ID, Username, Name, Password, Gender, DOB, HeartDisease, Diabetes, Anxiety] ");
 		}
 	}
 
@@ -50,7 +50,7 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 			super.add(arr);
 		} else {
 			throw new Exception(
-					"PatientDB elements must have form: [ID, Username, Password, Gender, DOB, HeartDisease, Diabetes, Anxiety] ");
+					"PatientDB elements must have form: [ID, Username, Password, Name, Gender, DOB, HeartDisease, Diabetes, Anxiety] ");
 		}
 	}
 
@@ -128,7 +128,8 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 	}
 
 	/**
-	 * Loads a PatientDB object from a text file
+	 * Loads a PatientDB object from a text file. If method cannot successfully load patientDB.txt, then the database
+	 * is reinitialized using the reinitDB() method.
 	 * 
 	 * @return PatientDB object
 	 * @throws Exception
@@ -137,14 +138,19 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("patientDB.txt"))) {
 			return (PatientDB) in.readObject();
 		} catch (Exception e) {
-			throw new Exception("Load unsuccessful");
+			PatientDB.reinitDB();
+			try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("patientDB.txt"))) {
+				return (PatientDB) in.readObject();
+			} catch (Exception e1) {
+				throw new Exception("Load unsuccessful");
+			}
 		}
 	}
 
 	/**
-	 * Helper method is only for development purposes. Will not be used in final version of the software. Idea is to
-	 * restore the patient database to a simple/original form, as testing purposes will likely add many patients to the
-	 * database which can get cluttered.
+	 * Method restores the patient database to a simple/original form, as testing purposes will likely add many patients 
+	 * to the database which can get cluttered. Also is used when loading database from a different computer, as file
+	 * may not be present
 	 * 
 	 * @throws Exception
 	 */

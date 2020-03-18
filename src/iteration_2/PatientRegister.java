@@ -1,4 +1,12 @@
-package iteration_1;
+package iteration_2;
+
+/**
+ * The PatientRegister.java class represents the first frame seen by patients when they attempt to complete the 
+ * registration process for the system. They are asked to provide initial details, such as a username and a password.
+ * 
+ * @author		SENG 300 Group 12 - Winter 2020
+ * Date:		2020-03-03
+ */
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -13,7 +21,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class Patient_Register extends JPanel {
+public class PatientRegister extends JPanel {
 
 	private static final long serialVersionUID = 6L; // serial ID for java object saving
 	private JTextField txtNewUser;
@@ -23,7 +31,7 @@ public class Patient_Register extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Patient_Register(final JFrame frame) {
+	public PatientRegister(final JFrame frame) {
 
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -234,7 +242,7 @@ public class Patient_Register extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				Patient_Login login = new Patient_Login(frame);
+				PatientLogin login = new PatientLogin(frame);
 				frame.setContentPane(login);
 				frame.revalidate();
 			}
@@ -261,7 +269,7 @@ public class Patient_Register extends JPanel {
 						// package username and password into an String array, to be passed as a parameter into a new
 						// Patient_Personal_Information frame.
 						String[] userParams = new String[] { user_name, password_first };
-						Patient_Personal_Information personalInfo = new Patient_Personal_Information(frame, userParams);
+						PatientPersonalInformation personalInfo = new PatientPersonalInformation(frame, userParams);
 						frame.setContentPane(personalInfo);
 						frame.revalidate();
 					} catch (Exception e1) {
@@ -269,7 +277,6 @@ public class Patient_Register extends JPanel {
 						e1.printStackTrace();
 					}
 				} // end if - else if - else
-
 			}
 		});
 
@@ -286,6 +293,6 @@ public class Patient_Register extends JPanel {
 		gbc_btnBack.gridy = 9;
 		add(btnBack, gbc_btnBack);
 
-	} // end Patient_Register constructor
+	} // end PatientRegister constructor
 
-} // end class Patient_Register
+} // end class PatientRegister
