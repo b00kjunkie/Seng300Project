@@ -61,7 +61,7 @@ public class CustomArrayTest {
 		assertEquals(test.get(1).getCustomElement(),new CustomElement(arg2).getCustomElement());
 		
 	}
-
+ 
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testRemove() throws Exception {
