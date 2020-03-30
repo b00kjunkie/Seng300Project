@@ -1,4 +1,4 @@
-package iteration_2;
+package iteration_3;
 
 /**
  * Hospital management system for the Alberta government. The MainFrame.java class contains the main method for this 
@@ -9,6 +9,7 @@ package iteration_2;
  * Date:		2020-03-03
  */
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.SwingConstants;
 
 public class MainFrame {
 
@@ -60,19 +62,28 @@ public class MainFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(200, 200, 572, 340);
+		// initialize the window frame
+		frame = new JFrame("Alberta Hospital Scheduling System");
+		frame.getContentPane().setBackground(Color.GRAY);
+		frame.setBounds(200, 200, 1000, 600);
+		frame.setResizable(false); // remove ability to resize the window
 		frame.getContentPane().setLayout(null);
 
+		// header for the window
 		JLabel lblNewLabel = new JLabel("Welcome to Alberta Hospital System");
-		lblNewLabel.setFont(new Font("Broadway", Font.ITALIC, 12));
-		lblNewLabel.setBounds(75, 27, 266, 14);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Cambria Math", Font.BOLD, 24));
+		lblNewLabel.setBounds(274, 134, 419, 42);
 		frame.getContentPane().add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Please select below :");
-		lblNewLabel_1.setBounds(163, 99, 123, 14);
+		// label indicating user action to be performed
+		JLabel lblNewLabel_1 = new JLabel("Please Select Below");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Cambria Math", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(389, 237, 183, 23);
 		frame.getContentPane().add(lblNewLabel_1);
 
+		// button allows the user to log on as a staff member
 		JButton btnNewButton = new JButton("Staff");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -82,10 +93,10 @@ public class MainFrame {
 				frame.revalidate();
 			}
 		});
-
-		btnNewButton.setBounds(136, 148, 162, 23);
+		btnNewButton.setBounds(399, 293, 162, 23);
 		frame.getContentPane().add(btnNewButton);
 
+		// button allows the user to log on or register as a patient
 		JButton btnNewButton_1 = new JButton("Patient");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -96,7 +107,7 @@ public class MainFrame {
 			}
 		});
 
-		btnNewButton_1.setBounds(136, 182, 162, 23);
+		btnNewButton_1.setBounds(399, 327, 162, 23);
 		frame.getContentPane().add(btnNewButton_1);
 
 	} // end initialize()

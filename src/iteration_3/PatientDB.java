@@ -1,4 +1,4 @@
-package iteration_2;
+package iteration_3;
 
 /**
  * The PatientDB.java class is a subclass of the CustomArray class. It is intended to represent a database which stores
@@ -67,6 +67,23 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 	}
 
 	/**
+	 * Method returns the ID number corresponding to a given patient name
+	 * 
+	 * @param name of type String
+	 * @return patient ID of type String
+	 * @throws Exception
+	 */
+	protected String matchNameToID(String name) throws Exception {
+		String result = "";
+		try {
+			result = this.search(name, 3).get(0).getCustomElement()[0];
+
+		} catch (Exception e1) {
+		}
+		return result;
+	}
+
+	/**
 	 * Method checks if there is a patient record that matches the username and password parameters.
 	 * 
 	 * @param username - type String
@@ -128,8 +145,8 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 	}
 
 	/**
-	 * Loads a PatientDB object from a text file. If method cannot successfully load patientDB.txt, then the database
-	 * is reinitialized using the reinitDB() method.
+	 * Loads a PatientDB object from a text file. If method cannot successfully load patientDB.txt, then the database is
+	 * reinitialized using the reinitDB() method.
 	 * 
 	 * @return PatientDB object
 	 * @throws Exception
@@ -148,7 +165,7 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 	}
 
 	/**
-	 * Method restores the patient database to a simple/original form, as testing purposes will likely add many patients 
+	 * Method restores the patient database to a simple/original form, as testing purposes will likely add many patients
 	 * to the database which can get cluttered. Also is used when loading database from a different computer, as file
 	 * may not be present
 	 * 

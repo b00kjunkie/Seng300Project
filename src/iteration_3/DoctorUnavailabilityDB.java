@@ -1,4 +1,4 @@
-package iteration_2;
+package iteration_3;
 
 /**
  * The DoctorUnavailabilityDB.java class is a subclass of the CustomArray class. It is intended to represent a database
@@ -31,10 +31,31 @@ public class DoctorUnavailabilityDB extends CustomArray { // Class represents th
 	 * record has length 3.
 	 */
 	protected void add(String[] arr) throws Exception {
-		if (arr.length == 3) {
+		if (arr.length == 5) {
 			super.add(arr);
 		} else {
-			throw new Exception("DoctorUnavailabilityDB elements must have form: [ID, Date, Time]");
+			throw new Exception(
+					"DoctorUnavailabilityDB elements must have form: [Entry#, ID, Date, Start Time, End time]");
+		}
+	}
+
+	/**
+	 * Method deletes any record that has the same values for the Doctor ID, start time, and end time, when compared to
+	 * the parameter values.
+	 * 
+	 * @param id    of type String represents the doctor ID
+	 * @param start of type String represents the start time
+	 * @param end   of type String represents the end time
+	 * @throws Exception
+	 */
+	protected void removeMatchStartEndID(String id, String date, String start, String end) throws Exception {
+		for (int i = 0; i < this.customArray.size(); i++) {
+			if (id.equalsIgnoreCase(this.customArray.get(i).getCustomElement()[1])
+					&& date.equalsIgnoreCase(this.customArray.get(i).getCustomElement()[2])
+					&& start.equalsIgnoreCase(this.customArray.get(i).getCustomElement()[3])
+					&& end.equalsIgnoreCase(this.customArray.get(i).getCustomElement()[4])) {
+				this.customArray.remove(i);
+			}
 		}
 	}
 

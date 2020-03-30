@@ -1,4 +1,4 @@
-package iteration_2;
+package iteration_3;
 
 /**
  * The DoctorDB.java class is a subclass of the CustomArray class. It is intended to represent a database which stores
@@ -62,6 +62,23 @@ final class DoctorDB extends CustomArray { // Class represents the saved set of 
 	 */
 	protected String getID(String username, String password) throws Exception {
 		return this.search(username, 1).search(password, 2).get(0).getCustomElement()[0];
+	}
+
+	/**
+	 * Method returns the ID number corresponding to a given doctor name
+	 * 
+	 * @param name of type String
+	 * @return doctor ID of type String
+	 * @throws Exception
+	 */
+	protected String matchNameToID(String name) throws Exception {
+		String result = "";
+		try {
+			result = this.search(name, 3).get(0).getCustomElement()[0];
+
+		} catch (Exception e1) {
+		}
+		return result;
 	}
 
 	/**
@@ -134,9 +151,25 @@ final class DoctorDB extends CustomArray { // Class represents the saved set of 
 	 * @throws Exception
 	 */
 	protected static void initDB() throws Exception {
-		DoctorDB constructDB = new DoctorDB(new String[] { "1", "doc1", "12345678", "Phil McGraw", "M", "Radiology" });
-		constructDB.add(new String[] { "2", "doc2", "12345678", "Mehmet Oz", "M", "Nursing" });
+		DoctorDB constructDB = new DoctorDB(new String[] { "1", "doc1", "12345678", "Phil McGraw", "M", "Emergency " });
+		constructDB.add(new String[] { "2", "doc2", "12345678", "Mehmet Oz", "M", "Cardiology" });
+		constructDB.add(new String[] { "3", "doc3", "12345678", "John Smith", "M", "ICU       " });
+		constructDB.add(new String[] { "4", "doc4", "12345678", "Elias Hawkins", "M", "Neurology " });
+		constructDB.add(new String[] { "5", "doc5", "12345678", "Demi Burgess", "F", "Emergency " });
+		constructDB.add(new String[] { "6", "doc6", "12345678", "Lara Andersen", "F", "ICU       " });
 		constructDB.saveDoctorDB();
+	}
+
+	/**
+	 * Method returns all instances of doctor records, where the doctor has the same department as the one indicated by
+	 * the parameter
+	 * 
+	 * @param depart of type string representing the department to be search for
+	 * @return CustomArray containing all doctors who have the indicated department set
+	 * @throws Exception
+	 */
+	protected CustomArray findDoctorsInDepartment(String depart) throws Exception {
+		return this.search(depart, 5);
 	}
 
 } // end class DoctorDB

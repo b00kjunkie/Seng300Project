@@ -1,4 +1,4 @@
-package iteration_2;
+package iteration_3;
 
 /**
  * The PatientLogin.java class represents the login screen for patients. Patients are redirected to this frame from the
@@ -19,7 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import java.awt.Color;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.SwingConstants;
 
 public class PatientLogin extends JPanel {
 
@@ -32,35 +32,54 @@ public class PatientLogin extends JPanel {
 	 */
 	public PatientLogin(final JFrame frame) {
 
-		setLayout(new MigLayout("", "[89px][5px][][3px][9px][171px][31px][89px]",
-				"[14px][20px][20px][22px][23px][23px]"));
+		// set window properties
+		setBackground(Color.GRAY);
+		setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Welcome to Alberta hospital");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 13));
-		add(lblNewLabel, "cell 5 0,grow");
+		// header for the window
+		JLabel lblNewLabel = new JLabel("Welcome to the Alberta Hospital Scheduling System");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(173, 75, 600, 34);
+		lblNewLabel.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 24));
+		add(lblNewLabel);
 
+		// patient username label
 		JLabel label = new JLabel("Username");
-		add(label, "cell 0 1 4 1,alignx right,aligny top");
+		label.setFont(new Font("Cambria Math", Font.PLAIN, 20));
+		label.setBounds(240, 158, 109, 20);
+		add(label);
 
-		JLabel label_1 = new JLabel("password");
-		add(label_1, "cell 0 2,alignx right,aligny center");
+		// patient password label
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setFont(new Font("Cambria Math", Font.PLAIN, 20));
+		lblPassword.setBounds(240, 218, 109, 20);
+		add(lblPassword);
 
+		// text field allows patient to enter username
 		txtUsername = new JTextField();
+		txtUsername.setBounds(387, 158, 171, 20);
 		txtUsername.setColumns(10);
-		add(txtUsername, "cell 5 1,alignx left,aligny top");
+		add(txtUsername);
 
+		// text field allows patient to enter password
 		txtPassword = new JPasswordField();
-		add(txtPassword, "cell 5 2,growx,aligny top");
+		txtPassword.setBounds(387, 218, 171, 20);
+		add(txtPassword);
 
+		// text indicates if invalid login information was entered
 		final JTextArea txtrInvalid = new JTextArea();
+		txtrInvalid.setForeground(Color.WHITE);
+		txtrInvalid.setBounds(358, 362, 250, 22);
 		txtrInvalid.setBackground(Color.RED);
-		txtrInvalid.setFont(new Font("Monospaced", Font.PLAIN, 10));
+		txtrInvalid.setFont(new Font("Cambria Math", Font.BOLD, 16));
 		txtrInvalid.setText("Invalid username or password");
-		add(txtrInvalid, "cell 0 3 6 1,alignx center,growy");
+		add(txtrInvalid);
 		txtrInvalid.setVisible(false);
 
+		// button allows the patient to login
 		JButton button_1 = new JButton("Login");
-		add(button_1, "cell 0 4,growx,aligny top");
+		button_1.setBounds(509, 278, 86, 23);
+		add(button_1);
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -98,7 +117,9 @@ public class PatientLogin extends JPanel {
 			}
 		}); // end MouseListener for button_1 "Login"
 
-		JButton btn_reset = new JButton("reset");
+		// button resets the login informaton to null
+		JButton btn_reset = new JButton("Reset");
+		btn_reset.setBounds(358, 278, 86, 23);
 		btn_reset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -107,9 +128,11 @@ public class PatientLogin extends JPanel {
 				txtPassword.setText(null);
 			}
 		});
-		add(btn_reset, "cell 5 4,alignx center,aligny top");
+		add(btn_reset);
 
+		// button allows the patient to exit the program
 		JButton button_3 = new JButton("Exit");
+		button_3.setBounds(885, 530, 89, 23);
 		button_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -117,9 +140,11 @@ public class PatientLogin extends JPanel {
 
 			}
 		});
-		add(button_3, "cell 7 4,growx,aligny top");
+		add(button_3);
 
+		// button allows the user to access a patient registration window
 		JButton button = new JButton("Register");
+		button.setBounds(387, 436, 171, 23);
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -128,7 +153,7 @@ public class PatientLogin extends JPanel {
 				frame.revalidate();
 			}
 		});
-		add(button, "cell 5 5,growx,aligny top");
+		add(button);
 		txtrInvalid.setVisible(false);
 	}
 

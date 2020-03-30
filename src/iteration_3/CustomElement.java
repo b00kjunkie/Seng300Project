@@ -1,4 +1,4 @@
-package iteration_2;
+package iteration_3;
 
 /**
  * CustomElement.java class is a helper class for CustomArray class.
