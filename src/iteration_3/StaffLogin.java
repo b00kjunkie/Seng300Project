@@ -9,18 +9,28 @@ package iteration_3;
  */
 
 import javax.swing.JPanel;
+
 import javax.swing.JPasswordField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
+
+
+/***
+ * 
+ * @author dongb
+ *
+ */
 public class StaffLogin extends JPanel {
 
 	private static final long serialVersionUID = 8L; // serial ID for java object saving
@@ -33,13 +43,16 @@ public class StaffLogin extends JPanel {
 	 * Create the panel.
 	 */
 	public StaffLogin(final JFrame frame) {
+		setForeground(new Color(0, 0, 0));
 
 		// set window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		// header for the window
 		JLabel lbl_Staff_login_screen = new JLabel("Staff Login Screen");
+		lbl_Staff_login_screen.setBackground(Color.LIGHT_GRAY);
+		lbl_Staff_login_screen.setForeground(new Color(0, 102, 204));
 		lbl_Staff_login_screen.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Staff_login_screen.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_Staff_login_screen.setBounds(354, 77, 219, 36);
@@ -47,18 +60,21 @@ public class StaffLogin extends JPanel {
 
 		// doctor login header
 		JLabel lbl_doctors_login_here = new JLabel("Doctor Login");
+		lbl_doctors_login_here.setForeground(new Color(0, 102, 204));
 		lbl_doctors_login_here.setFont(new Font("Cambria Math", Font.BOLD, 18));
 		lbl_doctors_login_here.setBounds(125, 139, 182, 23);
 		add(lbl_doctors_login_here);
 
 		// doctor username label
 		JLabel lbl_username_doc = new JLabel("Username");
+		lbl_username_doc.setForeground(new Color(0, 102, 204));
 		lbl_username_doc.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_username_doc.setBounds(258, 192, 70, 23);
 		add(lbl_username_doc);
 
 		// doctor password label
 		JLabel lbl_password_doc = new JLabel("Password");
+		lbl_password_doc.setForeground(new Color(0, 102, 204));
 		lbl_password_doc.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_password_doc.setBounds(458, 192, 70, 23);
 		add(lbl_password_doc);
@@ -77,18 +93,21 @@ public class StaffLogin extends JPanel {
 
 		// nurse login header
 		JLabel lbl_nurses_login_here = new JLabel("Nurse Login");
+		lbl_nurses_login_here.setForeground(new Color(0, 102, 204));
 		lbl_nurses_login_here.setFont(new Font("Cambria Math", Font.BOLD, 18));
 		lbl_nurses_login_here.setBounds(125, 311, 167, 23);
 		add(lbl_nurses_login_here);
 
 		// nurse username label
 		JLabel lbl_username_nurse = new JLabel("Username");
+		lbl_username_nurse.setForeground(new Color(0, 102, 204));
 		lbl_username_nurse.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_username_nurse.setBounds(258, 366, 70, 23);
 		add(lbl_username_nurse);
 
 		// nurse password label
 		JLabel lbl_password_nurse = new JLabel("Password");
+		lbl_password_nurse.setForeground(new Color(0, 102, 204));
 		lbl_password_nurse.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_password_nurse.setBounds(458, 366, 70, 23);
 		add(lbl_password_nurse);
@@ -107,6 +126,7 @@ public class StaffLogin extends JPanel {
 
 		// button allows the user to exit the program
 		JButton btn_exit = new JButton("Exit");
+		btn_exit.setForeground(new Color(0, 102, 204));
 		btn_exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -118,7 +138,7 @@ public class StaffLogin extends JPanel {
 
 		// label used to indicate if the login information is incorrect
 		final JLabel lbl_invalid_password = new JLabel("Invalid Information");
-		lbl_invalid_password.setBackground(Color.WHITE);
+		lbl_invalid_password.setBackground(Color.LIGHT_GRAY);
 		lbl_invalid_password.setOpaque(true);
 		lbl_invalid_password.setFont(new Font("Cambria Math", Font.BOLD, 18));
 		lbl_invalid_password.setVisible(false);
@@ -129,6 +149,7 @@ public class StaffLogin extends JPanel {
 
 		// button allows doctor to login to the system
 		JButton btn_login_doc = new JButton("Login");
+		btn_login_doc.setForeground(new Color(0, 102, 204));
 		btn_login_doc.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -162,6 +183,7 @@ public class StaffLogin extends JPanel {
 
 		// button allows nurse to login to the system
 		JButton btn_login_nurse = new JButton("Login");
+		btn_login_nurse.setForeground(new Color(0, 102, 204));
 		btn_login_nurse.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -178,6 +200,8 @@ public class StaffLogin extends JPanel {
 					// else, create NurseDashboard frame and pass parameter String array containing username+pass
 					if (!nurseDB.checkForMatch(username, password)) {
 						lbl_invalid_password.setVisible(true);
+					
+						
 					} else {
 						String nurseID = nurseDB.getID(username, password);
 						NurseDashboard login = new NurseDashboard(frame, nurseID);
@@ -193,6 +217,11 @@ public class StaffLogin extends JPanel {
 		}); // end MouseListener for btn_login_nurse "Login"
 		btn_login_nurse.setBounds(661, 399, 89, 23);
 		add(btn_login_nurse);
+		
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\ahs.png"));
+		lblAHSimg.setBounds(10, 11, 192, 50);
+		add(lblAHSimg);
 
 	}
 

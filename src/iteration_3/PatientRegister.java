@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class PatientRegister extends JPanel {
 
@@ -33,10 +34,11 @@ public class PatientRegister extends JPanel {
 	public PatientRegister(final JFrame frame) {
 
 		// window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 
 		// header for window
 		JLabel lbl_registration_header = new JLabel("New Patient Registration");
+		lbl_registration_header.setForeground(new Color(0, 102, 204));
 		lbl_registration_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_registration_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_registration_header.setBounds(330, 75, 305, 32);
@@ -58,6 +60,7 @@ public class PatientRegister extends JPanel {
 
 		// patient username label
 		JLabel lblNewUsername = new JLabel("New Username");
+		lblNewUsername.setForeground(new Color(0, 102, 204));
 		lblNewUsername.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lblNewUsername.setBounds(60, 163, 154, 20);
 		add(lblNewUsername);
@@ -122,6 +125,7 @@ public class PatientRegister extends JPanel {
 
 		// label for patient password
 		final JLabel lblNewPassword = new JLabel("New Password ");
+		lblNewPassword.setForeground(new Color(0, 102, 204));
 		lblNewPassword.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lblNewPassword.setBounds(60, 229, 154, 32);
 		add(lblNewPassword);
@@ -158,6 +162,7 @@ public class PatientRegister extends JPanel {
 
 		// confirm password label
 		final JLabel lblNewPasswordConfirm = new JLabel("Confirm Password");
+		lblNewPasswordConfirm.setForeground(new Color(0, 102, 204));
 		lblNewPasswordConfirm.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lblNewPasswordConfirm.setBounds(60, 317, 202, 25);
 		add(lblNewPasswordConfirm);
@@ -235,6 +240,11 @@ public class PatientRegister extends JPanel {
 		});
 		add(btnContinue);
 		add(btnBack);
+		
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\ahs.img.png"));
+		lblAHSimg.setBounds(38, 11, 194, 75);
+		add(lblAHSimg);
 
 	} // end PatientRegister constructor
 
