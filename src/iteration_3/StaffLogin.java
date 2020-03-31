@@ -1,4 +1,4 @@
-package iteration_2;
+package iteration_3;
 
 /**
  * The StaffLogin.java class provides a frame for Staff login. Both doctors and nurses are redirected to this frame
@@ -34,81 +34,100 @@ public class StaffLogin extends JPanel {
 	 */
 	public StaffLogin(final JFrame frame) {
 
+		// set window properties
+		setBackground(Color.GRAY);
 		setLayout(null);
 
+		// header for the window
 		JLabel lbl_Staff_login_screen = new JLabel("Staff Login Screen");
-		lbl_Staff_login_screen.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lbl_Staff_login_screen.setBounds(147, 11, 174, 36);
+		lbl_Staff_login_screen.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_Staff_login_screen.setFont(new Font("Cambria Math", Font.BOLD, 24));
+		lbl_Staff_login_screen.setBounds(354, 77, 219, 36);
 		add(lbl_Staff_login_screen);
 
-		JLabel lbl_doctors_login_here = new JLabel("Doctors Login Here");
-		lbl_doctors_login_here.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lbl_doctors_login_here.setBounds(36, 58, 167, 23);
+		// doctor login header
+		JLabel lbl_doctors_login_here = new JLabel("Doctor Login");
+		lbl_doctors_login_here.setFont(new Font("Cambria Math", Font.BOLD, 18));
+		lbl_doctors_login_here.setBounds(125, 139, 182, 23);
 		add(lbl_doctors_login_here);
 
+		// doctor username label
 		JLabel lbl_username_doc = new JLabel("Username");
-		lbl_username_doc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_username_doc.setBounds(60, 92, 70, 23);
+		lbl_username_doc.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		lbl_username_doc.setBounds(258, 192, 70, 23);
 		add(lbl_username_doc);
 
+		// doctor password label
 		JLabel lbl_password_doc = new JLabel("Password");
-		lbl_password_doc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_password_doc.setBounds(220, 92, 70, 23);
+		lbl_password_doc.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		lbl_password_doc.setBounds(458, 192, 70, 23);
 		add(lbl_password_doc);
 
+		// text field to enter to doctor username
 		txt_username_doc = new JTextField();
-		txt_username_doc.setBounds(60, 126, 115, 20);
+		txt_username_doc.setBounds(258, 226, 115, 20);
 		add(txt_username_doc);
 		txt_username_doc.setColumns(10);
 
+		// text field to enter the doctor password
 		txt_password_doc = new JPasswordField();
 		txt_password_doc.setColumns(10);
-		txt_password_doc.setBounds(220, 126, 115, 20);
+		txt_password_doc.setBounds(458, 226, 115, 20);
 		add(txt_password_doc);
 
-		JLabel lbl_nurses_login_here = new JLabel("Nurses Login Here");
-		lbl_nurses_login_here.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lbl_nurses_login_here.setBounds(36, 157, 167, 23);
+		// nurse login header
+		JLabel lbl_nurses_login_here = new JLabel("Nurse Login");
+		lbl_nurses_login_here.setFont(new Font("Cambria Math", Font.BOLD, 18));
+		lbl_nurses_login_here.setBounds(125, 311, 167, 23);
 		add(lbl_nurses_login_here);
 
+		// nurse username label
 		JLabel lbl_username_nurse = new JLabel("Username");
-		lbl_username_nurse.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_username_nurse.setBounds(60, 191, 70, 23);
+		lbl_username_nurse.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		lbl_username_nurse.setBounds(258, 366, 70, 23);
 		add(lbl_username_nurse);
 
+		// nurse password label
 		JLabel lbl_password_nurse = new JLabel("Password");
-		lbl_password_nurse.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_password_nurse.setBounds(220, 191, 70, 23);
+		lbl_password_nurse.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		lbl_password_nurse.setBounds(458, 366, 70, 23);
 		add(lbl_password_nurse);
 
-		txt_password_nurse = new JPasswordField();
-		txt_password_nurse.setColumns(10);
-		txt_password_nurse.setBounds(220, 225, 115, 20);
-		add(txt_password_nurse);
-
+		// text field to input nurse username
 		txt_username_nurse = new JTextField();
 		txt_username_nurse.setColumns(10);
-		txt_username_nurse.setBounds(60, 225, 115, 20);
+		txt_username_nurse.setBounds(258, 400, 115, 20);
 		add(txt_username_nurse);
 
+		// text field to input nurse password
+		txt_password_nurse = new JPasswordField();
+		txt_password_nurse.setColumns(10);
+		txt_password_nurse.setBounds(458, 400, 115, 20);
+		add(txt_password_nurse);
+
+		// button allows the user to exit the program
 		JButton btn_exit = new JButton("Exit");
-		// if the exit button is clicked, then terminate application
 		btn_exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
 		});
-		btn_exit.setBounds(351, 266, 89, 23);
+		btn_exit.setBounds(885, 528, 89, 23);
 		add(btn_exit);
 
+		// label used to indicate if the login information is incorrect
 		final JLabel lbl_invalid_password = new JLabel("Invalid Information");
+		lbl_invalid_password.setBackground(Color.WHITE);
+		lbl_invalid_password.setOpaque(true);
+		lbl_invalid_password.setFont(new Font("Cambria Math", Font.BOLD, 18));
 		lbl_invalid_password.setVisible(false);
 		lbl_invalid_password.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_invalid_password.setForeground(Color.RED);
-		lbl_invalid_password.setBounds(351, 174, 110, 23);
+		lbl_invalid_password.setBounds(364, 495, 182, 23);
 		add(lbl_invalid_password);
 
+		// button allows doctor to login to the system
 		JButton btn_login_doc = new JButton("Login");
 		btn_login_doc.addMouseListener(new MouseAdapter() {
 			@Override
@@ -118,7 +137,6 @@ public class StaffLogin extends JPanel {
 				String password = txt_password_doc.getText();
 
 				try {
-					DoctorDB.initDB(); // initialize the doctor database file
 					DoctorDB doctorDB = new DoctorDB();
 					doctorDB = doctorDB.loadDoctorDB(); // load database from file
 
@@ -139,10 +157,10 @@ public class StaffLogin extends JPanel {
 
 			}
 		}); // end MouseListener for btn_login_doc "Login"
-
-		btn_login_doc.setBounds(351, 125, 89, 23);
+		btn_login_doc.setBounds(661, 225, 89, 23);
 		add(btn_login_doc);
 
+		// button allows nurse to login to the system
 		JButton btn_login_nurse = new JButton("Login");
 		btn_login_nurse.addMouseListener(new MouseAdapter() {
 			@Override
@@ -173,8 +191,7 @@ public class StaffLogin extends JPanel {
 
 			}
 		}); // end MouseListener for btn_login_nurse "Login"
-
-		btn_login_nurse.setBounds(351, 224, 89, 23);
+		btn_login_nurse.setBounds(661, 399, 89, 23);
 		add(btn_login_nurse);
 
 	}

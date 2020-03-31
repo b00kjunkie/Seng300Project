@@ -1,4 +1,4 @@
-package iteration_2;
+package iteration_3;
 
 /**
  * The PatientSettings.java class provides a frame for the patient to edit their personal information. Patients are 
@@ -19,18 +19,19 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class PatientSettings extends JPanel {
 
 	private static final long serialVersionUID = 15L; // serial ID for java object saving
-	private JTextField txt_name_val;
-	private JTextField txt_dob_val;
+	private JTextField txt_name_val; // patient name
+	private JTextField txt_dob_val; // patient date of birth
 
 	// variables which are used to update/edit the patient record data fields
 	private String new_gender; // default to Female
-	private String new_heart_disease;
-	private String new_diabetes;
-	private String new_anxiety;
+	private String new_heart_disease; // patient heart disease flag
+	private String new_diabetes; // patient diabetes flag
+	private String new_anxiety; // patient anxiety flag
 
 	/**
 	 * Create the panel.
@@ -39,6 +40,8 @@ public class PatientSettings extends JPanel {
 	 */
 	public PatientSettings(final JFrame frame, final String patientID) throws Exception {
 
+		// set window properties
+		setBackground(Color.GRAY);
 		setLayout(null);
 
 		PatientDB patientDB = new PatientDB();
@@ -54,26 +57,35 @@ public class PatientSettings extends JPanel {
 		String diabetes = patientRecord[7];
 		String anxiety = patientRecord[8];
 
+		// window header
 		JLabel lb_settings_header = new JLabel("Personal Information");
 		lb_settings_header.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_settings_header.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lb_settings_header.setBounds(122, 11, 208, 22);
+		lb_settings_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
+		lb_settings_header.setBounds(261, 83, 353, 29);
 		add(lb_settings_header);
 
+		// patient name label
 		JLabel lbl_name = new JLabel("Name:");
-		lbl_name.setBounds(95, 69, 94, 14);
+		lbl_name.setFont(new Font("Cambria Math", Font.BOLD, 20));
+		lbl_name.setBounds(161, 158, 94, 22);
 		add(lbl_name);
 
+		// patient name value
 		txt_name_val = new JTextField(name);
-		txt_name_val.setBounds(244, 66, 107, 20);
+		txt_name_val.setBounds(396, 161, 131, 20);
 		add(txt_name_val);
 		txt_name_val.setColumns(10);
 
+		// patient gender label
 		JLabel lbl_gender = new JLabel("Gender:");
-		lbl_gender.setBounds(95, 94, 94, 14);
+		lbl_gender.setFont(new Font("Cambria Math", Font.BOLD, 20));
+		lbl_gender.setBounds(161, 208, 94, 22);
 		add(lbl_gender);
 
+		// button used to indicate if the patient gender is male
 		final JRadioButton rdbtn_male = new JRadioButton("M");
+		rdbtn_male.setBackground(Color.GRAY);
+		rdbtn_male.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		new_gender = gender;
 		rdbtn_male.addMouseListener(new MouseAdapter() {
 			@Override
@@ -85,10 +97,13 @@ public class PatientSettings extends JPanel {
 				}
 			}
 		});
-		rdbtn_male.setBounds(254, 93, 39, 23);
+		rdbtn_male.setBounds(396, 207, 39, 23);
 		add(rdbtn_male);
 
+		// button used to indicate if the patient gender is female
 		final JRadioButton rdbtn_female = new JRadioButton("F");
+		rdbtn_female.setBackground(Color.GRAY);
+		rdbtn_female.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		rdbtn_female.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -104,27 +119,37 @@ public class PatientSettings extends JPanel {
 		} else {
 			rdbtn_female.setSelected(true);
 		}
-		rdbtn_female.setBounds(295, 93, 39, 23);
+		rdbtn_female.setBounds(437, 207, 39, 23);
 		add(rdbtn_female);
 
+		// patient date of birth label
 		JLabel lbl_dob = new JLabel("Date of Birth:");
-		lbl_dob.setBounds(95, 119, 94, 14);
+		lbl_dob.setFont(new Font("Cambria Math", Font.BOLD, 20));
+		lbl_dob.setBounds(161, 261, 144, 22);
 		add(lbl_dob);
 
+		// patient date of birth value
 		txt_dob_val = new JTextField(dob);
-		txt_dob_val.setBounds(244, 116, 107, 20);
+		txt_dob_val.setBounds(396, 264, 131, 20);
 		add(txt_dob_val);
 		txt_dob_val.setColumns(10);
 
+		// label used to indicate the date of birth form
 		JLabel lbl_dob_format = new JLabel("dd/mm/yy");
-		lbl_dob_format.setBounds(359, 119, 66, 14);
+		lbl_dob_format.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		lbl_dob_format.setBounds(560, 265, 94, 17);
 		add(lbl_dob_format);
 
+		// patient health pre-conditions label
 		JLabel lbl_preconditions = new JLabel("Pre-conditions:");
-		lbl_preconditions.setBounds(95, 144, 94, 14);
+		lbl_preconditions.setFont(new Font("Cambria Math", Font.BOLD, 20));
+		lbl_preconditions.setBounds(161, 317, 170, 20);
 		add(lbl_preconditions);
 
+		// box used to indicate if the patient has heart disease
 		final JCheckBox chckbx_heart_disease = new JCheckBox("Heart Disease");
+		chckbx_heart_disease.setBackground(Color.GRAY);
+		chckbx_heart_disease.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		new_heart_disease = heartdisease;
 		chckbx_heart_disease.addMouseListener(new MouseAdapter() {
 			@Override
@@ -139,10 +164,13 @@ public class PatientSettings extends JPanel {
 		if (heartdisease.equalsIgnoreCase("Y")) {
 			chckbx_heart_disease.setSelected(true);
 		}
-		chckbx_heart_disease.setBounds(244, 168, 120, 23);
+		chckbx_heart_disease.setBounds(396, 317, 144, 23);
 		add(chckbx_heart_disease);
 
+		// box used to indicate if the patient has diabetes
 		final JCheckBox chckbx_diabetes = new JCheckBox("Diabetes");
+		chckbx_diabetes.setBackground(Color.GRAY);
+		chckbx_diabetes.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		new_diabetes = diabetes;
 		chckbx_diabetes.addMouseListener(new MouseAdapter() {
 			@Override
@@ -158,10 +186,13 @@ public class PatientSettings extends JPanel {
 		if (diabetes.equalsIgnoreCase("Y")) {
 			chckbx_diabetes.setSelected(true);
 		}
-		chckbx_diabetes.setBounds(244, 194, 97, 23);
+		chckbx_diabetes.setBounds(396, 343, 97, 23);
 		add(chckbx_diabetes);
 
+		// box used to indicate if the patient has anxiety
 		final JCheckBox chckbx_anxiety = new JCheckBox("Anxiety");
+		chckbx_anxiety.setBackground(Color.GRAY);
+		chckbx_anxiety.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		new_anxiety = anxiety;
 		chckbx_anxiety.addMouseListener(new MouseAdapter() {
 			@Override
@@ -177,9 +208,10 @@ public class PatientSettings extends JPanel {
 		if (anxiety.equalsIgnoreCase("Y")) {
 			chckbx_anxiety.setSelected(true);
 		}
-		chckbx_anxiety.setBounds(244, 220, 97, 23);
+		chckbx_anxiety.setBounds(396, 369, 97, 23);
 		add(chckbx_anxiety);
 
+		// buttons allows the patient to save changes made to information and return to the dashboard
 		JButton btn_save = new JButton("Save & Return");
 		btn_save.addMouseListener(new MouseAdapter() {
 			@Override
@@ -187,28 +219,19 @@ public class PatientSettings extends JPanel {
 				try {
 					PatientDB patientDB = new PatientDB();
 					patientDB = patientDB.loadPatientDB();
-					String[] oldRecord = patientDB.getPatientRecord(patientID); // pull patient record from database
 
-					String p1 = oldRecord[0]; // same id as before
-					String p2 = oldRecord[1]; // same username as before
-					String p3 = oldRecord[2]; // same password as before
-					String p4 = txt_name_val.getText(); // name
-
-					String p5 = new_gender; // M or F
-					String p6 = txt_dob_val.getText(); // DOB
-					String p7 = new_heart_disease; // Y or N
-					String p8 = new_diabetes; // Y or N
-					String p9 = new_anxiety; // Y or N
-
-					// delete old record from the patient database
+					// update patient record in the patient database
 					for (int i = 0; i < patientDB.size(); i++) {
 						if (patientDB.get(i).getCustomElement()[0].equalsIgnoreCase(patientID)) {
-							patientDB.remove(i);
+							patientDB.get(i).getCustomElement()[3] = txt_name_val.getText(); // name
+							patientDB.get(i).getCustomElement()[4] = new_gender; // M or F
+							patientDB.get(i).getCustomElement()[5] = txt_dob_val.getText(); // DOB
+							patientDB.get(i).getCustomElement()[6] = new_heart_disease; // Y or N
+							patientDB.get(i).getCustomElement()[7] = new_diabetes; // Y or N
+							patientDB.get(i).getCustomElement()[8] = new_anxiety; // Y or N
 						}
 					}
 
-					// add new patient record to the patient database
-					patientDB.add(new String[] { p1, p2, p3, p4, p5, p6, p7, p8, p9 });
 					// save the database to file
 					patientDB.savePatientDB();
 
@@ -224,7 +247,7 @@ public class PatientSettings extends JPanel {
 			}
 		});
 
-		btn_save.setBounds(95, 254, 131, 23);
+		btn_save.setBounds(405, 479, 131, 23);
 		add(btn_save);
 
 	} // end constructor
