@@ -128,17 +128,17 @@ public class MainFrame {
 		frame.getContentPane().add(btnPatient);
 		
 		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\ahs.png"));
+		lblAHSimg.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/ahs.png")));
 		lblAHSimg.setBounds(35, 36, 183, 65);
 		frame.getContentPane().add(lblAHSimg);
 		
 		JLabel lblPatient = new JLabel("");
-		lblPatient.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\patient.png"));
+		lblPatient.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/patient.png")));
 		lblPatient.setBounds(274, 327, 64, 64);
 		frame.getContentPane().add(lblPatient);
 		
 		JLabel lblDocNur = new JLabel("");
-		lblDocNur.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\doctor.png"));
+		lblDocNur.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/doctor.png")));
 		lblDocNur.setBounds(615, 274, 49, 42);
 		frame.getContentPane().add(lblDocNur);
 

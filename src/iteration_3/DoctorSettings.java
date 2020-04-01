@@ -39,7 +39,7 @@ public class DoctorSettings extends JPanel {
 	 */
 	public DoctorSettings(final JFrame frame, final String id) throws Exception {
 
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		DoctorDB doctorDB = new DoctorDB();

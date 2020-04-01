@@ -27,6 +27,7 @@ import javax.swing.JSpinner;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerDateModel;
+import javax.swing.ImageIcon;
 
 public class NurseAppointment extends JPanel {
 
@@ -42,6 +43,7 @@ public class NurseAppointment extends JPanel {
 
 		// header for appointment scheduling window
 		JLabel lbl_window_header = new JLabel("Appointment Booking System");
+		lbl_window_header.setForeground(new Color(0, 102, 204));
 		lbl_window_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_window_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_window_header.setBounds(303, 36, 347, 44);
@@ -49,6 +51,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for patient id column of appointment text area
 		JLabel lbl_patient_id_column = new JLabel("Patient ID");
+		lbl_patient_id_column.setForeground(new Color(0, 102, 204));
 		lbl_patient_id_column.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_patient_id_column.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_patient_id_column.setBounds(169, 120, 79, 23);
@@ -56,6 +59,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for doctor id column of appointment text area
 		JLabel lbl_doctor_id_column = new JLabel("Doctor ID");
+		lbl_doctor_id_column.setForeground(new Color(0, 102, 204));
 		lbl_doctor_id_column.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_doctor_id_column.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_doctor_id_column.setBounds(253, 120, 79, 23);
@@ -63,6 +67,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for department column of appointment text area
 		JLabel lbl_department_column = new JLabel("Department");
+		lbl_department_column.setForeground(new Color(0, 102, 204));
 		lbl_department_column.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_department_column.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_department_column.setBounds(344, 120, 99, 23);
@@ -70,6 +75,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for date column of appointment text area
 		JLabel lbl_date_column = new JLabel("Date");
+		lbl_date_column.setForeground(new Color(0, 102, 204));
 		lbl_date_column.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_date_column.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_date_column.setBounds(447, 120, 47, 23);
@@ -77,6 +83,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for start time column of appointment text area
 		JLabel lbl_start_time_column = new JLabel("Start");
+		lbl_start_time_column.setForeground(new Color(0, 102, 204));
 		lbl_start_time_column.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_start_time_column.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_start_time_column.setBounds(520, 120, 47, 23);
@@ -84,6 +91,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for end time column of appointment text area
 		JLabel lbl_end_time_column = new JLabel("End");
+		lbl_end_time_column.setForeground(new Color(0, 102, 204));
 		lbl_end_time_column.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_end_time_column.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_end_time_column.setBounds(571, 120, 37, 23);
@@ -91,6 +99,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for status column of appointment text area
 		JLabel lbl_status_column = new JLabel("Status");
+		lbl_status_column.setForeground(new Color(0, 102, 204));
 		lbl_status_column.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_status_column.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_status_column.setBounds(618, 120, 68, 23);
@@ -109,6 +118,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for selected patient id
 		JLabel lbl_patient_id = new JLabel("Patient ID");
+		lbl_patient_id.setForeground(new Color(0, 102, 204));
 		lbl_patient_id.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_patient_id.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_patient_id.setBounds(63, 335, 111, 23);
@@ -116,6 +126,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for selected doctor id
 		JLabel lbl_doctor_id = new JLabel("Doctor ID");
+		lbl_doctor_id.setForeground(new Color(0, 102, 204));
 		lbl_doctor_id.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_doctor_id.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_doctor_id.setBounds(198, 335, 111, 23);
@@ -123,6 +134,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for selected department
 		JLabel lbl_department = new JLabel("Department");
+		lbl_department.setForeground(new Color(0, 102, 204));
 		lbl_department.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_department.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_department.setBounds(342, 335, 168, 23);
@@ -130,6 +142,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for selected date
 		JLabel lbl_date = new JLabel("Date");
+		lbl_date.setForeground(new Color(0, 102, 204));
 		lbl_date.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_date.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_date.setBounds(551, 335, 111, 23);
@@ -137,6 +150,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for selected start time
 		JLabel lbl_start_time = new JLabel("Start");
+		lbl_start_time.setForeground(new Color(0, 102, 204));
 		lbl_start_time.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_start_time.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_start_time.setBounds(689, 335, 79, 23);
@@ -144,6 +158,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for selected end time
 		JLabel lbl_end_time = new JLabel("End");
+		lbl_end_time.setForeground(new Color(0, 102, 204));
 		lbl_end_time.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_end_time.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_end_time.setBounds(797, 335, 79, 23);
@@ -205,6 +220,7 @@ public class NurseAppointment extends JPanel {
 
 		// label for status field
 		JLabel lbl_status = new JLabel("Status");
+		lbl_status.setForeground(new Color(0, 102, 204));
 		lbl_status.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_status.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_status.setBounds(140, 437, 111, 23);
@@ -212,6 +228,7 @@ public class NurseAppointment extends JPanel {
 
 		// button used to approve appointment request
 		final JRadioButton rdbtn_booked = new JRadioButton("Schedule Appointment");
+		rdbtn_booked.setForeground(new Color(0, 102, 204));
 		rdbtn_booked.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		rdbtn_booked.setBackground(Color.GRAY);
 		rdbtn_booked.setBounds(278, 439, 186, 21);
@@ -219,6 +236,7 @@ public class NurseAppointment extends JPanel {
 
 		// button used to deny appointment request
 		final JRadioButton rdbtn_denied = new JRadioButton("Deny Appointment");
+		rdbtn_denied.setForeground(new Color(0, 102, 204));
 		rdbtn_denied.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		rdbtn_denied.setBackground(Color.GRAY);
 		rdbtn_denied.setBounds(278, 480, 186, 21);
@@ -258,6 +276,7 @@ public class NurseAppointment extends JPanel {
 
 		// button used to confirm that an appointment has either been scheduled or denied
 		JButton btn_update_status = new JButton("Update Status");
+		btn_update_status.setForeground(new Color(0, 102, 204));
 		btn_update_status.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -299,6 +318,7 @@ public class NurseAppointment extends JPanel {
 
 		// button that allows the nurse to return to the dashboard
 		JButton btn_return = new JButton("Return");
+		btn_return.setForeground(new Color(0, 102, 204));
 		btn_return.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -312,6 +332,11 @@ public class NurseAppointment extends JPanel {
 		});
 		btn_return.setBounds(865, 528, 89, 23);
 		add(btn_return);
+		
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(NurseAppointment.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(865, 36, 186, 89);
+		add(lblAHSimg);
 
 	} // end NurseAppointment constructor
 

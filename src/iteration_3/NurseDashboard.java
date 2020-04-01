@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class NurseDashboard extends JPanel {
 
@@ -32,7 +33,7 @@ public class NurseDashboard extends JPanel {
 	public NurseDashboard(final JFrame frame, final String nurseID) throws Exception {
 
 		// set window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		NurseDB nurseDB = new NurseDB();
@@ -49,6 +50,7 @@ public class NurseDashboard extends JPanel {
 
 		// window header
 		JLabel lbl_nurse_header = new JLabel("Nurse Dashboard");
+		lbl_nurse_header.setForeground(new Color(0, 102, 204));
 		lbl_nurse_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_nurse_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_nurse_header.setBounds(355, 73, 219, 22);
@@ -56,6 +58,7 @@ public class NurseDashboard extends JPanel {
 
 		// nurse id label
 		JLabel lbl_id = new JLabel("ID:");
+		lbl_id.setForeground(new Color(0, 102, 204));
 		lbl_id.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_id.setBounds(192, 201, 80, 14);
 		add(lbl_id);
@@ -68,6 +71,7 @@ public class NurseDashboard extends JPanel {
 
 		// nurse username label
 		JLabel lbl_username = new JLabel("Username:");
+		lbl_username.setForeground(new Color(0, 102, 204));
 		lbl_username.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_username.setBounds(192, 236, 80, 14);
 		add(lbl_username);
@@ -80,6 +84,7 @@ public class NurseDashboard extends JPanel {
 
 		// nurse name label
 		JLabel lbl_name = new JLabel("Name:");
+		lbl_name.setForeground(new Color(0, 102, 204));
 		lbl_name.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_name.setBounds(192, 274, 80, 14);
 		add(lbl_name);
@@ -92,6 +97,7 @@ public class NurseDashboard extends JPanel {
 
 		// nurse gender label
 		JLabel lbl_gender = new JLabel("Gender:");
+		lbl_gender.setForeground(new Color(0, 102, 204));
 		lbl_gender.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_gender.setBounds(192, 311, 80, 14);
 		add(lbl_gender);
@@ -104,6 +110,7 @@ public class NurseDashboard extends JPanel {
 
 		// nurse department label
 		JLabel lbl_department = new JLabel("Department:");
+		lbl_department.setForeground(new Color(0, 102, 204));
 		lbl_department.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_department.setBounds(192, 346, 104, 14);
 		add(lbl_department);
@@ -116,6 +123,7 @@ public class NurseDashboard extends JPanel {
 
 		// button allows the nurse to exit the program
 		JButton btn_logout = new JButton("Logout");
+		btn_logout.setForeground(new Color(0, 102, 204));
 		btn_logout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -127,6 +135,7 @@ public class NurseDashboard extends JPanel {
 
 		// personal information section header
 		JLabel lblNewLabel = new JLabel("Personal Info");
+		lblNewLabel.setForeground(new Color(0, 102, 204));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lblNewLabel.setBounds(69, 140, 142, 22);
@@ -134,6 +143,7 @@ public class NurseDashboard extends JPanel {
 
 		// button allows the nurse to check doctor availability
 		JButton btn_availabililty = new JButton("Check Availability");
+		btn_availabililty.setForeground(new Color(0, 102, 204));
 		btn_availabililty.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -152,6 +162,7 @@ public class NurseDashboard extends JPanel {
 
 		// button allows the nurse to view all appointments requested by both doctors and patients
 		JButton btn_appointments = new JButton("Appointments Requested");
+		btn_appointments.setForeground(new Color(0, 102, 204));
 		btn_appointments.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -165,6 +176,11 @@ public class NurseDashboard extends JPanel {
 		});
 		btn_appointments.setBounds(497, 441, 180, 23);
 		add(btn_appointments);
+		
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(NurseDashboard.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(852, 39, 208, 102);
+		add(lblAHSimg);
 
 	} // end NurseDashboard constructor
 

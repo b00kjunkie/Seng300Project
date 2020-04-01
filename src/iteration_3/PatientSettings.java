@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class PatientSettings extends JPanel {
 
@@ -41,7 +42,7 @@ public class PatientSettings extends JPanel {
 	public PatientSettings(final JFrame frame, final String patientID) throws Exception {
 
 		// set window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		PatientDB patientDB = new PatientDB();
@@ -59,6 +60,7 @@ public class PatientSettings extends JPanel {
 
 		// window header
 		JLabel lb_settings_header = new JLabel("Personal Information");
+		lb_settings_header.setForeground(new Color(0, 102, 204));
 		lb_settings_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_settings_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lb_settings_header.setBounds(261, 83, 353, 29);
@@ -66,6 +68,7 @@ public class PatientSettings extends JPanel {
 
 		// patient name label
 		JLabel lbl_name = new JLabel("Name:");
+		lbl_name.setForeground(new Color(0, 102, 204));
 		lbl_name.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_name.setBounds(161, 158, 94, 22);
 		add(lbl_name);
@@ -78,13 +81,15 @@ public class PatientSettings extends JPanel {
 
 		// patient gender label
 		JLabel lbl_gender = new JLabel("Gender:");
+		lbl_gender.setForeground(new Color(0, 102, 204));
 		lbl_gender.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_gender.setBounds(161, 208, 94, 22);
 		add(lbl_gender);
 
 		// button used to indicate if the patient gender is male
 		final JRadioButton rdbtn_male = new JRadioButton("M");
-		rdbtn_male.setBackground(Color.GRAY);
+		rdbtn_male.setForeground(new Color(0, 102, 204));
+		rdbtn_male.setBackground(Color.LIGHT_GRAY);
 		rdbtn_male.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		new_gender = gender;
 		rdbtn_male.addMouseListener(new MouseAdapter() {
@@ -102,7 +107,8 @@ public class PatientSettings extends JPanel {
 
 		// button used to indicate if the patient gender is female
 		final JRadioButton rdbtn_female = new JRadioButton("F");
-		rdbtn_female.setBackground(Color.GRAY);
+		rdbtn_female.setForeground(Color.RED);
+		rdbtn_female.setBackground(Color.LIGHT_GRAY);
 		rdbtn_female.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		rdbtn_female.addMouseListener(new MouseAdapter() {
 			@Override
@@ -124,6 +130,7 @@ public class PatientSettings extends JPanel {
 
 		// patient date of birth label
 		JLabel lbl_dob = new JLabel("Date of Birth:");
+		lbl_dob.setForeground(new Color(0, 102, 204));
 		lbl_dob.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_dob.setBounds(161, 261, 144, 22);
 		add(lbl_dob);
@@ -136,19 +143,22 @@ public class PatientSettings extends JPanel {
 
 		// label used to indicate the date of birth form
 		JLabel lbl_dob_format = new JLabel("dd/mm/yy");
+		lbl_dob_format.setForeground(Color.RED);
 		lbl_dob_format.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_dob_format.setBounds(560, 265, 94, 17);
 		add(lbl_dob_format);
 
 		// patient health pre-conditions label
 		JLabel lbl_preconditions = new JLabel("Pre-conditions:");
+		lbl_preconditions.setForeground(new Color(0, 102, 204));
 		lbl_preconditions.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_preconditions.setBounds(161, 317, 170, 20);
 		add(lbl_preconditions);
 
 		// box used to indicate if the patient has heart disease
 		final JCheckBox chckbx_heart_disease = new JCheckBox("Heart Disease");
-		chckbx_heart_disease.setBackground(Color.GRAY);
+		chckbx_heart_disease.setForeground(new Color(0, 102, 204));
+		chckbx_heart_disease.setBackground(Color.LIGHT_GRAY);
 		chckbx_heart_disease.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		new_heart_disease = heartdisease;
 		chckbx_heart_disease.addMouseListener(new MouseAdapter() {
@@ -169,7 +179,8 @@ public class PatientSettings extends JPanel {
 
 		// box used to indicate if the patient has diabetes
 		final JCheckBox chckbx_diabetes = new JCheckBox("Diabetes");
-		chckbx_diabetes.setBackground(Color.GRAY);
+		chckbx_diabetes.setForeground(new Color(0, 102, 204));
+		chckbx_diabetes.setBackground(Color.LIGHT_GRAY);
 		chckbx_diabetes.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		new_diabetes = diabetes;
 		chckbx_diabetes.addMouseListener(new MouseAdapter() {
@@ -191,7 +202,8 @@ public class PatientSettings extends JPanel {
 
 		// box used to indicate if the patient has anxiety
 		final JCheckBox chckbx_anxiety = new JCheckBox("Anxiety");
-		chckbx_anxiety.setBackground(Color.GRAY);
+		chckbx_anxiety.setForeground(new Color(0, 102, 204));
+		chckbx_anxiety.setBackground(Color.LIGHT_GRAY);
 		chckbx_anxiety.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		new_anxiety = anxiety;
 		chckbx_anxiety.addMouseListener(new MouseAdapter() {
@@ -213,6 +225,7 @@ public class PatientSettings extends JPanel {
 
 		// buttons allows the patient to save changes made to information and return to the dashboard
 		JButton btn_save = new JButton("Save & Return");
+		btn_save.setForeground(new Color(51, 102, 204));
 		btn_save.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -249,6 +262,11 @@ public class PatientSettings extends JPanel {
 
 		btn_save.setBounds(405, 479, 131, 23);
 		add(btn_save);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PatientSettings.class.getResource("/iteration_3/ahs.png")));
+		lblNewLabel.setBounds(26, 29, 179, 71);
+		add(lblNewLabel);
 
 	} // end constructor
 

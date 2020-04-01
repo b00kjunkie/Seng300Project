@@ -23,6 +23,7 @@ import javax.swing.JTextArea;
 import javax.swing.SpinnerDateModel;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import javax.swing.ImageIcon;
 
 public class RequestAppointment extends JPanel {
 
@@ -40,11 +41,12 @@ public class RequestAppointment extends JPanel {
 	 */
 	public RequestAppointment(final JFrame frame, final String id, final String user_type) throws Exception {
 
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		// Request Appointment Window Header
 		JLabel lblNewLabel = new JLabel("Request Appointment");
+		lblNewLabel.setForeground(new Color(0, 102, 204));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lblNewLabel.setBounds(358, 37, 257, 29);
@@ -64,6 +66,7 @@ public class RequestAppointment extends JPanel {
 
 		// label for department dropdown list
 		JLabel lbl_department = new JLabel("Department");
+		lbl_department.setForeground(new Color(0, 102, 204));
 		lbl_department.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_department.setBounds(27, 102, 158, 23);
 		add(lbl_department);
@@ -78,6 +81,7 @@ public class RequestAppointment extends JPanel {
 
 		// dropdown list to select the department
 		final JComboBox<String> comboBox_depart = new JComboBox<>();
+		comboBox_depart.setForeground(new Color(0, 102, 204));
 		comboBox_depart.setBackground(Color.WHITE);
 		comboBox_depart.setOpaque(true);
 		comboBox_depart.setBounds(195, 102, 216, 20);
@@ -143,6 +147,7 @@ public class RequestAppointment extends JPanel {
 
 		// spinner which allows the user to set the date
 		final JSpinner spinner_date = new JSpinner(new SpinnerDateModel());
+		spinner_date.setForeground(new Color(0, 102, 204));
 		JSpinner.DateEditor dateEditor1 = new JSpinner.DateEditor(spinner_date, "yyyy.MM.dd");
 		spinner_date.setEditor(dateEditor1);
 		spinner_date.setBounds(195, 242, 89, 23);
@@ -150,18 +155,21 @@ public class RequestAppointment extends JPanel {
 
 		// label for date spinner
 		JLabel lbl_date = new JLabel("Date");
+		lbl_date.setForeground(new Color(0, 102, 204));
 		lbl_date.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_date.setBounds(27, 245, 158, 23);
 		add(lbl_date);
 
 		// label for the start time spinner
 		JLabel lbl_start_time = new JLabel("Start Time");
+		lbl_start_time.setForeground(new Color(0, 102, 204));
 		lbl_start_time.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_start_time.setBounds(27, 314, 158, 23);
 		add(lbl_start_time);
 
 		// label for the end time spinner
 		JLabel lbl_end_time = new JLabel("End Time");
+		lbl_end_time.setForeground(new Color(0, 102, 204));
 		lbl_end_time.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_end_time.setBounds(27, 379, 158, 23);
 		add(lbl_end_time);
@@ -184,6 +192,7 @@ public class RequestAppointment extends JPanel {
 
 		// request appointment button
 		JButton btn_request = new JButton("Request Appointment");
+		btn_request.setForeground(new Color(0, 102, 204));
 		btn_request.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -236,6 +245,7 @@ public class RequestAppointment extends JPanel {
 
 		// cancel request appointment button
 		JButton btn_cancel_request = new JButton("Cancel Request");
+		btn_cancel_request.setForeground(new Color(0, 102, 204));
 		btn_cancel_request.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -315,6 +325,7 @@ public class RequestAppointment extends JPanel {
 
 		// button used to deny a requested appointment
 		JButton btn_deny_req = new JButton("Deny Request");
+		btn_deny_req.setForeground(new Color(0, 102, 204));
 		btn_deny_req.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -382,6 +393,7 @@ public class RequestAppointment extends JPanel {
 
 		// button used to confirm a requested appointment
 		JButton btn_confirm_req = new JButton("Confirm Request");
+		btn_confirm_req.setForeground(new Color(0, 102, 204));
 		btn_confirm_req.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -449,7 +461,8 @@ public class RequestAppointment extends JPanel {
 
 		// text used to explain how the cancel/deny/confirm process works
 		JTextArea txtr_instructions = new JTextArea();
-		txtr_instructions.setBackground(Color.GRAY);
+		txtr_instructions.setForeground(Color.RED);
+		txtr_instructions.setBackground(Color.LIGHT_GRAY);
 		txtr_instructions.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		txtr_instructions.setEditable(false); // disable ability to change reserved times using text entry
 		txtr_instructions.setLineWrap(true); // set the text wrap around
@@ -462,6 +475,7 @@ public class RequestAppointment extends JPanel {
 
 		// header for the requested appointments display area
 		JLabel lbl_requested_header = new JLabel("Requested Appointments");
+		lbl_requested_header.setForeground(new Color(0, 102, 204));
 		lbl_requested_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_requested_header.setFont(new Font("Cambria Math", Font.BOLD, 16));
 		lbl_requested_header.setBounds(665, 121, 216, 23);
@@ -469,24 +483,28 @@ public class RequestAppointment extends JPanel {
 
 		// date column header for the requested appointments display area
 		JLabel lbl_date_column = new JLabel("Date");
+		lbl_date_column.setForeground(new Color(0, 102, 204));
 		lbl_date_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_date_column.setBounds(494, 155, 35, 14);
 		add(lbl_date_column);
 
 		// start time column header for the requested appointments display area
 		JLabel lbl_start_time_column = new JLabel("Start");
+		lbl_start_time_column.setForeground(new Color(0, 102, 204));
 		lbl_start_time_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_start_time_column.setBounds(562, 155, 35, 14);
 		add(lbl_start_time_column);
 
 		// end time column header for the requested appointments display area
 		JLabel lbl_end_time_column = new JLabel("End");
+		lbl_end_time_column.setForeground(new Color(0, 102, 204));
 		lbl_end_time_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_end_time_column.setBounds(599, 155, 29, 14);
 		add(lbl_end_time_column);
 
 		// user who requested the appoinment
 		JLabel lbl_user_column = new JLabel("User");
+		lbl_user_column.setForeground(new Color(0, 102, 204));
 		if (user_type.equalsIgnoreCase("Patient")) {
 			lbl_user_column.setText("Doctor");
 		} else {
@@ -498,6 +516,7 @@ public class RequestAppointment extends JPanel {
 
 		// button allows the user to return to the dash board
 		JButton btn_return = new JButton("Return");
+		btn_return.setForeground(new Color(0, 102, 204));
 		btn_return.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -523,9 +542,15 @@ public class RequestAppointment extends JPanel {
 		add(btn_return);
 
 		JLabel lbl_depart_column = new JLabel("Department");
+		lbl_depart_column.setForeground(new Color(0, 102, 204));
 		lbl_depart_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_depart_column.setBounds(639, 155, 88, 14);
 		add(lbl_depart_column);
+		
+		JLabel lbl_AHSimg = new JLabel("");
+		lbl_AHSimg.setIcon(new ImageIcon(RequestAppointment.class.getResource("/iteration_3/ahs.png")));
+		lbl_AHSimg.setBounds(55, 557, 189, 88);
+		add(lbl_AHSimg);
 	} // end RequestAppointment constructor
 
 	/**

@@ -63,6 +63,8 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 	 * @throws Exception
 	 */
 	protected String getID(String username, String password) throws Exception {
+		
+		
 		return this.search(username, 1).search(password, 2).get(0).getCustomElement()[0];
 	}
 

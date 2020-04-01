@@ -20,13 +20,14 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import javax.swing.JPasswordField;
 
 public class PatientRegister extends JPanel {
 
 	private static final long serialVersionUID = 6L; // serial ID for java object saving
 	private JTextField txtNewUser; // patient username
-	private JTextField txtNewPwd; // patient password
-	private JTextField txtConfirmedPwd; // patient confirm password
+	private JTextField pwdNewPwd; // patient password
+	private JTextField pwdConfirmedPwd; // patient confirm password
 
 	/**
 	 * Create the panel.
@@ -46,6 +47,7 @@ public class PatientRegister extends JPanel {
 
 		// label that indicates that the username is not value
 		final JLabel lblInvalidUsername = new JLabel("Sorry, this username is not valid");
+		lblInvalidUsername.setForeground(new Color(204, 51, 51));
 		lblInvalidUsername.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lblInvalidUsername.setBounds(610, 150, 242, 19);
 		lblInvalidUsername.setBackground(Color.CYAN);
@@ -53,6 +55,7 @@ public class PatientRegister extends JPanel {
 
 		// label that indicates that the username is not available
 		final JLabel lblGoodUser = new JLabel("Username is availiable");
+		lblGoodUser.setForeground(new Color(204, 51, 102));
 		lblGoodUser.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lblGoodUser.setBounds(610, 169, 242, 14);
 		lblGoodUser.setVisible(false);
@@ -69,12 +72,14 @@ public class PatientRegister extends JPanel {
 
 		// label indicates if the password is not valid
 		final JLabel lblValidpassword = new JLabel("Password is valid");
+		lblValidpassword.setForeground(new Color(204, 51, 102));
 		lblValidpassword.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lblValidpassword.setBounds(610, 304, 216, 20);
 		lblValidpassword.setVisible(false);
 
 		// label that indicates if the password is not valid
 		final JLabel lblInvalidPassword = new JLabel("Sorry, this password is not valid");
+		lblInvalidPassword.setForeground(new Color(204, 51, 102));
 		lblInvalidPassword.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lblInvalidPassword.setBounds(610, 235, 242, 23);
 		lblInvalidPassword.setVisible(false);
@@ -87,12 +92,14 @@ public class PatientRegister extends JPanel {
 
 		// label indicates that the entered username has already been taken
 		final JLabel lblUserTaken = new JLabel("Username is taken");
+		lblUserTaken.setForeground(new Color(204, 51, 102));
 		lblUserTaken.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lblUserTaken.setBounds(610, 188, 227, 14);
 		lblUserTaken.setVisible(false);
 
 		// button allows patient to check if username is valid
 		JButton btnCheckUser = new JButton("Check");
+		btnCheckUser.setForeground(new Color(0, 102, 204));
 		btnCheckUser.setBounds(477, 161, 80, 23);
 		btnCheckUser.addMouseListener(new MouseAdapter() {
 			@Override
@@ -132,19 +139,20 @@ public class PatientRegister extends JPanel {
 		add(lblInvalidPassword);
 
 		// text field allows patient to enter in a password
-		txtNewPwd = new JTextField();
-		txtNewPwd.setBounds(272, 237, 137, 20);
-		add(txtNewPwd);
-		txtNewPwd.setColumns(10);
+		pwdNewPwd = new JPasswordField();
+		pwdNewPwd.setBounds(272, 237, 137, 20);
+		add(pwdNewPwd);
+		pwdNewPwd.setColumns(10);
 
 		// buttons allows patient to check if entered password is valid
 		JButton btnCheckPwd = new JButton("Check");
+		btnCheckPwd.setForeground(new Color(0, 102, 204));
 		btnCheckPwd.setBounds(477, 236, 80, 23);
 		btnCheckPwd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				String pwd = txtNewPwd.getText();
+				String pwd = pwdNewPwd.getText();
 
 				// verify password length is at least 8 characters
 				if (pwd.length() >= 8) {
@@ -169,15 +177,16 @@ public class PatientRegister extends JPanel {
 
 		// label indicates that the two entered passwords do not match
 		final JLabel lblNotMatch = new JLabel("Confirmed password not match");
+		lblNotMatch.setForeground(new Color(204, 51, 102));
 		lblNotMatch.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lblNotMatch.setBounds(610, 329, 242, 23);
 		lblNotMatch.setVisible(false);
 
 		// text field allows patient to re-enter password
-		txtConfirmedPwd = new JTextField();
-		txtConfirmedPwd.setBounds(272, 321, 137, 20);
-		add(txtConfirmedPwd);
-		txtConfirmedPwd.setColumns(10);
+		pwdConfirmedPwd = new JPasswordField();;
+		pwdConfirmedPwd.setBounds(272, 321, 137, 20);
+		add(pwdConfirmedPwd);
+		pwdConfirmedPwd.setColumns(10);
 		add(lblNotMatch);
 
 		// separator used to visually separate fields
@@ -187,6 +196,7 @@ public class PatientRegister extends JPanel {
 
 		// label instructs patients to continue entering in their personal information
 		JLabel lblPersonInfomation = new JLabel("Please continue provide personal detail infomation");
+		lblPersonInfomation.setForeground(new Color(0, 102, 204));
 		lblPersonInfomation.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPersonInfomation.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lblPersonInfomation.setBounds(299, 406, 373, 20);
@@ -207,16 +217,19 @@ public class PatientRegister extends JPanel {
 
 		// button allows for the patient to submit their registration information
 		JButton btnContinue = new JButton("Continue");
+		btnContinue.setForeground(new Color(0, 102, 255));
 		btnContinue.setBounds(436, 452, 100, 23);
 		btnContinue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				String password_first = txtNewPwd.getText();
-				String password_confirm = txtConfirmedPwd.getText();
+				String password_first = pwdNewPwd.getText();
+				String password_confirm = pwdConfirmedPwd.getText();
 				String user_name = txtNewUser.getText();
 
 				if (password_first == null || password_confirm == null || user_name == null) {
+					
+					// we do nothing since it should be an unintended mistake.
 				}
 
 				else if (!password_first.contentEquals(password_confirm)) {
@@ -242,10 +255,9 @@ public class PatientRegister extends JPanel {
 		add(btnBack);
 		
 		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\ahs.img.png"));
+		lblAHSimg.setIcon(new ImageIcon(PatientRegister.class.getResource("/iteration_3/ahs.png")));
 		lblAHSimg.setBounds(38, 11, 194, 75);
 		add(lblAHSimg);
 
 	} // end PatientRegister constructor
-
 } // end class PatientRegister

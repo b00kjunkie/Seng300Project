@@ -219,7 +219,7 @@ public class StaffLogin extends JPanel {
 		add(btn_login_nurse);
 		
 		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\ahs.png"));
+		lblAHSimg.setIcon(new ImageIcon(StaffLogin.class.getResource("/iteration_3/ahs.png")));
 		lblAHSimg.setBounds(10, 11, 192, 50);
 		add(lblAHSimg);
 

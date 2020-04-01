@@ -21,12 +21,13 @@ import java.awt.event.MouseEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class PatientPersonalInformation extends JPanel {
 
 	private static final long serialVersionUID = 5L; // serial ID for java object saving
 	private JTextField txtNameField; // patient name
-	private JTextField textFieldDOB; // patient date of birth
+	private JTextField txtDOB; // patient date of birth
 	private String gender; // patient gender
 	private String heartdisease = "N"; // patient heart disease flag
 	private String diabetes = "N"; // patient diabetes flag
@@ -38,11 +39,12 @@ public class PatientPersonalInformation extends JPanel {
 	public PatientPersonalInformation(final JFrame frame, final String[] userParams) {
 
 		// set window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		// personal information section header
 		JLabel lbl_personal_info_header = new JLabel("Personal Information");
+		lbl_personal_info_header.setForeground(new Color(0, 102, 204));
 		lbl_personal_info_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_personal_info_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_personal_info_header.setBounds(294, 75, 275, 23);
@@ -50,6 +52,7 @@ public class PatientPersonalInformation extends JPanel {
 
 		// patient name label
 		JLabel lblPatientName = new JLabel("Name:");
+		lblPatientName.setForeground(new Color(0, 102, 204));
 		lblPatientName.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lblPatientName.setBounds(153, 146, 126, 23);
 		add(lblPatientName);
@@ -62,106 +65,122 @@ public class PatientPersonalInformation extends JPanel {
 
 		// patient gender label
 		JLabel lblGender = new JLabel("Gender:");
+		lblGender.setForeground(new Color(0, 102, 204));
 		lblGender.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lblGender.setBounds(153, 197, 168, 20);
 		add(lblGender);
 
 		// button used to indicate if the patient gender is male
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("M");
-		rdbtnNewRadioButton.setBackground(Color.GRAY);
-		rdbtnNewRadioButton.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		rdbtnNewRadioButton.setBounds(382, 194, 57, 23);
-		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+		JRadioButton rdbtnMale = new JRadioButton("M");
+		rdbtnMale.setForeground(Color.RED);
+		rdbtnMale.setBackground(Color.LIGHT_GRAY);
+		rdbtnMale.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		rdbtnMale.setBounds(382, 194, 57, 23);
+		rdbtnMale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				gender = "Male";
 			}
 		});
-		add(rdbtnNewRadioButton);
+		add(rdbtnMale);
 
 		// button used to indicate if the patient gender is female
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("F");
-		rdbtnNewRadioButton_1.setBackground(Color.GRAY);
-		rdbtnNewRadioButton_1.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		rdbtnNewRadioButton_1.setBounds(444, 194, 155, 23);
-		rdbtnNewRadioButton_1.addMouseListener(new MouseAdapter() {
+		JRadioButton rdbtnFemale = new JRadioButton("F");
+		rdbtnFemale.setForeground(new Color(0, 102, 204));
+		rdbtnFemale.setBackground(Color.LIGHT_GRAY);
+		rdbtnFemale.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		rdbtnFemale.setBounds(444, 194, 63, 23);
+		rdbtnFemale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				gender = "Female";
 			}
 		});
-		add(rdbtnNewRadioButton_1);
+		add(rdbtnFemale);
 
 		// patient date of birth label
-		JLabel lblNewLabel = new JLabel("Date of birth:");
-		lblNewLabel.setFont(new Font("Cambria Math", Font.BOLD, 20));
-		lblNewLabel.setBounds(153, 257, 168, 19);
-		add(lblNewLabel);
+		JLabel lblDOB = new JLabel("Date of birth:");
+		lblDOB.setForeground(new Color(0, 102, 204));
+		lblDOB.setFont(new Font("Cambria Math", Font.BOLD, 20));
+		lblDOB.setBounds(153, 257, 168, 19);
+		add(lblDOB);
 
 		// text field used to enter patient date of birth
-		textFieldDOB = new JTextField();
-		textFieldDOB.setBounds(382, 256, 103, 20);
-		add(textFieldDOB);
-		textFieldDOB.setColumns(10);
+		txtDOB = new JTextField();
+		txtDOB.setBounds(382, 256, 103, 20);
+		add(txtDOB);
+		txtDOB.setColumns(10);
 
 		// label used to indicate the form of the date of birth
 		JLabel lblAgeFormat = new JLabel("dd/mm/yyyy");
+		lblAgeFormat.setForeground(Color.RED);
 		lblAgeFormat.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lblAgeFormat.setBounds(534, 257, 138, 20);
 		add(lblAgeFormat);
 
 		// patients health pre-conditions label
-		JLabel lblNewLabel_1 = new JLabel("Pre-conditions :");
-		lblNewLabel_1.setFont(new Font("Cambria Math", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(153, 306, 168, 20);
-		add(lblNewLabel_1);
+		JLabel lblPreCondition = new JLabel("Pre-conditions :");
+		lblPreCondition.setForeground(new Color(0, 102, 204));
+		lblPreCondition.setFont(new Font("Cambria Math", Font.BOLD, 20));
+		lblPreCondition.setBounds(153, 306, 168, 20);
+		add(lblPreCondition);
 
 		// box used to indicate if the patient has heart disease
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Heart Disease");
-		chckbxNewCheckBox.setBackground(Color.GRAY);
-		chckbxNewCheckBox.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		chckbxNewCheckBox.setBounds(382, 334, 138, 23);
-		chckbxNewCheckBox.addMouseListener(new MouseAdapter() {
+		JCheckBox chckbxHeartDisease = new JCheckBox("Heart Disease");
+		chckbxHeartDisease.setForeground(new Color(0, 102, 204));
+		chckbxHeartDisease.setBackground(Color.LIGHT_GRAY);
+		chckbxHeartDisease.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		chckbxHeartDisease.setBounds(382, 334, 138, 23);
+		chckbxHeartDisease.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				//flag yes for heart disease
 				heartdisease = "Y";
 			}
 		});
-		add(chckbxNewCheckBox);
+		add(chckbxHeartDisease);
 
 		// box used to indicate if the patient has diabetes
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Diabetes");
-		chckbxNewCheckBox_1.setBackground(Color.GRAY);
-		chckbxNewCheckBox_1.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		chckbxNewCheckBox_1.setBounds(382, 362, 138, 23);
-		chckbxNewCheckBox_1.addMouseListener(new MouseAdapter() {
+		JCheckBox chckbxDiabetes = new JCheckBox("Diabetes");
+		chckbxDiabetes.setForeground(new Color(0, 102, 204));
+		chckbxDiabetes.setBackground(Color.LIGHT_GRAY);
+		chckbxDiabetes.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		chckbxDiabetes.setBounds(382, 362, 138, 23);
+		chckbxDiabetes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				//flag yes for diabetes
 				diabetes = "Y";
 			}
 		});
-		add(chckbxNewCheckBox_1);
+		add(chckbxDiabetes);
 
 		// box used to indicate if the patient has anxiety
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Anxiety");
-		chckbxNewCheckBox_2.setBackground(Color.GRAY);
-		chckbxNewCheckBox_2.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		chckbxNewCheckBox_2.setBounds(382, 390, 138, 23);
-		chckbxNewCheckBox_2.addMouseListener(new MouseAdapter() {
+		JCheckBox chckbxAnxiety = new JCheckBox("Anxiety");
+		chckbxAnxiety.setForeground(new Color(0, 102, 204));
+		chckbxAnxiety.setBackground(Color.LIGHT_GRAY);
+		chckbxAnxiety.setFont(new Font("Cambria Math", Font.PLAIN, 16));
+		chckbxAnxiety.setBounds(382, 390, 138, 23);
+		chckbxAnxiety.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				//flag yes to anxiety
 				anxiety = "Y";
 			}
 		});
-		add(chckbxNewCheckBox_2);
+		add(chckbxAnxiety);
 
 		// button used to cancel the registration process and return to the login screen
-		JButton btnNewButton_1 = new JButton("Cancel");
-		btnNewButton_1.setBounds(885, 528, 89, 23);
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBounds(885, 528, 89, 23);
+		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				
+				
+				// if cancel is clicked no data will be saved and new login panel will be launched. 
 				PatientLogin new_login = new PatientLogin(frame);
 				frame.setContentPane(new_login);
 				frame.revalidate();
@@ -170,9 +189,10 @@ public class PatientPersonalInformation extends JPanel {
 		});
 
 		// button used to submit patient registration information
-		JButton btnNewButton = new JButton("Done");
-		btnNewButton.setBounds(382, 467, 103, 23);
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton btnDone = new JButton("Done");
+		btnDone.setForeground(new Color(0, 102, 204));
+		btnDone.setBounds(382, 467, 103, 23);
+		btnDone.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
@@ -180,18 +200,18 @@ public class PatientPersonalInformation extends JPanel {
 					// Extract data from the GUI fields and assign as new patient parameters:
 					PatientDB patientDB = new PatientDB();
 					patientDB = patientDB.loadPatientDB();
-					String p1 = Integer.toString(patientDB.size() + 1); // newly created ID
-					String p2 = userParams[0]; // username
-					String p3 = userParams[1]; // password
-					String p4 = txtNameField.getText(); // name
-					String p5 = gender; // M or F
-					String p6 = textFieldDOB.getText(); // DOB
-					String p7 = heartdisease; // Y or N
-					String p8 = diabetes; // Y or N
-					String p9 = anxiety; // Y or N
+					String patientId = Integer.toString(patientDB.size() + 1); // newly created ID
+					String username = userParams[0]; // username
+					String password = userParams[1]; // password
+					String pname = txtNameField.getText(); // name
+					String pgender = gender; // M or F
+					String pdob = txtDOB.getText(); // DOB
+					String heartdisease_y = heartdisease; // Y or N
+					String diabetes_y = diabetes; // Y or N
+					String anxiety_y = anxiety; // Y or N
 
 					// add new patient record to the patient database
-					patientDB.add(new String[] { p1, p2, p3, p4, p5, p6, p7, p8, p9 });
+					patientDB.add(new String[] { patientId, username, password, pname,pgender, pdob, heartdisease_y, diabetes_y, anxiety_y });
 					// save the database to file
 					patientDB.savePatientDB();
 
@@ -205,9 +225,13 @@ public class PatientPersonalInformation extends JPanel {
 				}
 			}
 		});
-		add(btnNewButton);
-		add(btnNewButton_1);
+		add(btnDone);
+		add(btnCancel);
+		
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(PatientPersonalInformation.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(56, 528, 217, 73);
+		add(lblAHSimg);
 
 	} // end PatientPersonalInformation constructor
-
 } // end class PatientPersonalInformation

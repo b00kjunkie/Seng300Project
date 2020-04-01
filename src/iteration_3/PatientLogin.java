@@ -164,12 +164,12 @@ public class PatientLogin extends JPanel {
 		add(btnRegister);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\ahs.png"));
+		lblNewLabel.setIcon(new ImageIcon(PatientLogin.class.getResource("/iteration_3/ahs.png")));
 		lblNewLabel.setBounds(25, 11, 237, 65);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\dongb\\Documents\\GitHub\\Seng300Project\\src\\iteration_3\\icons8-patient-oxygen-mask-48.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(PatientLogin.class.getResource("/iteration_3/icons8-patient-oxygen-mask-48.png")));
 		lblNewLabel_1.setBounds(146, 158, 55, 65);
 		add(lblNewLabel_1);
 		txtrInvalid.setVisible(false);
