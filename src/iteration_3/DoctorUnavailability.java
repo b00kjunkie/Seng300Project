@@ -25,6 +25,7 @@ import java.awt.Color;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.ImageIcon;
 
 public class DoctorUnavailability extends JPanel {
 
@@ -38,7 +39,7 @@ public class DoctorUnavailability extends JPanel {
 	public DoctorUnavailability(final JFrame frame, final String doctorID) throws Exception {
 
 		// set window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		final Calendar calendar = new Calendar(); // create instance of Calendar class
@@ -101,6 +102,7 @@ public class DoctorUnavailability extends JPanel {
 
 		// Unavailability display header
 		JLabel lbl_avail_header = new JLabel("Times Unavailable");
+		lbl_avail_header.setForeground(new Color(0, 102, 204));
 		lbl_avail_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_avail_header.setFont(new Font("Cambria Math", Font.BOLD, 14));
 		lbl_avail_header.setBounds(713, 69, 139, 28);
@@ -108,18 +110,21 @@ public class DoctorUnavailability extends JPanel {
 
 		// Unavailability start time column header
 		JLabel lbl_time_start_column = new JLabel("Start Time");
+		lbl_time_start_column.setForeground(new Color(0, 102, 204));
 		lbl_time_start_column.setFont(new Font("Cambria Math", Font.BOLD, 14));
 		lbl_time_start_column.setBounds(679, 116, 83, 14);
 		add(lbl_time_start_column);
 
 		// Unavailability end time column header
 		JLabel lbl_time_start_column_1 = new JLabel("End Time");
+		lbl_time_start_column_1.setForeground(new Color(0, 102, 204));
 		lbl_time_start_column_1.setFont(new Font("Cambria Math", Font.BOLD, 14));
 		lbl_time_start_column_1.setBounds(814, 116, 83, 14);
 		add(lbl_time_start_column_1);
 
 		// Unavailability modify section header
 		JLabel lbl_modify = new JLabel("Modify Unavailability - 24 Clock");
+		lbl_modify.setForeground(new Color(0, 102, 204));
 		lbl_modify.setFont(new Font("Cambria Math", Font.BOLD, 14));
 		lbl_modify.setBounds(676, 330, 237, 14);
 		add(lbl_modify);
@@ -145,18 +150,21 @@ public class DoctorUnavailability extends JPanel {
 
 		// Unavailability modify start time label
 		JLabel lbl_modify_start_time = new JLabel("Start Time");
+		lbl_modify_start_time.setForeground(new Color(0, 102, 204));
 		lbl_modify_start_time.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_modify_start_time.setBounds(687, 398, 75, 19);
 		add(lbl_modify_start_time);
 
 		// Unavailability modify end time label
 		JLabel lbl_new_time = new JLabel("End Time");
+		lbl_new_time.setForeground(new Color(0, 102, 204));
 		lbl_new_time.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_new_time.setBounds(822, 398, 75, 19);
 		add(lbl_new_time);
 
 		// button to add a new unavailability entry. Start and end times are extracted from the spinners
 		JButton btn_add = new JButton("Add");
+		btn_add.setForeground(new Color(0, 102, 204));
 		btn_add.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -192,6 +200,7 @@ public class DoctorUnavailability extends JPanel {
 
 		// button to remove an unavailability entry. Start and end times are extracted from the spinners
 		JButton btn_remove = new JButton("Remove");
+		btn_remove.setForeground(new Color(0, 102, 204));
 		btn_remove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -222,6 +231,7 @@ public class DoctorUnavailability extends JPanel {
 
 		// Add button and event listener to allow user to return to the Doctor dash board window
 		JButton btn_back = new JButton("Back");
+		btn_back.setForeground(new Color(0, 102, 204));
 		btn_back.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -238,10 +248,16 @@ public class DoctorUnavailability extends JPanel {
 		add(btn_back);
 
 		JLabel lbl_availabililty_header = new JLabel("Availability Calendar");
+		lbl_availabililty_header.setForeground(new Color(0, 102, 204));
 		lbl_availabililty_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_availabililty_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_availabililty_header.setBounds(157, 47, 248, 39);
 		add(lbl_availabililty_header);
+		
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(DoctorUnavailability.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(484, 11, 190, 68);
+		add(lblAHSimg);
 
 	} // end DoctorAvailability constructor
 

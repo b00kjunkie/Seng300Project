@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
 
 public class DoctorSettings extends JPanel {
 
@@ -44,7 +45,8 @@ public class DoctorSettings extends JPanel {
 
 		DoctorDB doctorDB = new DoctorDB();
 		doctorDB = doctorDB.loadDoctorDB(); // load database from file
-
+		
+		
 		String[] doctorRecord = doctorDB.getDoctorRecord(id);
 		this.name_val = doctorRecord[3];
 		this.gender_val = doctorRecord[4];
@@ -53,6 +55,7 @@ public class DoctorSettings extends JPanel {
 
 		// Window header
 		JLabel lblNewLabel = new JLabel("Doctor Personal Information");
+		lblNewLabel.setForeground(new Color(0, 102, 204));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lblNewLabel.setBounds(333, 71, 332, 29);
@@ -60,18 +63,21 @@ public class DoctorSettings extends JPanel {
 
 		// label for name text field
 		JLabel lbl_name = new JLabel("Name:");
+		lbl_name.setForeground(new Color(0, 102, 204));
 		lbl_name.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_name.setBounds(204, 183, 143, 29);
 		add(lbl_name);
 
 		// label for male/female gender buttons
 		JLabel lbl_gender = new JLabel("Gender:");
+		lbl_gender.setForeground(new Color(0, 102, 204));
 		lbl_gender.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_gender.setBounds(204, 257, 143, 29);
 		add(lbl_gender);
 
 		// label for department dropdown list
 		JLabel lbl_department = new JLabel("Department:");
+		lbl_department.setForeground(new Color(0, 102, 204));
 		lbl_department.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_department.setBounds(204, 337, 143, 29);
 		add(lbl_department);
@@ -85,14 +91,16 @@ public class DoctorSettings extends JPanel {
 
 		// button to select for male gender
 		final JRadioButton rdbtn_male = new JRadioButton("Male");
-		rdbtn_male.setBackground(Color.GRAY);
+		rdbtn_male.setForeground(new Color(0, 102, 204));
+		rdbtn_male.setBackground(Color.LIGHT_GRAY);
 		rdbtn_male.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		rdbtn_male.setBounds(404, 262, 64, 23);
 		add(rdbtn_male);
 
 		// button to select for female gender
 		final JRadioButton rdbtn_female = new JRadioButton("Female");
-		rdbtn_female.setBackground(Color.GRAY);
+		rdbtn_female.setForeground(Color.RED);
+		rdbtn_female.setBackground(Color.LIGHT_GRAY);
 		rdbtn_female.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		rdbtn_female.setBounds(481, 262, 85, 23);
 		add(rdbtn_female);
@@ -165,6 +173,7 @@ public class DoctorSettings extends JPanel {
 
 		// button that allows the user to save changes and return to dashboard
 		JButton btn_save_return = new JButton("Save and Return");
+		btn_save_return.setForeground(new Color(0, 102, 204));
 		btn_save_return.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -197,7 +206,11 @@ public class DoctorSettings extends JPanel {
 		});
 		btn_save_return.setBounds(843, 528, 131, 23);
 		add(btn_save_return);
+		
+		JLabel lblAHSImg = new JLabel("");
+		lblAHSImg.setIcon(new ImageIcon(DoctorSettings.class.getResource("/iteration_3/ahs.png")));
+		lblAHSImg.setBounds(10, 19, 271, 81);
+		add(lblAHSImg);
 
 	} // end DoctorSettings constructor
-
 } // end class DoctorSettings

@@ -20,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ImageIcon;
 
 public class AppointmentCalendar extends JPanel {
 
@@ -28,13 +29,14 @@ public class AppointmentCalendar extends JPanel {
 	public AppointmentCalendar(final JFrame frame, final String id, final String user_type) throws Exception {
 
 		// set window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		final Calendar calendar = new Calendar(); // create instance of Calendar class
 
 		// window title
 		JLabel lbl_calendar_header = new JLabel("Schedule Calendar");
+		lbl_calendar_header.setForeground(new Color(0, 102, 204));
 		lbl_calendar_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_calendar_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_calendar_header.setBounds(120, 42, 316, 38);
@@ -97,6 +99,7 @@ public class AppointmentCalendar extends JPanel {
 
 		// add header for appointment display
 		JLabel lbl_appoint_header = new JLabel("Booked Appointments");
+		lbl_appoint_header.setForeground(new Color(0, 102, 204));
 		lbl_appoint_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_appoint_header.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_appoint_header.setBounds(642, 77, 222, 25);
@@ -104,24 +107,28 @@ public class AppointmentCalendar extends JPanel {
 
 		// add date column header
 		JLabel lbl_date_column = new JLabel("Date");
+		lbl_date_column.setForeground(new Color(0, 102, 204));
 		lbl_date_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_date_column.setBounds(613, 152, 46, 14);
 		add(lbl_date_column);
 
 		// addd start time column header
 		JLabel lbl_start_column = new JLabel("Start");
+		lbl_start_column.setForeground(new Color(0, 102, 204));
 		lbl_start_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_start_column.setBounds(685, 153, 46, 14);
 		add(lbl_start_column);
 
 		// add end time column header
 		JLabel lbl_end_column = new JLabel("End");
+		lbl_end_column.setForeground(new Color(0, 102, 204));
 		lbl_end_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_end_column.setBounds(725, 152, 46, 14);
 		add(lbl_end_column);
 
 		// add either docotor or patient column header, depending on who opened the window
 		JLabel lbl_user_column = new JLabel("User");
+		lbl_user_column.setForeground(new Color(0, 102, 204));
 		lbl_user_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_user_column.setBounds(781, 152, 46, 14);
 		add(lbl_user_column);
@@ -133,6 +140,7 @@ public class AppointmentCalendar extends JPanel {
 
 		// addd button to allow user to return to dashboard
 		JButton btn_return = new JButton("Return");
+		btn_return.setForeground(new Color(0, 102, 204));
 		btn_return.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -155,6 +163,11 @@ public class AppointmentCalendar extends JPanel {
 		});
 		btn_return.setBounds(885, 528, 89, 23);
 		add(btn_return);
+		
+		JLabel lblAHSImg = new JLabel("");
+		lblAHSImg.setIcon(new ImageIcon(AppointmentCalendar.class.getResource("/iteration_3/ahs.png")));
+		lblAHSImg.setBounds(413, 11, 216, 71);
+		add(lblAHSImg);
 
 	} // end AppointmentCalendar constructor
 

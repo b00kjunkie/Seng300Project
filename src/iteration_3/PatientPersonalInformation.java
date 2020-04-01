@@ -230,7 +230,7 @@ public class PatientPersonalInformation extends JPanel {
 		
 		JLabel lblAHSimg = new JLabel("");
 		lblAHSimg.setIcon(new ImageIcon(PatientPersonalInformation.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(56, 528, 217, 73);
+		lblAHSimg.setBounds(29, 337, 217, 73);
 		add(lblAHSimg);
 
 	} // end PatientPersonalInformation constructor

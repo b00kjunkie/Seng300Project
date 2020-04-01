@@ -18,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class PatientDashboard extends JPanel {
 
@@ -30,7 +31,7 @@ public class PatientDashboard extends JPanel {
 	 */
 	public PatientDashboard(final JFrame frame, final String patientID) throws Exception {
 
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		PatientDB patientDB = new PatientDB();
@@ -50,6 +51,7 @@ public class PatientDashboard extends JPanel {
 
 		// header for the window
 		JLabel lblHeader = new JLabel("Patient DashBoard");
+		lblHeader.setForeground(new Color(0, 102, 204));
 		lblHeader.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHeader.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lblHeader.setBounds(385, 48, 227, 43);
@@ -57,48 +59,56 @@ public class PatientDashboard extends JPanel {
 
 		// 8 labels to indicate what values are stored in the patient database (password is omitted)
 		JLabel lbl_ID = new JLabel("ID:");
+		lbl_ID.setForeground(new Color(0, 102, 204));
 		lbl_ID.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_ID.setBounds(168, 115, 79, 14);
 		add(lbl_ID);
 
 		// patient username label
 		JLabel lbl_username = new JLabel("Username:");
+		lbl_username.setForeground(new Color(0, 102, 204));
 		lbl_username.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_username.setBounds(168, 148, 79, 14);
 		add(lbl_username);
 
 		// patient name label
 		JLabel lbl_name = new JLabel("Name:");
+		lbl_name.setForeground(new Color(0, 102, 204));
 		lbl_name.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_name.setBounds(168, 184, 79, 14);
 		add(lbl_name);
 
 		// patient gender label
 		JLabel lbl_gender = new JLabel("Gender:");
+		lbl_gender.setForeground(new Color(0, 102, 204));
 		lbl_gender.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_gender.setBounds(168, 220, 79, 14);
 		add(lbl_gender);
 
 		// patient date of birth label
 		JLabel lbl_dob = new JLabel("DOB:");
+		lbl_dob.setForeground(new Color(0, 102, 204));
 		lbl_dob.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_dob.setBounds(168, 256, 73, 14);
 		add(lbl_dob);
 
 		// patient heart disease label
 		JLabel lbl_heart = new JLabel("Heart Disease:");
+		lbl_heart.setForeground(new Color(0, 102, 204));
 		lbl_heart.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_heart.setBounds(168, 292, 100, 14);
 		add(lbl_heart);
 
 		// patient diabetes label
 		JLabel lbl_diabetes = new JLabel("Diabetes:");
+		lbl_diabetes.setForeground(new Color(0, 102, 204));
 		lbl_diabetes.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_diabetes.setBounds(168, 325, 79, 14);
 		add(lbl_diabetes);
 
 		// patient anxiety label
 		JLabel lbl_anxiety = new JLabel("Anxiety:");
+		lbl_anxiety.setForeground(new Color(0, 102, 204));
 		lbl_anxiety.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_anxiety.setBounds(168, 358, 73, 14);
 		add(lbl_anxiety);
@@ -153,6 +163,7 @@ public class PatientDashboard extends JPanel {
 
 		// button allows the patient to check doctor availability
 		JButton btnNewButton = new JButton("Doctor Availability");
+		btnNewButton.setForeground(new Color(0, 102, 204));
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -170,6 +181,7 @@ public class PatientDashboard extends JPanel {
 
 		// button allows the patient to exit the program
 		JButton btn_logout = new JButton("Logout");
+		btn_logout.setForeground(new Color(0, 102, 204));
 		btn_logout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -181,6 +193,7 @@ public class PatientDashboard extends JPanel {
 
 		// button allows the patient to view a window where they can edit their personal information
 		JButton btn_settings = new JButton("Settings");
+		btn_settings.setForeground(new Color(0, 102, 204));
 		btn_settings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -198,6 +211,7 @@ public class PatientDashboard extends JPanel {
 
 		// button allows patient to view doctor availability
 		JButton btn_appointments = new JButton("Appointment List");
+		btn_appointments.setForeground(new Color(0, 102, 204));
 		btn_appointments.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -214,6 +228,7 @@ public class PatientDashboard extends JPanel {
 
 		// button allows patient to view all requested appointments associated with their account
 		JButton btn_request_appoint = new JButton("Appointment Requests");
+		btn_request_appoint.setForeground(new Color(0, 102, 204));
 		btn_request_appoint.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -227,6 +242,11 @@ public class PatientDashboard extends JPanel {
 		});
 		btn_request_appoint.setBounds(713, 437, 180, 23);
 		add(btn_request_appoint);
+		
+		JLabel lblAHSImg = new JLabel("");
+		lblAHSImg.setIcon(new ImageIcon(PatientDashboard.class.getResource("/iteration_3/ahs.png")));
+		lblAHSImg.setBounds(32, 11, 180, 55);
+		add(lblAHSImg);
 
 	} // end PatientDashboard constructor
 

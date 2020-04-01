@@ -38,7 +38,7 @@ public class NurseAppointment extends JPanel {
 	public NurseAppointment(final JFrame frame, final String nurseID) throws Exception {
 
 		// set window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		// header for appointment scheduling window
@@ -230,7 +230,7 @@ public class NurseAppointment extends JPanel {
 		final JRadioButton rdbtn_booked = new JRadioButton("Schedule Appointment");
 		rdbtn_booked.setForeground(new Color(0, 102, 204));
 		rdbtn_booked.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		rdbtn_booked.setBackground(Color.GRAY);
+		rdbtn_booked.setBackground(Color.LIGHT_GRAY);
 		rdbtn_booked.setBounds(278, 439, 186, 21);
 		add(rdbtn_booked);
 
@@ -238,7 +238,7 @@ public class NurseAppointment extends JPanel {
 		final JRadioButton rdbtn_denied = new JRadioButton("Deny Appointment");
 		rdbtn_denied.setForeground(new Color(0, 102, 204));
 		rdbtn_denied.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		rdbtn_denied.setBackground(Color.GRAY);
+		rdbtn_denied.setBackground(Color.LIGHT_GRAY);
 		rdbtn_denied.setBounds(278, 480, 186, 21);
 		add(rdbtn_denied);
 
@@ -335,7 +335,7 @@ public class NurseAppointment extends JPanel {
 		
 		JLabel lblAHSimg = new JLabel("");
 		lblAHSimg.setIcon(new ImageIcon(NurseAppointment.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(865, 36, 186, 89);
+		lblAHSimg.setBounds(31, 11, 186, 89);
 		add(lblAHSimg);
 
 	} // end NurseAppointment constructor

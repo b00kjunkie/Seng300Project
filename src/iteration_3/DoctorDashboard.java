@@ -213,7 +213,7 @@ public class DoctorDashboard extends JPanel {
 		
 		JLabel lblAHSImg = new JLabel("");
 		lblAHSImg.setIcon(new ImageIcon(DoctorDashboard.class.getResource("/iteration_3/ahs.png")));
-		lblAHSImg.setBounds(889, 34, 190, 97);
+		lblAHSImg.setBounds(41, 11, 190, 97);
 		add(lblAHSImg);
 
 	} // end DoctorDashboard constructor

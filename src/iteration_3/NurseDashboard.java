@@ -179,7 +179,7 @@ public class NurseDashboard extends JPanel {
 		
 		JLabel lblAHSimg = new JLabel("");
 		lblAHSimg.setIcon(new ImageIcon(NurseDashboard.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(852, 39, 208, 102);
+		lblAHSimg.setBounds(10, 11, 208, 102);
 		add(lblAHSimg);
 
 	} // end NurseDashboard constructor

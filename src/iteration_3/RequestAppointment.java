@@ -73,6 +73,8 @@ public class RequestAppointment extends JPanel {
 
 		// label for the user dropdown list
 		JLabel lbl_user = new JLabel();
+		lbl_user.setForeground(new Color(0, 102, 204));
+		lbl_user.setText("Patient");
 		lbl_user.setFont(new Font("Cambria Math", Font.BOLD, 20));
 		lbl_user.setBounds(27, 172, 158, 23);
 		add(lbl_user);
@@ -549,7 +551,7 @@ public class RequestAppointment extends JPanel {
 		
 		JLabel lbl_AHSimg = new JLabel("");
 		lbl_AHSimg.setIcon(new ImageIcon(RequestAppointment.class.getResource("/iteration_3/ahs.png")));
-		lbl_AHSimg.setBounds(55, 557, 189, 88);
+		lbl_AHSimg.setBounds(10, 3, 189, 88);
 		add(lbl_AHSimg);
 	} // end RequestAppointment constructor
 

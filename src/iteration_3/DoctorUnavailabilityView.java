@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class DoctorUnavailabilityView extends JPanel {
 
@@ -33,13 +34,14 @@ public class DoctorUnavailabilityView extends JPanel {
 	public DoctorUnavailabilityView(final JFrame frame, final String id, final String usertype) throws Exception {
 
 		// set window properties
-		setBackground(Color.GRAY);
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		final Calendar calendar = new Calendar(); // create instance of Calendar class
 
 		// header for the window
 		JLabel lbl_availability_header = new JLabel("Availabililty Calendar");
+		lbl_availability_header.setForeground(new Color(0, 102, 204));
 		lbl_availability_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_availability_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_availability_header.setBounds(148, 46, 274, 36);
@@ -78,6 +80,7 @@ public class DoctorUnavailabilityView extends JPanel {
 
 		// label for department dropdown list
 		JLabel lbl_depart_comboBox = new JLabel("Select Department");
+		lbl_depart_comboBox.setForeground(new Color(0, 102, 204));
 		lbl_depart_comboBox.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_depart_comboBox.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_depart_comboBox.setBounds(715, 31, 139, 20);
@@ -97,6 +100,7 @@ public class DoctorUnavailabilityView extends JPanel {
 
 		// label for doctor dropdown list
 		JLabel lbl_doc_comboBox = new JLabel("Select Doctor");
+		lbl_doc_comboBox.setForeground(new Color(0, 102, 204));
 		lbl_doc_comboBox.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_doc_comboBox.setFont(new Font("Cambria Math", Font.PLAIN, 16));
 		lbl_doc_comboBox.setBounds(715, 99, 139, 20);
@@ -183,6 +187,7 @@ public class DoctorUnavailabilityView extends JPanel {
 
 		// Unavailability display header
 		JLabel lbl_avail_header = new JLabel("Times Unavailable");
+		lbl_avail_header.setForeground(new Color(0, 102, 204));
 		lbl_avail_header.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_avail_header.setFont(new Font("Cambria Math", Font.BOLD, 14));
 		lbl_avail_header.setBounds(715, 222, 139, 28);
@@ -190,18 +195,21 @@ public class DoctorUnavailabilityView extends JPanel {
 
 		// Unavailability start time column header
 		JLabel lbl_time_start_column = new JLabel("Start Time");
+		lbl_time_start_column.setForeground(new Color(0, 102, 255));
 		lbl_time_start_column.setFont(new Font("Cambria Math", Font.BOLD, 14));
 		lbl_time_start_column.setBounds(681, 269, 83, 14);
 		add(lbl_time_start_column);
 
 		// Unavailability end time column header
 		JLabel lbl_time_start_column_1 = new JLabel("End Time");
+		lbl_time_start_column_1.setForeground(new Color(0, 102, 204));
 		lbl_time_start_column_1.setFont(new Font("Cambria Math", Font.BOLD, 14));
 		lbl_time_start_column_1.setBounds(816, 269, 83, 14);
 		add(lbl_time_start_column_1);
 
 		// Add button and event listener to allow user to return to the dash board window
 		final JButton btn_return = new JButton("Return to Dashboard");
+		btn_return.setForeground(new Color(0, 102, 204));
 		btn_return.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -227,6 +235,11 @@ public class DoctorUnavailabilityView extends JPanel {
 		});
 		btn_return.setBounds(812, 528, 162, 23);
 		add(btn_return);
+		
+		JLabel lblAHSImg = new JLabel("");
+		lblAHSImg.setIcon(new ImageIcon(DoctorUnavailabilityView.class.getResource("/iteration_3/ahs.png")));
+		lblAHSImg.setBounds(443, 11, 188, 98);
+		add(lblAHSImg);
 
 	} // end constructor
 
