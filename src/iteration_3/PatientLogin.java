@@ -24,14 +24,16 @@ import javax.swing.ImageIcon;
 
 public class PatientLogin extends JPanel {
 
-	private static final long serialVersionUID = 4L; // serial ID for java object saving
+	private static final long serialVersionUID = 18L; // serial ID for java object saving
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows patients to enter their login information to access the system
+	 * 
+	 * @param frame of type JFrame representing the program window
 	 */
-	public PatientLogin(final JFrame frame) {
+	protected PatientLogin(final JFrame frame) {
 
 		// set window properties
 		setBackground(Color.LIGHT_GRAY);
@@ -41,33 +43,46 @@ public class PatientLogin extends JPanel {
 		JLabel lblWelcome = new JLabel("Welcome to the Alberta Hospital Scheduling System");
 		lblWelcome.setForeground(new Color(0, 102, 204));
 		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWelcome.setBounds(173, 75, 600, 34);
+		lblWelcome.setBounds(173, 99, 600, 34);
 		lblWelcome.setFont(new Font("Cambria Math", Font.BOLD | Font.ITALIC, 24));
 		add(lblWelcome);
+
+		// Alberta health services logo
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PatientLogin.class.getResource("/iteration_3/ahs.png")));
+		lblNewLabel.setBounds(41, 11, 190, 97);
+		add(lblNewLabel);
+
+		// patient picture
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(
+				new ImageIcon(PatientLogin.class.getResource("/iteration_3/icons8-patient-oxygen-mask-48.png")));
+		lblNewLabel_1.setBounds(146, 182, 55, 65);
+		add(lblNewLabel_1);
 
 		// patient username label
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setForeground(new Color(0, 102, 204));
 		lblUsername.setFont(new Font("Cambria Math", Font.PLAIN, 20));
-		lblUsername.setBounds(240, 158, 109, 20);
+		lblUsername.setBounds(240, 182, 109, 20);
 		add(lblUsername);
 
 		// patient password label
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setForeground(new Color(0, 102, 204));
 		lblPassword.setFont(new Font("Cambria Math", Font.PLAIN, 20));
-		lblPassword.setBounds(240, 218, 109, 20);
+		lblPassword.setBounds(240, 242, 109, 20);
 		add(lblPassword);
 
 		// text field allows patient to enter username
 		txtUsername = new JTextField();
-		txtUsername.setBounds(387, 158, 171, 20);
+		txtUsername.setBounds(387, 182, 171, 20);
 		txtUsername.setColumns(10);
 		add(txtUsername);
 
 		// text field allows patient to enter password
 		txtPassword = new JPasswordField();
-		txtPassword.setBounds(387, 218, 171, 20);
+		txtPassword.setBounds(387, 242, 171, 20);
 		add(txtPassword);
 
 		// text indicates if invalid login information was entered
@@ -83,7 +98,7 @@ public class PatientLogin extends JPanel {
 		// button allows the patient to login
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setForeground(new Color(0, 102, 204));
-		btnLogin.setBounds(509, 278, 86, 23);
+		btnLogin.setBounds(509, 302, 86, 23);
 		add(btnLogin);
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
@@ -125,7 +140,7 @@ public class PatientLogin extends JPanel {
 		// button resets the login informaton to null
 		JButton btnReset = new JButton("Reset");
 		btnReset.setForeground(new Color(0, 102, 204));
-		btnReset.setBounds(358, 278, 86, 23);
+		btnReset.setBounds(358, 302, 86, 23);
 		btnReset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -136,15 +151,15 @@ public class PatientLogin extends JPanel {
 		});
 		add(btnReset);
 
-		// button allows the patient to exit the program
-		JButton btnExit = new JButton("Exit");
+		// button allows the patient to return to the initial screen
+		JButton btnExit = new JButton("Back");
 		btnExit.setForeground(new Color(0, 102, 204));
-		btnExit.setBounds(885, 530, 89, 23);
+		btnExit.setBounds(814, 530, 160, 23);
 		btnExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-
+				MainFrame.main(new String[] {}); // restart the program by calling main method and passing empty array
+				frame.dispose(); // close current screen
 			}
 		});
 		add(btnExit);
@@ -162,17 +177,7 @@ public class PatientLogin extends JPanel {
 			}
 		});
 		add(btnRegister);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PatientLogin.class.getResource("/iteration_3/ahs.png")));
-		lblNewLabel.setBounds(25, 11, 237, 65);
-		add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(PatientLogin.class.getResource("/iteration_3/icons8-patient-oxygen-mask-48.png")));
-		lblNewLabel_1.setBounds(146, 158, 55, 65);
-		add(lblNewLabel_1);
-		txtrInvalid.setVisible(false);
-	}
+
+	} // end patient login constructor
 
 } // end class PatientLogin

@@ -29,9 +29,17 @@ import javax.swing.ImageIcon;
 
 public class DoctorUnavailabilityView extends JPanel {
 
-	private static final long serialVersionUID = 15L; // serial ID for java object saving
+	private static final long serialVersionUID = 12L; // serial ID for java object saving
 
-	public DoctorUnavailabilityView(final JFrame frame, final String id, final String usertype) throws Exception {
+	/**
+	 * Creates a window which allows patients and nurses to view the availabilities associated with doctors
+	 * 
+	 * @param frame    of type JFrame representing the program window
+	 * @param id       of type String representing the id number of the user that opened the window
+	 * @param usertype of type String representing either a patient or nurse
+	 * @throws Exception
+	 */
+	protected DoctorUnavailabilityView(final JFrame frame, final String id, final String usertype) throws Exception {
 
 		// set window properties
 		setBackground(Color.LIGHT_GRAY);
@@ -46,6 +54,12 @@ public class DoctorUnavailabilityView extends JPanel {
 		lbl_availability_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_availability_header.setBounds(148, 46, 274, 36);
 		add(lbl_availability_header);
+
+		// Alberta health services logo
+		JLabel lblAHSImg = new JLabel("");
+		lblAHSImg.setIcon(new ImageIcon(DoctorUnavailabilityView.class.getResource("/iteration_3/ahs.png")));
+		lblAHSImg.setBounds(443, 11, 188, 98);
+		add(lblAHSImg);
 
 		// add calendar header to show month and year
 		JLabel cal_header = calendar.initCalendarHeader();
@@ -150,8 +164,8 @@ public class DoctorUnavailabilityView extends JPanel {
 						doctorDB = doctorDB.loadDoctorDB(); // load database from file
 
 						if (name != "") {
-							String id = doctorDB.matchNameToID(name);
-							DoctorUnavailability.setUnavailabilityTextField(unavail_textArea, id, calendar);
+							String id_no = doctorDB.matchNameToID(name);
+							DoctorUnavailability.setUnavailabilityTextField(unavail_textArea, id_no, calendar);
 						}
 
 					} catch (Exception e1) {
@@ -163,7 +177,7 @@ public class DoctorUnavailabilityView extends JPanel {
 		});
 
 		// add event listeners to buttons for every day of the month
-		calendar.setupDateButtons(calendar_buttons, lbl_day_selected_header, unavail_textArea, id, calendar,
+		calendar.setupDateButtons(calendar_buttons, lbl_day_selected_header, unavail_textArea, "0", calendar,
 				comboBox_depart, comboBox_doc, "Unavailability");
 
 		// configure the start day of the month numbering and day of week
@@ -208,7 +222,7 @@ public class DoctorUnavailabilityView extends JPanel {
 		add(lbl_time_start_column_1);
 
 		// Add button and event listener to allow user to return to the dash board window
-		final JButton btn_return = new JButton("Return to Dashboard");
+		final JButton btn_return = new JButton("Back");
 		btn_return.setForeground(new Color(0, 102, 204));
 		btn_return.addMouseListener(new MouseAdapter() {
 			@Override
@@ -233,13 +247,8 @@ public class DoctorUnavailabilityView extends JPanel {
 				}
 			}
 		});
-		btn_return.setBounds(812, 528, 162, 23);
+		btn_return.setBounds(814, 528, 160, 23);
 		add(btn_return);
-		
-		JLabel lblAHSImg = new JLabel("");
-		lblAHSImg.setIcon(new ImageIcon(DoctorUnavailabilityView.class.getResource("/iteration_3/ahs.png")));
-		lblAHSImg.setBounds(443, 11, 188, 98);
-		add(lblAHSImg);
 
 	} // end constructor
 

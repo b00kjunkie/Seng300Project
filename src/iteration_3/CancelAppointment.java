@@ -1,48 +1,46 @@
 package iteration_3;
 
 /**
- * The NurseAppointment.java class provides a frame for nurses to view all requested appointments made by either
- * patients or doctors. Nurses can convert confirmed appointments into booked appointments, or deny appointments
- * that have been made by either doctors or patients.
+ * The CancelAppointment.java class allows patients and doctors to cancel scheduled appointments. Doctors can cancel
+ * appointments at any time. Patients can only cancel appointments which occur the next day or later.
  * 
  * @author		SENG 300 Group 12 - Winter 2020
- * Date:		2020-03-29
+ * Date:		2020-04-04
  */
 
 import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.SpinnerDateModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SwingConstants;
 
-public class NurseAppointment extends JPanel {
+public class CancelAppointment extends JPanel {
 
-	private static final long serialVersionUID = 13L; // serial ID for java object saving
-	private String department; // variable to store department selected from a dropdown list
-	private String status = "Denied"; // variable to store selected appointment status. Initalized to 'Denied'
+	private static final long serialVersionUID = 4L; // serial ID for java object saving
+	private String department; // variable to represent the deparment which is selected from a dropdown list
 
 	/**
-	 * Creates a window for nurses to view the appointments requested by both doctors and patients.
+	 * Creates the window which allows patients and doctors to view all scheduled appointments, and cancel them
 	 * 
-	 * @param frame   of type JFrame representing the program window
-	 * @param nurseID of type String representing the id number of the nurse who opened the window
+	 * @param frame     of type JFrame representing the program window
+	 * @param id        of type String representing the id number of the user who opened the window
+	 * @param user_type of type String representing either a doctor or a patient who opened the window
 	 * @throws Exception
 	 */
-	protected NurseAppointment(final JFrame frame, final String nurseID) throws Exception {
+	protected CancelAppointment(final JFrame frame, final String id, final String user_type) throws Exception {
 
 		// set window properties
 		setBackground(Color.LIGHT_GRAY);
@@ -127,7 +125,7 @@ public class NurseAppointment extends JPanel {
 		final JTextArea textArea_appointments = new JTextArea();
 		scrollPane_appoints.setViewportView(textArea_appointments);
 
-		setAppointmentTextArea(textArea_appointments); // initialize appointment text area
+		setAppointmentTextArea(textArea_appointments, id, user_type); // initialize appointment text area
 
 		// label for selected patient id
 		JLabel lbl_patient_id = new JLabel("Patient ID");
@@ -231,119 +229,91 @@ public class NurseAppointment extends JPanel {
 		spinner_end_time.setBounds(797, 369, 79, 20);
 		add(spinner_end_time);
 
-		// label for status field
-		JLabel lbl_status = new JLabel("Status");
-		lbl_status.setForeground(new Color(0, 102, 204));
-		lbl_status.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_status.setFont(new Font("Cambria Math", Font.BOLD, 20));
-		lbl_status.setBounds(140, 437, 111, 23);
-		add(lbl_status);
+		// Message to indicate that patients cannot cancel the appointment on the day (or after) of the appointment
+		final JLabel lbl_error = new JLabel("Appointments cannot be cancelled on the day of the appointment or later");
+		lbl_error.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_error.setForeground(Color.RED);
+		lbl_error.setFont(new Font("Cambria Math", Font.BOLD, 14));
+		lbl_error.setVisible(false);
+		lbl_error.setBounds(211, 487, 536, 23);
+		add(lbl_error);
 
-		// button used to approve appointment request
-		final JRadioButton rdbtn_booked = new JRadioButton("Schedule Appointment");
-		rdbtn_booked.setForeground(new Color(0, 102, 204));
-		rdbtn_booked.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		rdbtn_booked.setBackground(Color.LIGHT_GRAY);
-		rdbtn_booked.setBounds(278, 439, 186, 21);
-		add(rdbtn_booked);
-
-		// button used to deny appointment request
-		final JRadioButton rdbtn_denied = new JRadioButton("Deny Appointment");
-		rdbtn_denied.setForeground(new Color(0, 102, 204));
-		rdbtn_denied.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		rdbtn_denied.setBackground(Color.LIGHT_GRAY);
-		rdbtn_denied.setSelected(true);
-		rdbtn_denied.setBounds(278, 480, 186, 21);
-		add(rdbtn_denied);
-
-		// listener for button to schedule appointment
-		rdbtn_booked.addMouseListener(new MouseAdapter() {
+		// button allows user to cancel appointment with data fields equal to select feilds
+		JButton btn_cancel_appoint = new JButton("Cancel Appointment");
+		btn_cancel_appoint.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (rdbtn_booked.isSelected()) {
-					status = "Booked";
-					rdbtn_booked.setSelected(true);
-					rdbtn_denied.setSelected(false);
-				} else {
-					status = "Denied";
-					rdbtn_booked.setSelected(false);
-					rdbtn_denied.setSelected(true);
-				}
-			}
-		});
-
-		// listener for button to deny appointment
-		rdbtn_denied.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (rdbtn_denied.isSelected()) {
-					status = "Denied";
-					rdbtn_booked.setSelected(false);
-					rdbtn_denied.setSelected(true);
-				} else {
-					status = "Booked";
-					rdbtn_booked.setSelected(true);
-					rdbtn_denied.setSelected(false);
-				}
-			}
-		});
-
-		// button used to confirm that an appointment has either been scheduled or denied
-		JButton btn_update_status = new JButton("Update Status");
-		btn_update_status.setForeground(new Color(0, 102, 204));
-		btn_update_status.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
+				lbl_error.setVisible(false);
 				String patient_id = textField_patient_id.getText();
 				String doctor_id = textField_doctor_id.getText();
-
+				// depart
 				String date = textField_date.getText();
 				String start = DoctorUnavailability.extractHourAndMinute(spinner_start_time);
 				String end = DoctorUnavailability.extractHourAndMinute(spinner_end_time);
 
-				// if the data field entries for an appointment match a corresponding appointment in the database
-				// and the status of the appointment is 'Confirmed', then allow the nurse to schedule the appointment
-				try {
-					AppointmentDB appointmentDB = new AppointmentDB();
-					appointmentDB = appointmentDB.loadAppointmentDB(); // load saved database file
+				String[] year_month_date = date.split("-");
 
-					for (int i = 0; i < appointmentDB.size(); i++) {
+				if (year_month_date.length == 3) {
 
-						if (appointmentDB.get(i).getCustomElement()[0].equalsIgnoreCase(patient_id)
-								&& appointmentDB.get(i).getCustomElement()[1].equalsIgnoreCase(doctor_id)
-								&& appointmentDB.get(i).getCustomElement()[2].equalsIgnoreCase(department)
-								&& appointmentDB.get(i).getCustomElement()[3].equalsIgnoreCase(date)
-								&& appointmentDB.get(i).getCustomElement()[4].equalsIgnoreCase(start)
-								&& appointmentDB.get(i).getCustomElement()[5].equalsIgnoreCase(end)) {
-							if (appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Confirmed")
-									|| rdbtn_denied.isSelected()) {
-								appointmentDB.get(i).getCustomElement()[6] = status;
+					Calendar cal = new Calendar();
+
+					// is the user is a patient, then check to see if the appointment they have selected to cancel
+					// is tomorrow or later. doctors can cancel any appointments, without restriction
+					if ((user_type.equalsIgnoreCase("Patient") && Integer.parseInt(year_month_date[0]) >= cal.get_year()
+							&& Integer.parseInt(year_month_date[1]) >= cal.get_month()
+							&& Integer.parseInt(year_month_date[2]) > cal.get_day())
+							|| user_type.equalsIgnoreCase("Doctor")) {
+
+						try {
+							AppointmentDB appointmentDB = new AppointmentDB();
+							appointmentDB = appointmentDB.loadAppointmentDB(); // load saved database file
+
+							for (int i = 0; i < appointmentDB.size(); i++) {
+
+								if (appointmentDB.get(i).getCustomElement()[0].equalsIgnoreCase(patient_id)
+										&& appointmentDB.get(i).getCustomElement()[1].equalsIgnoreCase(doctor_id)
+										&& appointmentDB.get(i).getCustomElement()[2].equalsIgnoreCase(department)
+										&& appointmentDB.get(i).getCustomElement()[3].equalsIgnoreCase(date)
+										&& appointmentDB.get(i).getCustomElement()[4].equalsIgnoreCase(start)
+										&& appointmentDB.get(i).getCustomElement()[5].equalsIgnoreCase(end)) {
+									appointmentDB.get(i).getCustomElement()[6] = "Cancelled";
+								}
 							}
+							appointmentDB.saveAppointmentDB();
+
+							// // update appointment text area to reflect changes
+							setAppointmentTextArea(textArea_appointments, id, user_type);
+
+						} catch (Exception e1) {
+							e1.printStackTrace();
 						}
+
+					} else {
+						// display error message is the appointment requested to be cancelled is either today,
+						// or already has occurred
+						lbl_error.setVisible(true);
 					}
-					appointmentDB.saveAppointmentDB();
-
-					// update appointment text area which removes any scheduled appointments or changes the status
-					// to 'denied'
-					setAppointmentTextArea(textArea_appointments);
-
-				} catch (Exception e1) {
-					e1.printStackTrace();
 				}
 			}
 		});
-		btn_update_status.setBounds(538, 454, 139, 23);
-		add(btn_update_status);
+		btn_cancel_appoint.setBounds(389, 441, 180, 23);
+		add(btn_cancel_appoint);
 
-		// button that allows the nurse to return to the dashboard
+		// allow user to return to the dash board without saving changes
 		JButton btn_return = new JButton("Back");
 		btn_return.setForeground(new Color(0, 102, 204));
 		btn_return.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
+				// return to patient or doctor dashboard, depending on the user type that open the window
 				try {
-					frame.setContentPane(new NurseDashboard(frame, nurseID));
+					if (user_type.equalsIgnoreCase("Patient")) {
+						frame.setContentPane(new PatientDashboard(frame, id));
+					} else {
+						frame.setContentPane(new DoctorDashboard(frame, id));
+					}
+
 					frame.revalidate();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -353,7 +323,7 @@ public class NurseAppointment extends JPanel {
 		btn_return.setBounds(814, 528, 160, 23);
 		add(btn_return);
 
-	} // end NurseAppointment constructor
+	} // end CancelAppointment constructor
 
 	/**
 	 * Method sets the text area with all the appointments requested by both doctors and patients. Text area will show
@@ -362,30 +332,55 @@ public class NurseAppointment extends JPanel {
 	 * @param textArea_appointments of type JTextArea representing the area where the appointment requests are shown
 	 * @throws Exception
 	 */
-	protected static void setAppointmentTextArea(JTextArea textArea_appointments) throws Exception {
+	protected static void setAppointmentTextArea(JTextArea textArea_appointments, String id_no, String userType)
+			throws Exception {
 
 		AppointmentDB appointmentDB = new AppointmentDB();
 		appointmentDB = appointmentDB.loadAppointmentDB(); // load saved database file
 
 		String req_appointments = ""; // initialize string used to hold all requested appointments
-		for (int i = 0; i < appointmentDB.size(); i++) {
-			if (!appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Booked")) {
-				// pull the details from the requested appointment
-				String patient_id = appointmentDB.get(i).getCustomElement()[0];
-				String doctor_id = appointmentDB.get(i).getCustomElement()[1];
-				String department = appointmentDB.get(i).getCustomElement()[2];
-				String date = appointmentDB.get(i).getCustomElement()[3];
-				String start = appointmentDB.get(i).getCustomElement()[4];
-				String end = appointmentDB.get(i).getCustomElement()[5];
-				String status = appointmentDB.get(i).getCustomElement()[6];
-				// add all the appointment details to the string that is shown in appointment text area
-				req_appointments += patient_id + "\t" + doctor_id + "\t" + department + "\t    " + date + "\t" + start
-						+ "     " + end + "       " + status + "\n";
+
+		if (userType.equalsIgnoreCase("Patient")) {
+			for (int i = 0; i < appointmentDB.size(); i++) {
+				if (appointmentDB.get(i).getCustomElement()[0].equalsIgnoreCase(id_no)
+						&& (appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Booked")
+								|| appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Cancelled"))) {
+					// pull the details from the requested appointment
+					String patient_id = appointmentDB.get(i).getCustomElement()[0];
+					String doctor_id = appointmentDB.get(i).getCustomElement()[1];
+					String department = appointmentDB.get(i).getCustomElement()[2];
+					String date = appointmentDB.get(i).getCustomElement()[3];
+					String start = appointmentDB.get(i).getCustomElement()[4];
+					String end = appointmentDB.get(i).getCustomElement()[5];
+					String status = appointmentDB.get(i).getCustomElement()[6];
+					// add all the appointment details to the string that is shown in appointment text area
+					req_appointments += patient_id + "\t" + doctor_id + "\t" + department + "\t    " + date + "\t"
+							+ start + "     " + end + "       " + status + "\n";
+				}
+			}
+		} else {
+			for (int i = 0; i < appointmentDB.size(); i++) {
+				if (appointmentDB.get(i).getCustomElement()[1].equalsIgnoreCase(id_no)
+						&& (appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Booked")
+								|| appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Cancelled"))) {
+					// pull the details from the requested appointment
+					String patient_id = appointmentDB.get(i).getCustomElement()[0];
+					String doctor_id = appointmentDB.get(i).getCustomElement()[1];
+					String department = appointmentDB.get(i).getCustomElement()[2];
+					String date = appointmentDB.get(i).getCustomElement()[3];
+					String start = appointmentDB.get(i).getCustomElement()[4];
+					String end = appointmentDB.get(i).getCustomElement()[5];
+					String status = appointmentDB.get(i).getCustomElement()[6];
+					// add all the appointment details to the string that is shown in appointment text area
+					req_appointments += patient_id + "\t" + doctor_id + "\t" + department + "\t    " + date + "\t"
+							+ start + "     " + end + "       " + status + "\n";
+				}
 			}
 		}
+
 		// set the text area with the complied string containing all requested appointments
 		textArea_appointments.setText(req_appointments);
 
-	}
+	} // end setAppointmentTextArea()
 
-} // end NurseAppointment class
+} // end class CancelAppointment

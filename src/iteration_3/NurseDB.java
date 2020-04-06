@@ -16,7 +16,7 @@ import java.io.ObjectOutputStream;
 
 final class NurseDB extends CustomArray { // Class represents the saved set of registered nurses
 
-	private static final long serialVersionUID = 13L; // serial ID for java object saving
+	private static final long serialVersionUID = 15L; // serial ID for java object saving
 
 	/**
 	 * Constructor with no parameters calls the super class constructor with no parameters.
@@ -50,33 +50,6 @@ final class NurseDB extends CustomArray { // Class represents the saved set of r
 		} else {
 			throw new Exception("NurseDB elements must have form: [ID, Username, Password, Name, Gender, Department]");
 		}
-	}
-
-	/**
-	 * Method returns the ID number corresponding to a given username and password match.
-	 * 
-	 * @param username - type String
-	 * @param password - type String
-	 * @return ID of type String
-	 * @throws Exception
-	 */
-	protected String getID(String username, String password) throws Exception {
-		return this.search(username, 1).search(password, 2).get(0).getCustomElement()[0];
-	}
-
-	/**
-	 * Method checks if there is a nurse record that matches the username and password parameters.
-	 * 
-	 * @param username - type String
-	 * @param password - type String
-	 * @return boolean result indicating if there was a match
-	 * @throws Exception
-	 */
-	protected boolean checkForMatch(String username, String password) throws Exception {
-		if (this.search(username, 1).search(password, 2).isEmpty()) {
-			return false;
-		}
-		return true;
 	}
 
 	/**
@@ -118,7 +91,7 @@ final class NurseDB extends CustomArray { // Class represents the saved set of r
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("nurseDB.txt"))) {
 			return (NurseDB) in.readObject();
 		} catch (Exception e) {
-			NurseDB.initDB();
+			NurseDB.initNurseDB();
 			try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("nurseDB.txt"))) {
 				return (NurseDB) in.readObject();
 			} catch (Exception e1) {
@@ -133,7 +106,7 @@ final class NurseDB extends CustomArray { // Class represents the saved set of r
 	 * 
 	 * @throws Exception
 	 */
-	protected static void initDB() throws Exception {
+	protected static void initNurseDB() throws Exception {
 		NurseDB constructDB = new NurseDB(new String[] { "1", "nurse1", "12345678", "Brad Pitt", "M", "Radiology" });
 		constructDB.add(new String[] { "2", "nurse2", "12345678", "George Clooney", "M", "ICU" });
 		constructDB.saveNurseDB();

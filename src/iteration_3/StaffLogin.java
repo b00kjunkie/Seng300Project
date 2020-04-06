@@ -9,40 +9,32 @@ package iteration_3;
  */
 
 import javax.swing.JPanel;
-
 import javax.swing.JPasswordField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
-
-
-/***
- * 
- * @author dongb
- *
- */
 public class StaffLogin extends JPanel {
 
-	private static final long serialVersionUID = 8L; // serial ID for java object saving
+	private static final long serialVersionUID = 23L; // serial ID for java object saving
 	private JTextField txt_username_doc;
 	private JTextField txt_password_doc;
 	private JTextField txt_password_nurse;
 	private JTextField txt_username_nurse;
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows either doctors or nurses to login to the system
+	 * 
+	 * @param frame of type JFrame representing the program window
 	 */
-	public StaffLogin(final JFrame frame) {
+	protected StaffLogin(final JFrame frame) {
 		setForeground(new Color(0, 0, 0));
 
 		// set window properties
@@ -57,6 +49,12 @@ public class StaffLogin extends JPanel {
 		lbl_Staff_login_screen.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_Staff_login_screen.setBounds(354, 77, 219, 36);
 		add(lbl_Staff_login_screen);
+
+		// Alberta health services logo
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(StaffLogin.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(41, 11, 190, 97);
+		add(lblAHSimg);
 
 		// doctor login header
 		JLabel lbl_doctors_login_here = new JLabel("Doctor Login");
@@ -124,16 +122,17 @@ public class StaffLogin extends JPanel {
 		txt_password_nurse.setBounds(458, 400, 115, 20);
 		add(txt_password_nurse);
 
-		// button allows the user to exit the program
-		JButton btn_exit = new JButton("Exit");
+		// button allows the user to return to main screen
+		JButton btn_exit = new JButton("Back");
 		btn_exit.setForeground(new Color(0, 102, 204));
 		btn_exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+				MainFrame.main(new String[] {}); // restart the program by calling main method and passing empty array
+				frame.dispose(); // close current screen
 			}
 		});
-		btn_exit.setBounds(885, 528, 89, 23);
+		btn_exit.setBounds(814, 528, 160, 23);
 		add(btn_exit);
 
 		// label used to indicate if the login information is incorrect
@@ -192,7 +191,6 @@ public class StaffLogin extends JPanel {
 				String password = txt_password_nurse.getText();
 
 				try {
-					NurseDB.initDB(); // initialize the nurse database file
 					NurseDB nurseDB = new NurseDB();
 					nurseDB = nurseDB.loadNurseDB(); // load database from file
 
@@ -200,8 +198,7 @@ public class StaffLogin extends JPanel {
 					// else, create NurseDashboard frame and pass parameter String array containing username+pass
 					if (!nurseDB.checkForMatch(username, password)) {
 						lbl_invalid_password.setVisible(true);
-					
-						
+
 					} else {
 						String nurseID = nurseDB.getID(username, password);
 						NurseDashboard login = new NurseDashboard(frame, nurseID);
@@ -217,11 +214,6 @@ public class StaffLogin extends JPanel {
 		}); // end MouseListener for btn_login_nurse "Login"
 		btn_login_nurse.setBounds(661, 399, 89, 23);
 		add(btn_login_nurse);
-		
-		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon(StaffLogin.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(10, 11, 192, 50);
-		add(lblAHSimg);
 
 	}
 

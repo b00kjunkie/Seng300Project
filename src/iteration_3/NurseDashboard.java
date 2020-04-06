@@ -10,13 +10,11 @@ package iteration_3;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
-
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -26,11 +24,13 @@ public class NurseDashboard extends JPanel {
 	private static final long serialVersionUID = 14L; // serial ID for java object saving
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows nurses to view their dash board.
 	 * 
+	 * @param frame   of type JFrame representing the program window
+	 * @param nurseID of type String representing the id number of the nurse that opened the window
 	 * @throws Exception
 	 */
-	public NurseDashboard(final JFrame frame, final String nurseID) throws Exception {
+	protected NurseDashboard(final JFrame frame, final String nurseID) throws Exception {
 
 		// set window properties
 		setBackground(Color.LIGHT_GRAY);
@@ -55,6 +55,12 @@ public class NurseDashboard extends JPanel {
 		lbl_nurse_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_nurse_header.setBounds(355, 73, 219, 22);
 		add(lbl_nurse_header);
+
+		// Alberta health services logo
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(NurseDashboard.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(41, 11, 190, 97);
+		add(lblAHSimg);
 
 		// nurse id label
 		JLabel lbl_id = new JLabel("ID:");
@@ -118,7 +124,7 @@ public class NurseDashboard extends JPanel {
 		// nurse department value
 		JLabel lbl_department_val = new JLabel(department);
 		lbl_department_val.setFont(new Font("Cambria Math", Font.PLAIN, 16));
-		lbl_department_val.setBounds(318, 346, 112, 14);
+		lbl_department_val.setBounds(318, 342, 112, 22);
 		add(lbl_department_val);
 
 		// button allows the nurse to exit the program
@@ -127,10 +133,11 @@ public class NurseDashboard extends JPanel {
 		btn_logout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+				MainFrame.main(new String[] {}); // restart the program by calling main method and passing empty array
+				frame.dispose(); // close current screen
 			}
 		});
-		btn_logout.setBounds(885, 528, 89, 23);
+		btn_logout.setBounds(814, 528, 160, 23);
 		add(btn_logout);
 
 		// personal information section header
@@ -152,7 +159,6 @@ public class NurseDashboard extends JPanel {
 					frame.setContentPane(availView);
 					frame.revalidate();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -176,11 +182,6 @@ public class NurseDashboard extends JPanel {
 		});
 		btn_appointments.setBounds(497, 441, 180, 23);
 		add(btn_appointments);
-		
-		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon(NurseDashboard.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(10, 11, 208, 102);
-		add(lblAHSimg);
 
 	} // end NurseDashboard constructor
 

@@ -24,15 +24,17 @@ import javax.swing.JPasswordField;
 
 public class PatientRegister extends JPanel {
 
-	private static final long serialVersionUID = 6L; // serial ID for java object saving
+	private static final long serialVersionUID = 20L; // serial ID for java object saving
 	private JTextField txtNewUser; // patient username
 	private JTextField pwdNewPwd; // patient password
 	private JTextField pwdConfirmedPwd; // patient confirm password
 
 	/**
-	 * Create the panel.
+	 * Creates a window for the patient to begin the registration process
+	 * 
+	 * @param frame of type JFrame representing the program window
 	 */
-	public PatientRegister(final JFrame frame) {
+	protected PatientRegister(final JFrame frame) {
 
 		// window properties
 		setBackground(Color.LIGHT_GRAY);
@@ -44,6 +46,12 @@ public class PatientRegister extends JPanel {
 		lbl_registration_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_registration_header.setBounds(330, 75, 305, 32);
 		add(lbl_registration_header);
+
+		// Alberta health services logo
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(PatientRegister.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(41, 11, 190, 97);
+		add(lblAHSimg);
 
 		// label that indicates that the username is not value
 		final JLabel lblInvalidUsername = new JLabel("Sorry, this username is not valid");
@@ -183,7 +191,8 @@ public class PatientRegister extends JPanel {
 		lblNotMatch.setVisible(false);
 
 		// text field allows patient to re-enter password
-		pwdConfirmedPwd = new JPasswordField();;
+		pwdConfirmedPwd = new JPasswordField();
+		;
 		pwdConfirmedPwd.setBounds(272, 321, 137, 20);
 		add(pwdConfirmedPwd);
 		pwdConfirmedPwd.setColumns(10);
@@ -228,7 +237,7 @@ public class PatientRegister extends JPanel {
 				String user_name = txtNewUser.getText();
 
 				if (password_first == null || password_confirm == null || user_name == null) {
-					
+
 					// we do nothing since it should be an unintended mistake.
 				}
 
@@ -253,11 +262,7 @@ public class PatientRegister extends JPanel {
 		});
 		add(btnContinue);
 		add(btnBack);
-		
-		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon(PatientRegister.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(38, 11, 194, 75);
-		add(lblAHSimg);
 
 	} // end PatientRegister constructor
+
 } // end class PatientRegister

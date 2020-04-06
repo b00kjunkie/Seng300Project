@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 final class CustomElement implements Serializable { // implement serializable
 
-	private static final long serialVersionUID = 2L; // serial ID for java object saving
+	private static final long serialVersionUID = 6L; // serial ID for java object saving
 	protected String[] element; // "container" for each element of the CustomArray
 
 	/**

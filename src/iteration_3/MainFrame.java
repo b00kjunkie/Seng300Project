@@ -10,32 +10,27 @@ package iteration_3;
  */
 
 import java.awt.Color;
-
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
-import java.awt.Toolkit;
 
-/**
- * The main frame to initial the entire system. user will be give choices between staff and patient.
- * If user made mistake, he/she will have to exit and reopen the main login frame.
- * @author dongb
- *
- */
-public class MainFrame {
+public class MainFrame extends JPanel {
+
+	private static final long serialVersionUID = 1L; // serial ID for java object saving
 
 	private JFrame frame;
 
 	/**
-	 * Main method launches the new alberta hospital system.
+	 * Main method launches the new Alberta hospital system.
 	 * 
-	 * @param args
+	 * @param args of type String[] are not required/used.
 	 */
 	public static void main(String[] args) {
 
@@ -56,23 +51,56 @@ public class MainFrame {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @throws Exception
 	 */
-	public MainFrame() {
-
-		initialize();
+	protected MainFrame() throws Exception {
+		initializeDB();
+		initializeWindow();
 	}
 
+	/**
+	 * Method ensures that each of the database relations; PatientDB, DoctorDB, NurseDB, AppointmentDB,
+	 * DoctorUnavailabilityDB, have corresponding text files initialized for storing/retrieving data. If the
+	 * corresponding text file is not initialized, the load functions will create the missing file.
+	 * 
+	 * @throws Exception
+	 */
+	private static void initializeDB() throws Exception {
 
+		// verify that that patient database file is properly initialized
+		PatientDB patDB = new PatientDB();
+		patDB.loadPatientDB();
+
+		// verify that that doctor database file is properly initialized
+		DoctorDB.initDoctorDB();
+		DoctorDB docDB = new DoctorDB();
+		docDB.loadDoctorDB();
+
+		// verify that that nurse database file is properly initialized
+		NurseDB.initNurseDB(); // initialize the nurse database file
+		NurseDB nurseDB = new NurseDB();
+		nurseDB = nurseDB.loadNurseDB(); // load database from file
+
+		// verify the appointment database file is properly initialized
+		AppointmentDB appointDB = new AppointmentDB();
+		appointDB.loadAppointmentDB();
+
+		// verify the doctor unavailability database file is properly initialized
+		DoctorUnavailabilityDB docUnavailDB = new DoctorUnavailabilityDB();
+		docUnavailDB.loadDoctorUnavailabilityDB();
+
+	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the welcome screen window.
 	 */
-	private void initialize() {
+	private void initializeWindow() {
 		// initialize the window frame
 		frame = new JFrame("Alberta Hospital Scheduling System");
 		frame.getContentPane();
-		
-		frame.setBounds(200, 200, 1000, 600);
+
+		frame.setBounds(200, 100, 1000, 600);
 		frame.setResizable(false); // remove ability to resize the window
 		frame.getContentPane().setLayout(null);
 
@@ -84,6 +112,24 @@ public class MainFrame {
 		lblWelcome.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lblWelcome.setBounds(274, 134, 419, 42);
 		frame.getContentPane().add(lblWelcome);
+
+		// Alberta health services logo
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(41, 11, 190, 97);
+		frame.getContentPane().add(lblAHSimg);
+
+		// picture of a few patients
+		JLabel lblPatient = new JLabel("");
+		lblPatient.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/patient.png")));
+		lblPatient.setBounds(274, 327, 64, 64);
+		frame.getContentPane().add(lblPatient);
+
+		// picture of two doctors
+		JLabel lblDocNur = new JLabel("");
+		lblDocNur.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/doctor.png")));
+		lblDocNur.setBounds(615, 274, 49, 42);
+		frame.getContentPane().add(lblDocNur);
 
 		// label indicating user action to be performed
 		JLabel lblSelect = new JLabel("Please Select Below");
@@ -100,7 +146,7 @@ public class MainFrame {
 		btnStaff.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				// initial staff login interface channel
 				StaffLogin login = new StaffLogin(frame);
 				frame.setContentPane(login);
@@ -116,7 +162,7 @@ public class MainFrame {
 		btnPatient.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				// patient login interface
 				PatientLogin login = new PatientLogin(frame);
 				frame.setContentPane(login);
@@ -126,21 +172,7 @@ public class MainFrame {
 
 		btnPatient.setBounds(399, 327, 162, 23);
 		frame.getContentPane().add(btnPatient);
-		
-		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(35, 36, 183, 65);
-		frame.getContentPane().add(lblAHSimg);
-		
-		JLabel lblPatient = new JLabel("");
-		lblPatient.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/patient.png")));
-		lblPatient.setBounds(274, 327, 64, 64);
-		frame.getContentPane().add(lblPatient);
-		
-		JLabel lblDocNur = new JLabel("");
-		lblDocNur.setIcon(new ImageIcon(MainFrame.class.getResource("/iteration_3/doctor.png")));
-		lblDocNur.setBounds(615, 274, 49, 42);
-		frame.getContentPane().add(lblDocNur);
 
 	} // end initialize()
+
 } // end class Patient_Main_Login
