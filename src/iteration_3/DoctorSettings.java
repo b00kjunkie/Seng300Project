@@ -26,7 +26,7 @@ import javax.swing.ImageIcon;
 
 public class DoctorSettings extends JPanel {
 
-	private static final long serialVersionUID = 16L; // serial ID for java object saving
+	private static final long serialVersionUID = 9L; // serial ID for java object saving
 	private JTextField text_name_field;
 
 	private String name_val;
@@ -34,24 +34,26 @@ public class DoctorSettings extends JPanel {
 	private String department_val;
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows doctors to view and edit their personal information
 	 * 
+	 * @param frame of type JFrame representing the program window
+	 * @param id    of type String representing the id number of the doctor who opened the window
 	 * @throws Exception
 	 */
-	public DoctorSettings(final JFrame frame, final String id) throws Exception {
+	protected DoctorSettings(final JFrame frame, final String id) throws Exception {
 
+		// set window properties
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
 		DoctorDB doctorDB = new DoctorDB();
 		doctorDB = doctorDB.loadDoctorDB(); // load database from file
-		
-		
+
+		// initialize instance variables with doctor info
 		String[] doctorRecord = doctorDB.getDoctorRecord(id);
 		this.name_val = doctorRecord[3];
 		this.gender_val = doctorRecord[4];
 		this.department_val = doctorRecord[5];
-		System.out.println(this.name_val + " " + this.gender_val + " " + this.department_val);
 
 		// Window header
 		JLabel lblNewLabel = new JLabel("Doctor Personal Information");
@@ -60,6 +62,12 @@ public class DoctorSettings extends JPanel {
 		lblNewLabel.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lblNewLabel.setBounds(333, 71, 332, 29);
 		add(lblNewLabel);
+
+		// Alberta health services logo
+		JLabel lblAHSImg = new JLabel("");
+		lblAHSImg.setIcon(new ImageIcon(DoctorSettings.class.getResource("/iteration_3/ahs.png")));
+		lblAHSImg.setBounds(41, 11, 190, 97);
+		add(lblAHSImg);
 
 		// label for name text field
 		JLabel lbl_name = new JLabel("Name:");
@@ -204,13 +212,26 @@ public class DoctorSettings extends JPanel {
 				}
 			}
 		});
-		btn_save_return.setBounds(843, 528, 131, 23);
+		btn_save_return.setBounds(435, 436, 131, 23);
 		add(btn_save_return);
-		
-		JLabel lblAHSImg = new JLabel("");
-		lblAHSImg.setIcon(new ImageIcon(DoctorSettings.class.getResource("/iteration_3/ahs.png")));
-		lblAHSImg.setBounds(10, 19, 271, 81);
-		add(lblAHSImg);
+
+		// allow user to return to the dash board without saving changes
+		JButton btn_return = new JButton("Back");
+		btn_return.setForeground(new Color(0, 102, 204));
+		btn_return.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					frame.setContentPane(new DoctorDashboard(frame, id));
+					frame.revalidate();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btn_return.setBounds(814, 528, 160, 23);
+		add(btn_return);
 
 	} // end DoctorSettings constructor
+
 } // end class DoctorSettings

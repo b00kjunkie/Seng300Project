@@ -9,7 +9,6 @@ package iteration_3;
 
 import java.awt.Color;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,9 +23,17 @@ import javax.swing.ImageIcon;
 
 public class AppointmentCalendar extends JPanel {
 
-	private static final long serialVersionUID = 17L; // serial ID for java object saving
+	private static final long serialVersionUID = 2L; // serial ID for java object saving
 
-	public AppointmentCalendar(final JFrame frame, final String id, final String user_type) throws Exception {
+	/**
+	 * Creates the appointment calendar view window which can be accessed by either patients or doctors.
+	 * 
+	 * @param frame     of type JFrame represents the program window
+	 * @param id        of type String represents the id number of the user who opened the window
+	 * @param user_type of type String represents either a doctor or patients, who opened the window
+	 * @throws Exception
+	 */
+	protected AppointmentCalendar(final JFrame frame, final String id, final String user_type) throws Exception {
 
 		// set window properties
 		setBackground(Color.LIGHT_GRAY);
@@ -139,7 +146,7 @@ public class AppointmentCalendar extends JPanel {
 		}
 
 		// addd button to allow user to return to dashboard
-		JButton btn_return = new JButton("Return");
+		JButton btn_return = new JButton("Back");
 		btn_return.setForeground(new Color(0, 102, 204));
 		btn_return.addMouseListener(new MouseAdapter() {
 			@Override
@@ -161,9 +168,9 @@ public class AppointmentCalendar extends JPanel {
 				}
 			}
 		});
-		btn_return.setBounds(885, 528, 89, 23);
+		btn_return.setBounds(814, 528, 160, 23);
 		add(btn_return);
-		
+
 		JLabel lblAHSImg = new JLabel("");
 		lblAHSImg.setIcon(new ImageIcon(AppointmentCalendar.class.getResource("/iteration_3/ahs.png")));
 		lblAHSImg.setBounds(413, 11, 216, 71);
@@ -192,16 +199,21 @@ public class AppointmentCalendar extends JPanel {
 		String date; // string will be set to current day. For months < 10 (Oct) a '0' is added in front of month
 		// to match the date entry in the appointment database
 		if (cal.get_month() < 10) {
-			date = String.valueOf(cal.get_year()) + "-0" + String.valueOf(cal.get_month()) + "-"
-					+ String.valueOf(cal.get_day());
+			date = String.valueOf(cal.get_year()) + "-0" + String.valueOf(cal.get_month());
 		} else {
-			date = String.valueOf(cal.get_year()) + "-" + String.valueOf(cal.get_month()) + "-"
-					+ String.valueOf(cal.get_day());
+			date = String.valueOf(cal.get_year()) + "-" + String.valueOf(cal.get_month());
+		}
+		// for days < 10 a '0' is added in front of the month to match the date entry in the appointment database
+		if (cal.get_day() < 10) {
+			date += "-0" + String.valueOf(cal.get_day());
+		} else {
+			date += "-" + String.valueOf(cal.get_day());
 		}
 
 		// set the text area appropriately, depending on which type of user opened the window
 		if (cal_user.equalsIgnoreCase("Patient")) {
 			CustomArray search_res = appointmentDB.search(id, 0).search(date, 3).search("Booked", 6);
+
 			for (int i = 0; i < search_res.size(); i++) {
 				String date_val = search_res.get(i).getCustomElement()[3];
 				String start_val = search_res.get(i).getCustomElement()[4];
@@ -232,6 +244,7 @@ public class AppointmentCalendar extends JPanel {
 
 		textArea.setText(text_for_textArea);
 		textArea.setCaretPosition(0); // set the default scroll pane position to be at the top
-	}
+
+	} // end setUnavailabilityTextField()
 
 } // end AppointmentCalendar class

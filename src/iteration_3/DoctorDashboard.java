@@ -11,26 +11,26 @@ package iteration_3;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
 public class DoctorDashboard extends JPanel {
 
-	private static final long serialVersionUID = 10L; // serial ID for java object saving
+	private static final long serialVersionUID = 7L; // serial ID for java object saving
 
 	/**
-	 * Create the panel.
+	 * Creates a window which shows the dash board for a doctor.
 	 * 
+	 * @param frame    of type JFrame representing the program window
+	 * @param doctorID of type String representing the id number of the doctor who opened the window
 	 * @throws Exception
 	 */
-	public DoctorDashboard(final JFrame frame, final String doctorID) throws Exception {
+	protected DoctorDashboard(final JFrame frame, final String doctorID) throws Exception {
 
 		// set window properties
 		setLayout(null);
@@ -55,6 +55,12 @@ public class DoctorDashboard extends JPanel {
 		lbl_doctor_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_doctor_header.setBounds(372, 69, 220, 35);
 		add(lbl_doctor_header);
+
+		// Alberta health services logo
+		JLabel lblAHSImg = new JLabel("");
+		lblAHSImg.setIcon(new ImageIcon(DoctorDashboard.class.getResource("/iteration_3/ahs.png")));
+		lblAHSImg.setBounds(41, 11, 190, 97);
+		add(lblAHSImg);
 
 		// personal information section header
 		JLabel lbl_info = new JLabel("Personal Info");
@@ -143,7 +149,7 @@ public class DoctorDashboard extends JPanel {
 				}
 			}
 		});
-		btn_settings.setBounds(135, 462, 89, 23);
+		btn_settings.setBounds(191, 427, 180, 23);
 		add(btn_settings);
 
 		// button allows the user to open a window that is used to edit/view appointment requests
@@ -160,7 +166,7 @@ public class DoctorDashboard extends JPanel {
 				}
 			}
 		});
-		btn_request_appoint.setBounds(392, 462, 180, 23);
+		btn_request_appoint.setBounds(405, 476, 180, 23);
 		add(btn_request_appoint);
 
 		// button allows the user to open a window that is used to edit/view availability
@@ -178,21 +184,8 @@ public class DoctorDashboard extends JPanel {
 				}
 			}
 		});
-		btn_edit_avail.setBounds(598, 462, 136, 23);
+		btn_edit_avail.setBounds(405, 427, 180, 23);
 		add(btn_edit_avail);
-
-		// button allows user to exit the program
-		JButton btn_logout = new JButton("Logout");
-		btn_logout.setForeground(new Color(0, 102, 204));
-		btn_logout.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-
-			}
-		});
-		btn_logout.setBounds(855, 528, 119, 23);
-		add(btn_logout);
 
 		// button allows the user to open a window which is used to display scheduling information
 		JButton btn_schedule = new JButton("Schedule");
@@ -208,13 +201,38 @@ public class DoctorDashboard extends JPanel {
 				}
 			}
 		});
-		btn_schedule.setBounds(262, 462, 89, 23);
+		btn_schedule.setBounds(191, 476, 180, 23);
 		add(btn_schedule);
-		
-		JLabel lblAHSImg = new JLabel("");
-		lblAHSImg.setIcon(new ImageIcon(DoctorDashboard.class.getResource("/iteration_3/ahs.png")));
-		lblAHSImg.setBounds(41, 11, 190, 97);
-		add(lblAHSImg);
+
+		// button allows doctor to access a window where they can cancel any scheduled appointment
+		JButton btn_cancel_appoint = new JButton("Cancel Appointment");
+		btn_cancel_appoint.setForeground(new Color(0, 102, 204));
+		btn_cancel_appoint.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					frame.setContentPane(new CancelAppointment(frame, doctorID, "Doctor"));
+					frame.revalidate();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btn_cancel_appoint.setBounds(614, 476, 180, 23);
+		add(btn_cancel_appoint);
+
+		// button allows user to return to the initial program window
+		JButton btn_logout = new JButton("Logout");
+		btn_logout.setForeground(new Color(0, 102, 204));
+		btn_logout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainFrame.main(new String[] {}); // restart the program by calling main method and passing empty array
+				frame.dispose(); // close current screen
+			}
+		});
+		btn_logout.setBounds(814, 528, 160, 23);
+		add(btn_logout);
 
 	} // end DoctorDashboard constructor
 

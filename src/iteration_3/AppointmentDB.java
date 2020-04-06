@@ -16,7 +16,7 @@ import java.io.ObjectOutputStream;
 
 public class AppointmentDB extends CustomArray {
 
-	private static final long serialVersionUID = 12L; // serial ID for java object saving
+	private static final long serialVersionUID = 3L; // serial ID for java object saving
 
 	/**
 	 * Constructor with no parameters calls the super class constructor with no parameters.

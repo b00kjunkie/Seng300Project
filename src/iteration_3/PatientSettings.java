@@ -24,7 +24,7 @@ import javax.swing.ImageIcon;
 
 public class PatientSettings extends JPanel {
 
-	private static final long serialVersionUID = 15L; // serial ID for java object saving
+	private static final long serialVersionUID = 21L; // serial ID for java object saving
 	private JTextField txt_name_val; // patient name
 	private JTextField txt_dob_val; // patient date of birth
 
@@ -35,11 +35,13 @@ public class PatientSettings extends JPanel {
 	private String new_anxiety; // patient anxiety flag
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows patients to view/edit their personal information
 	 * 
+	 * @param frame     of type JFrame representing the program window
+	 * @param patientID of type String representing the id number of the patient who opened the window
 	 * @throws Exception
 	 */
-	public PatientSettings(final JFrame frame, final String patientID) throws Exception {
+	protected PatientSettings(final JFrame frame, final String patientID) throws Exception {
 
 		// set window properties
 		setBackground(Color.LIGHT_GRAY);
@@ -65,6 +67,12 @@ public class PatientSettings extends JPanel {
 		lb_settings_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lb_settings_header.setBounds(261, 83, 353, 29);
 		add(lb_settings_header);
+
+		// Alberta health services logo
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PatientSettings.class.getResource("/iteration_3/ahs.png")));
+		lblNewLabel.setBounds(41, 11, 190, 97);
+		add(lblNewLabel);
 
 		// patient name label
 		JLabel lbl_name = new JLabel("Name:");
@@ -225,7 +233,7 @@ public class PatientSettings extends JPanel {
 
 		// buttons allows the patient to save changes made to information and return to the dashboard
 		JButton btn_save = new JButton("Save & Return");
-		btn_save.setForeground(new Color(51, 102, 204));
+		btn_save.setForeground(new Color(51, 160, 204));
 		btn_save.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -260,13 +268,25 @@ public class PatientSettings extends JPanel {
 			}
 		});
 
-		btn_save.setBounds(405, 479, 131, 23);
+		btn_save.setBounds(382, 447, 131, 23);
 		add(btn_save);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PatientSettings.class.getResource("/iteration_3/ahs.png")));
-		lblNewLabel.setBounds(26, 29, 179, 71);
-		add(lblNewLabel);
+
+		// allow user to go back to the patient dash board
+		JButton btn_return = new JButton("Back");
+		btn_return.setForeground(new Color(51, 102, 204));
+		btn_return.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					frame.setContentPane(new PatientDashboard(frame, patientID));
+					frame.revalidate();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btn_return.setBounds(814, 528, 160, 23);
+		add(btn_return);
 
 	} // end constructor
 

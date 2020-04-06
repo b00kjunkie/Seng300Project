@@ -22,14 +22,16 @@ import javax.swing.ImageIcon;
 
 public class PatientDashboard extends JPanel {
 
-	private static final long serialVersionUID = 3L; // serial ID for java object saving
+	private static final long serialVersionUID = 16L; // serial ID for java object saving
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows a patient to view their dash board
 	 * 
+	 * @param frame     of type JFrame representing the program window
+	 * @param patientID of type String representing the id number of the patient that opened the window
 	 * @throws Exception
 	 */
-	public PatientDashboard(final JFrame frame, final String patientID) throws Exception {
+	protected PatientDashboard(final JFrame frame, final String patientID) throws Exception {
 
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
@@ -56,6 +58,12 @@ public class PatientDashboard extends JPanel {
 		lblHeader.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lblHeader.setBounds(385, 48, 227, 43);
 		add(lblHeader);
+
+		// Alberta health services logo
+		JLabel lblAHSImg = new JLabel("");
+		lblAHSImg.setIcon(new ImageIcon(PatientDashboard.class.getResource("/iteration_3/ahs.png")));
+		lblAHSImg.setBounds(41, 11, 190, 97);
+		add(lblAHSImg);
 
 		// 8 labels to indicate what values are stored in the patient database (password is omitted)
 		JLabel lbl_ID = new JLabel("ID:");
@@ -176,20 +184,8 @@ public class PatientDashboard extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(518, 437, 160, 23);
+		btnNewButton.setBounds(367, 412, 160, 23);
 		add(btnNewButton);
-
-		// button allows the patient to exit the program
-		JButton btn_logout = new JButton("Logout");
-		btn_logout.setForeground(new Color(0, 102, 204));
-		btn_logout.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
-		btn_logout.setBounds(814, 528, 160, 23);
-		add(btn_logout);
 
 		// button allows the patient to view a window where they can edit their personal information
 		JButton btn_settings = new JButton("Settings");
@@ -206,7 +202,7 @@ public class PatientDashboard extends JPanel {
 				}
 			}
 		});
-		btn_settings.setBounds(118, 437, 160, 23);
+		btn_settings.setBounds(168, 412, 160, 23);
 		add(btn_settings);
 
 		// button allows patient to view doctor availability
@@ -223,7 +219,7 @@ public class PatientDashboard extends JPanel {
 				}
 			}
 		});
-		btn_appointments.setBounds(324, 437, 160, 23);
+		btn_appointments.setBounds(168, 465, 160, 23);
 		add(btn_appointments);
 
 		// button allows patient to view all requested appointments associated with their account
@@ -240,13 +236,38 @@ public class PatientDashboard extends JPanel {
 				}
 			}
 		});
-		btn_request_appoint.setBounds(713, 437, 180, 23);
+		btn_request_appoint.setBounds(367, 465, 180, 23);
 		add(btn_request_appoint);
-		
-		JLabel lblAHSImg = new JLabel("");
-		lblAHSImg.setIcon(new ImageIcon(PatientDashboard.class.getResource("/iteration_3/ahs.png")));
-		lblAHSImg.setBounds(32, 11, 180, 55);
-		add(lblAHSImg);
+
+		// button allows patients to access a window where they can cancel any scheduled appointments
+		JButton btn_cancel_appoint = new JButton("Cancel Appointment");
+		btn_cancel_appoint.setForeground(new Color(0, 102, 204));
+		btn_cancel_appoint.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					frame.setContentPane(new CancelAppointment(frame, patientID, "Patient"));
+					frame.revalidate();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btn_cancel_appoint.setBounds(574, 465, 180, 23);
+		add(btn_cancel_appoint);
+
+		// button allows the patient to return to the initial screen displayed by the program
+		JButton btn_logout = new JButton("Logout");
+		btn_logout.setForeground(new Color(0, 102, 204));
+		btn_logout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainFrame.main(new String[] {}); // restart the program by calling main method and passing empty array
+				frame.dispose(); // close current screen
+			}
+		});
+		btn_logout.setBounds(814, 528, 160, 23);
+		add(btn_logout);
 
 	} // end PatientDashboard constructor
 

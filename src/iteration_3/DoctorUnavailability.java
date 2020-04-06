@@ -29,18 +29,34 @@ import javax.swing.ImageIcon;
 
 public class DoctorUnavailability extends JPanel {
 
-	private static final long serialVersionUID = 12L; // serial ID for java object saving
+	private static final long serialVersionUID = 10L; // serial ID for java object saving
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows a doctor to view their indicated availability
 	 * 
+	 * @param frame    of type JFrame representing the program window
+	 * @param doctorID of type String representing the id number of the doctor who opened the window
 	 * @throws Exception
 	 */
-	public DoctorUnavailability(final JFrame frame, final String doctorID) throws Exception {
+	protected DoctorUnavailability(final JFrame frame, final String doctorID) throws Exception {
 
 		// set window properties
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
+
+		// window header
+		JLabel lbl_availabililty_header = new JLabel("Availability Calendar");
+		lbl_availabililty_header.setForeground(new Color(0, 102, 204));
+		lbl_availabililty_header.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_availabililty_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
+		lbl_availabililty_header.setBounds(157, 47, 248, 39);
+		add(lbl_availabililty_header);
+
+		// Alberta health services logo
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(DoctorUnavailability.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(484, 11, 190, 68);
+		add(lblAHSimg);
 
 		final Calendar calendar = new Calendar(); // create instance of Calendar class
 
@@ -244,20 +260,8 @@ public class DoctorUnavailability extends JPanel {
 				}
 			}
 		});
-		btn_back.setBounds(885, 528, 89, 23);
+		btn_back.setBounds(814, 528, 160, 23);
 		add(btn_back);
-
-		JLabel lbl_availabililty_header = new JLabel("Availability Calendar");
-		lbl_availabililty_header.setForeground(new Color(0, 102, 204));
-		lbl_availabililty_header.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_availabililty_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
-		lbl_availabililty_header.setBounds(157, 47, 248, 39);
-		add(lbl_availabililty_header);
-		
-		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon(DoctorUnavailability.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(484, 11, 190, 68);
-		add(lblAHSimg);
 
 	} // end DoctorAvailability constructor
 

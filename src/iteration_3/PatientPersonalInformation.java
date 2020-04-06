@@ -25,7 +25,7 @@ import javax.swing.ImageIcon;
 
 public class PatientPersonalInformation extends JPanel {
 
-	private static final long serialVersionUID = 5L; // serial ID for java object saving
+	private static final long serialVersionUID = 19L; // serial ID for java object saving
 	private JTextField txtNameField; // patient name
 	private JTextField txtDOB; // patient date of birth
 	private String gender; // patient gender
@@ -34,9 +34,12 @@ public class PatientPersonalInformation extends JPanel {
 	private String anxiety = "N"; // patient anxiety flag
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows patients to enter personal information during the registration process
+	 * 
+	 * @param frame      of type JFrame representing the program window
+	 * @param userParams of type String[]. The first element is the username and the second element is the password
 	 */
-	public PatientPersonalInformation(final JFrame frame, final String[] userParams) {
+	protected PatientPersonalInformation(final JFrame frame, final String[] userParams) {
 
 		// set window properties
 		setBackground(Color.LIGHT_GRAY);
@@ -49,6 +52,12 @@ public class PatientPersonalInformation extends JPanel {
 		lbl_personal_info_header.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lbl_personal_info_header.setBounds(294, 75, 275, 23);
 		add(lbl_personal_info_header);
+
+		// Alberta health services logo
+		JLabel lblAHSimg = new JLabel("");
+		lblAHSimg.setIcon(new ImageIcon(PatientPersonalInformation.class.getResource("/iteration_3/ahs.png")));
+		lblAHSimg.setBounds(41, 11, 190, 97);
+		add(lblAHSimg);
 
 		// patient name label
 		JLabel lblPatientName = new JLabel("Name:");
@@ -134,7 +143,7 @@ public class PatientPersonalInformation extends JPanel {
 		chckbxHeartDisease.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//flag yes for heart disease
+				// flag yes for heart disease
 				heartdisease = "Y";
 			}
 		});
@@ -149,8 +158,8 @@ public class PatientPersonalInformation extends JPanel {
 		chckbxDiabetes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				//flag yes for diabetes
+
+				// flag yes for diabetes
 				diabetes = "Y";
 			}
 		});
@@ -165,8 +174,8 @@ public class PatientPersonalInformation extends JPanel {
 		chckbxAnxiety.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				//flag yes to anxiety
+
+				// flag yes to anxiety
 				anxiety = "Y";
 			}
 		});
@@ -178,9 +187,8 @@ public class PatientPersonalInformation extends JPanel {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
-				// if cancel is clicked no data will be saved and new login panel will be launched. 
+
+				// if cancel is clicked no data will be saved and new login panel will be launched.
 				PatientLogin new_login = new PatientLogin(frame);
 				frame.setContentPane(new_login);
 				frame.revalidate();
@@ -211,7 +219,8 @@ public class PatientPersonalInformation extends JPanel {
 					String anxiety_y = anxiety; // Y or N
 
 					// add new patient record to the patient database
-					patientDB.add(new String[] { patientId, username, password, pname,pgender, pdob, heartdisease_y, diabetes_y, anxiety_y });
+					patientDB.add(new String[] { patientId, username, password, pname, pgender, pdob, heartdisease_y,
+							diabetes_y, anxiety_y });
 					// save the database to file
 					patientDB.savePatientDB();
 
@@ -227,11 +236,7 @@ public class PatientPersonalInformation extends JPanel {
 		});
 		add(btnDone);
 		add(btnCancel);
-		
-		JLabel lblAHSimg = new JLabel("");
-		lblAHSimg.setIcon(new ImageIcon(PatientPersonalInformation.class.getResource("/iteration_3/ahs.png")));
-		lblAHSimg.setBounds(29, 337, 217, 73);
-		add(lblAHSimg);
 
 	} // end PatientPersonalInformation constructor
+
 } // end class PatientPersonalInformation

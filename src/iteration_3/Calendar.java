@@ -39,7 +39,7 @@ public class Calendar {
 	 * Constructor determines the current date and assigns corresponding values to the year and month instance
 	 * variables. Header label for calendar is set to the current month.
 	 */
-	public Calendar() {
+	protected Calendar() {
 
 		LocalDate currentDate = LocalDate.now(); // current date
 		this.month = currentDate.getMonthValue();
@@ -81,42 +81,42 @@ public class Calendar {
 	 * 
 	 * @return
 	 */
-	public JLabel getLbl_month_cal_head() {
+	protected JLabel getLbl_month_cal_head() {
 		return lbl_month_cal_head;
 	}
 
 	/**
 	 * Decreases the value of the year instance variable by one
 	 */
-	public void decrementYear() {
+	protected void decrementYear() {
 		this.year -= 1;
 	}
 
 	/**
 	 * Decreases the value of the month instance variable by one
 	 */
-	public void decrementMonth() {
+	protected void decrementMonth() {
 		this.month -= 1;
 	}
 
 	/**
 	 * Increases the value of the year instance variable by one
 	 */
-	public void incrementYear() {
+	protected void incrementYear() {
 		this.year += 1;
 	}
 
 	/**
 	 * Increases the value of the month instance variable by one
 	 */
-	public void incrementMonth() {
+	protected void incrementMonth() {
 		this.month += 1;
 	}
 
 	/**
 	 * Updates the header label, which shows the calendar month and year, to reflect state of instance variables
 	 */
-	public void updateHeader() {
+	protected void updateHeader() {
 		this.date_string = Integer.toString(this.month) + " / " + Integer.toString(this.year);
 		lbl_month_cal_head.setText(date_string);
 	}

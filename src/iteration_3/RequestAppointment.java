@@ -27,7 +27,7 @@ import javax.swing.ImageIcon;
 
 public class RequestAppointment extends JPanel {
 
-	private static final long serialVersionUID = 3L; // serial ID for java object saving
+	private static final long serialVersionUID = 22L; // serial ID for java object saving
 	private String depart = "";
 	private String user = "";
 	private String date;
@@ -35,12 +35,16 @@ public class RequestAppointment extends JPanel {
 	private String end;
 
 	/**
-	 * Create the panel.
+	 * Creates a window which allows a doctor or a patient to request an appointment
 	 * 
+	 * @param frame     of type JFrame representing the program window
+	 * @param id        of type String representing the id number of the user who opened the window
+	 * @param user_type of type String representing either a doctor or a patient
 	 * @throws Exception
 	 */
-	public RequestAppointment(final JFrame frame, final String id, final String user_type) throws Exception {
+	protected RequestAppointment(final JFrame frame, final String id, final String user_type) throws Exception {
 
+		// set window properties
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 
@@ -51,6 +55,12 @@ public class RequestAppointment extends JPanel {
 		lblNewLabel.setFont(new Font("Cambria Math", Font.BOLD, 24));
 		lblNewLabel.setBounds(358, 37, 257, 29);
 		add(lblNewLabel);
+
+		// Alberta health services logo
+		JLabel lbl_AHSimg = new JLabel("");
+		lbl_AHSimg.setIcon(new ImageIcon(RequestAppointment.class.getResource("/iteration_3/ahs.png")));
+		lbl_AHSimg.setBounds(41, 11, 190, 97);
+		add(lbl_AHSimg);
 
 		// scroll pane to dynamically display all the requested appointments
 		JScrollPane scrollPane = new JScrollPane();
@@ -79,7 +89,7 @@ public class RequestAppointment extends JPanel {
 		lbl_user.setBounds(27, 172, 158, 23);
 		add(lbl_user);
 
-		setUserLabel(user_type, lbl_user);
+		setUserLabel(user_type, lbl_user); // set label to indicate if user is a patient or doctor
 
 		// dropdown list to select the department
 		final JComboBox<String> comboBox_depart = new JComboBox<>();
@@ -279,7 +289,8 @@ public class RequestAppointment extends JPanel {
 								} else if (appointmentDB.get(i).getCustomElement()[6]
 										.equalsIgnoreCase("Doctor Requested") && user_type.equalsIgnoreCase("Doctor")) {
 									appointmentDB.remove(i);
-								} else if (appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Denied")) {
+								} else if (appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Denied")
+										|| appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Cancelled")) {
 									appointmentDB.remove(i);
 								}
 
@@ -303,7 +314,8 @@ public class RequestAppointment extends JPanel {
 								} else if (appointmentDB.get(i).getCustomElement()[6]
 										.equalsIgnoreCase("Doctor Requested") && user_type.equalsIgnoreCase("Doctor")) {
 									appointmentDB.remove(i);
-								} else if (appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Denied")) {
+								} else if (appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Denied")
+										|| appointmentDB.get(i).getCustomElement()[6].equalsIgnoreCase("Cancelled")) {
 									appointmentDB.remove(i);
 								}
 
@@ -517,7 +529,7 @@ public class RequestAppointment extends JPanel {
 		add(lbl_user_column);
 
 		// button allows the user to return to the dash board
-		JButton btn_return = new JButton("Return");
+		JButton btn_return = new JButton("Back");
 		btn_return.setForeground(new Color(0, 102, 204));
 		btn_return.addMouseListener(new MouseAdapter() {
 			@Override
@@ -540,7 +552,7 @@ public class RequestAppointment extends JPanel {
 				}
 			}
 		});
-		btn_return.setBounds(885, 528, 89, 23);
+		btn_return.setBounds(814, 528, 160, 23);
 		add(btn_return);
 
 		JLabel lbl_depart_column = new JLabel("Department");
@@ -548,11 +560,7 @@ public class RequestAppointment extends JPanel {
 		lbl_depart_column.setFont(new Font("Cambria Math", Font.PLAIN, 14));
 		lbl_depart_column.setBounds(639, 155, 88, 14);
 		add(lbl_depart_column);
-		
-		JLabel lbl_AHSimg = new JLabel("");
-		lbl_AHSimg.setIcon(new ImageIcon(RequestAppointment.class.getResource("/iteration_3/ahs.png")));
-		lbl_AHSimg.setBounds(10, 3, 189, 88);
-		add(lbl_AHSimg);
+
 	} // end RequestAppointment constructor
 
 	/**

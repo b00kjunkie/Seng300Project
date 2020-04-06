@@ -16,7 +16,7 @@ import java.io.ObjectOutputStream;
 
 final class PatientDB extends CustomArray { // Class represents the saved set of registered users
 
-	private static final long serialVersionUID = 7L; // serial ID for java object saving
+	private static final long serialVersionUID = 17L; // serial ID for java object saving
 
 	/**
 	 * Constructor with no parameters calls the super class constructor with no parameters.
@@ -52,52 +52,6 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 			throw new Exception(
 					"PatientDB elements must have form: [ID, Username, Password, Name, Gender, DOB, HeartDisease, Diabetes, Anxiety] ");
 		}
-	}
-
-	/**
-	 * Method returns the ID number corresponding to a given username and password match.
-	 * 
-	 * @param username - type String
-	 * @param password - type String
-	 * @return ID of type String
-	 * @throws Exception
-	 */
-	protected String getID(String username, String password) throws Exception {
-		
-		
-		return this.search(username, 1).search(password, 2).get(0).getCustomElement()[0];
-	}
-
-	/**
-	 * Method returns the ID number corresponding to a given patient name
-	 * 
-	 * @param name of type String
-	 * @return patient ID of type String
-	 * @throws Exception
-	 */
-	protected String matchNameToID(String name) throws Exception {
-		String result = "";
-		try {
-			result = this.search(name, 3).get(0).getCustomElement()[0];
-
-		} catch (Exception e1) {
-		}
-		return result;
-	}
-
-	/**
-	 * Method checks if there is a patient record that matches the username and password parameters.
-	 * 
-	 * @param username - type String
-	 * @param password - type String
-	 * @return boolean result indicating if there was a match
-	 * @throws Exception
-	 */
-	protected boolean checkForMatch(String username, String password) throws Exception {
-		if (this.search(username, 1).search(password, 2).isEmpty()) {
-			return false;
-		}
-		return true;
 	}
 
 	/**
@@ -157,7 +111,7 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("patientDB.txt"))) {
 			return (PatientDB) in.readObject();
 		} catch (Exception e) {
-			PatientDB.reinitDB();
+			PatientDB.initPatientDB();
 			try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("patientDB.txt"))) {
 				return (PatientDB) in.readObject();
 			} catch (Exception e1) {
@@ -173,7 +127,7 @@ final class PatientDB extends CustomArray { // Class represents the saved set of
 	 * 
 	 * @throws Exception
 	 */
-	protected static void reinitDB() throws Exception {
+	protected static void initPatientDB() throws Exception {
 		PatientDB constructDB = new PatientDB(
 				new String[] { "1", "NoahBensler", "12345678", "Noah", "M", "01/01/1990", "Y", "N", "Y" });
 		constructDB.add(new String[] { "2", "JamesLiu", "12345678", "James", "M", "09/09/1990", "N", "N", "N" });

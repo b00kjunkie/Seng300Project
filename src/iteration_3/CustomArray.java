@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class CustomArray implements Serializable { // implement serializable so objects can be saved
 
-	private static final long serialVersionUID = 1L; // serial ID for java object saving
+	private static final long serialVersionUID = 5L; // serial ID for java object saving
 
 	ArrayList<CustomElement> customArray; // ArrayList is the main "container"
 
@@ -59,6 +59,18 @@ public class CustomArray implements Serializable { // implement serializable so 
 	}
 
 	/**
+	 * Method returns the ID number corresponding to a given username and password match.
+	 * 
+	 * @param username - type String
+	 * @param password - type String
+	 * @return ID of type String
+	 * @throws Exception
+	 */
+	protected String getID(String username, String password) throws Exception {
+		return this.search(username, 1).search(password, 2).get(0).getCustomElement()[0];
+	}
+
+	/**
 	 * Appends a CustomElement to CustomArray object.
 	 * 
 	 * @param arr - String[] used to implement a new CustomElement
@@ -78,18 +90,35 @@ public class CustomArray implements Serializable { // implement serializable so 
 	}
 
 	/**
-	 * Change where this is used to patientDB.search(username, 1).isEmpty()
+	 * Method returns the ID number corresponding to a given user name
 	 * 
-	 * @param username
-	 * @return
+	 * @param name of type String
+	 * @return patient ID of type String
+	 * @throws Exception
 	 */
-	protected boolean containsKey(String username) {
-		for (int i = 0; i < customArray.size(); i++) {
-			if (customArray.get(i).getCustomElement()[0].equalsIgnoreCase(username)) {
-				return true;
-			}
+	protected String matchNameToID(String name) throws Exception {
+		String result = "";
+		try {
+			result = this.search(name, 3).get(0).getCustomElement()[0];
+
+		} catch (Exception e1) {
 		}
-		return false;
+		return result;
+	}
+
+	/**
+	 * Method checks if there is a user record that matches the username and password parameters.
+	 * 
+	 * @param username - type String
+	 * @param password - type String
+	 * @return boolean result indicating if there was a match
+	 * @throws Exception
+	 */
+	protected boolean checkForMatch(String username, String password) throws Exception {
+		if (this.search(username, 1).search(password, 2).isEmpty()) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
