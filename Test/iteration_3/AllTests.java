@@ -1,11 +1,11 @@
-package iteration_2;
+package iteration_3;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({DoctorDBTest.class,CustomArrayTest.class,CustomElementTest.class})
+@SuiteClasses({ AppointmentDBTest.class, PatientDBTest.class, DoctorUnavailabilityDBTest.class, CustomElementTest.class,CustomArrayTest.class,DoctorDBTest.class })
 public class AllTests {
 
 }
