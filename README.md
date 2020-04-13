@@ -18,10 +18,10 @@ using any of these accounts.
 ### Doctors registered in the system
 	1. Username: doc1	Password: 12345678	
 	2. Username: doc2	Password: 12345678
-    	3. Username: doc3	Password: 12345678
-    	4. Username: doc4 	Password: 12345678
-    	5. Username: doc5	Password: 12345678
-    	6. Username: doc6	Password: 12345678
+	3. Username: doc3	Password: 12345678
+	4. Username: doc4 	Password: 12345678
+	5. Username: doc5	Password: 12345678
+	6. Username: doc6	Password: 12345678
 
 ### Nurses registered in the system
     	1. Username: nurse1	Password: 12345678
@@ -30,6 +30,6 @@ using any of these accounts.
 ### Patients registered in the system
 	1. Username: NoahBensler	Password: 12345678
    	2. Username: JamesLiu		Password: 12345678
-    	3. Username: VuNguyen		Password: 12345678
-  	4. Username: BoyangDong		Password: 12345678
-    	5. Username: KenSharman		Password: 12345678
+	3. Username: VuNguyen		Password: 12345678
+	4. Username: BoyangDong		Password: 12345678
+	5. Username: KenSharman		Password: 12345678
