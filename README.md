@@ -24,8 +24,8 @@ using any of these accounts.
 	6. Username: doc6	Password: 12345678
 
 ### Nurses registered in the system
-    	1. Username: nurse1	Password: 12345678
-    	2. Username: nurse2	Password: 12345678
+	1. Username: nurse1	Password: 12345678
+	2. Username: nurse2	Password: 12345678
 
 ### Patients registered in the system
 	1. Username: NoahBensler	Password: 12345678
